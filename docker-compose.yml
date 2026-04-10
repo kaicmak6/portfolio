@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  directus:
+    image: directus/directus:latest
+    restart: unless-stopped
+    ports:
+      - '18055:8055'
+    environment:
+      PORT: 8055
+      KEY: ${DIRECTUS_KEY:-directus_key}
+      SECRET: ${DIRECTUS_SECRET:-directus_secret}
+      DB_CLIENT: sqlite3
+    volumes:
+      - ./directus-data:/directus/database
+      - ./directus-data/uploads:/directus/uploads
+    networks:
+      - proxy-net
+    env_file:
+      - .env
+      - .env.local
+      - .env.production
+      - .env.production.local
+
+  portfolio:
+    build:
+      context: .
+      args:
+        BASE_PATH: ${BASE_PATH:-}
+        NEXT_PUBLIC_URL: ${NEXT_PUBLIC_URL:-}
+        DIRECTUS_HOST: ${DIRECTUS_HOST:-http://host.docker.internal:18055}
+        IMAGE_DOMAINS: ${IMAGE_DOMAINS:-portfolio-cms.mak-cloud.com}
+        NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
+        NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID:-}
+        NEXT_PUBLIC_CLOUDFLARE_SITE_KEY: ${NEXT_PUBLIC_CLOUDFLARE_SITE_KEY:-}
+    restart: unless-stopped
+    ports:
+      - '30000:3000'
+    networks:
+      - proxy-net
+    depends_on:
+      - directus
+      - redis
+    environment:
+      # Runtime environment variables (BASE_PATH must match build-time value)
+      - BASE_PATH=${BASE_PATH:-}
+      - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-}
+      - DIRECTUS_HOST=${DIRECTUS_HOST:-http://host.docker.internal:18055}
+      - IMAGE_DOMAINS=${IMAGE_DOMAINS:-portfolio-cms.mak-cloud.com}
+      - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID:-}
+      - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID:-}
+      - NEXT_PUBLIC_CLOUDFLARE_SITE_KEY=${NEXT_PUBLIC_CLOUDFLARE_SITE_KEY:-}
+      # Redis configuration for caching
+      - REDIS_HOST=${REDIS_HOST:-}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_URL=${REDIS_URL:-}
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis-data:/data
+    networks:
+      - proxy-net
+    command: redis-server --appendonly yes --notify-keyspace-events Exe
+
+networks:
+  proxy-net:
+    driver: bridge

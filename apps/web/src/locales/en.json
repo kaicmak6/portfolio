@@ -1,0 +1,379 @@
+{
+  "Index": {
+    "meta_title": "Project Nova | Senior Engineering Specialist Portfolio",
+    "meta_description": "A showcase of resilient, container-aligned frontend architectures. Specializing in high-concurrency ecosystems and distributed state management."
+  },
+  "ThemeConfig": {
+    "primary": "Slate",
+    "secondary": "Cyan",
+    "aesthetic": "Cyber-Minimalist / Line Art",
+    "logo_text": "NOVA"
+  },
+  "HeaderTabs": {
+    "home": "Dashboard",
+    "projects": "System Architecture",
+    "experience": "Career Logs",
+    "contact": "Comm Link",
+    "name": "Kaius M.",
+    "avatar": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
+    "profile_link": "/"
+  },
+  "PortfolioHero": {
+    "badge": "Engineering Lead of Leads",
+    "title": "Scaling The Digital Frontier",
+    "subtitle": "Engineering high-resiliency cores for ultra-scale global infrastructures.",
+    "cards": [
+      {
+        "id": "project-starlight",
+        "title": "Starlight: Logistics Orchestration Core",
+        "category": "Greenfield Lead of Leads",
+        "description": "Architected a ground-up rebuild of a planetary-scale logistics hub. Synchronized 20+ engineers via strict Docker-containerized dev-flows.",
+        "badges": [
+          "Next.js 15",
+          "Docker Parity",
+          "Lead of Leads",
+          "Redis Resilience"
+        ],
+        "images": [
+          "https://picsum.photos/seed/space_1/800/600"
+        ],
+        "emoji": "🌌",
+        "year": "2024",
+        "status": "Production"
+      },
+      {
+        "id": "content-mesh",
+        "title": "Quantum Mesh: Edge Content Delivery",
+        "category": "Architecture Lead",
+        "description": "Zero-latency static hub leveraging Triple-Layer Edge Caching and Headless CMS to serve 1M+ nodes globally.",
+        "badges": [
+          "Headless Core",
+          "ISR",
+          "Edge Caching",
+          "Lighthouse 100"
+        ],
+        "images": [
+          "https://picsum.photos/seed/nebula_2/800/600"
+        ],
+        "emoji": "🕸️"
+      },
+      {
+        "id": "energy-grid-ui",
+        "title": "Apex: High-Concurrency Grid Control",
+        "category": "Technical Lead",
+        "description": "Engineered a Next.js infrastructure capable of 15x peak surge handling. Eliminated cache drift in multi-pod clusters.",
+        "badges": [
+          "K8s Resilient",
+          "Redis Cluster",
+          "High-Concurrency"
+        ],
+        "images": [
+          "https://picsum.photos/seed/energy_3/800/600"
+        ],
+        "emoji": "⚡"
+      }
+    ]
+  },
+  "HeroBullets": {
+    "title": "Precision Architecture. Extreme Scale.",
+    "description": "Specializing in Greenfield Next.js transformations and engineering governance. I bridge the gap between complex infrastructure and seamless user experiences.",
+    "features": [
+      {
+        "title": "Environment Homogeneity",
+        "description": "Enforcing 100% development parity via Docker-native workflows, ensuring 'works on my machine' is a relic of the past."
+      },
+      {
+        "title": "Engineering Governance",
+        "description": "Scaling teams from 4 to 20+ by implementing standardized hiring rubrics, code telemetry, and observability standards."
+      },
+      {
+        "title": "Distributed State Stability",
+        "description": "Mastering cross-region session persistence and data consistency using centralized Redis-backed state orchestration."
+      }
+    ],
+    "primary_button": "Access Repository",
+    "secondary_button": "Request Briefing",
+    "primary_button_link": "https://github.com/kaicmak6",
+    "secondary_button_action": "scroll_to_contact",
+    "image": "https://picsum.photos/seed/blueprint/800/600"
+  },
+  "Projects": {
+    "title": "System Deployments",
+    "meta_title": "Project Portfolio | Kaius M.",
+    "meta_description": "Exploring distributed architectures, container-aligned dev-flows, and enterprise Next.js patterns.",
+    "live_demo": "Live Interface",
+    "github": "Source Code",
+    "view_production": "Technical Brief",
+    "items": [
+      {
+        "id": "project-starlight",
+        "title": "Project Starlight: Planetary Logistics Core",
+        "category": "Lead of Leads (Greenfield)",
+        "description": "Ground-up modernization of a distributed booking and tracking engine.",
+        "badges": [
+          "Next.js",
+          "Docker alignment",
+          "Distributed Redis"
+        ],
+        "desc": "<p><b>Technical Directive:</b> Rebuilding a mission-critical core from legacy monolith to distributed Next.js. <b>I led the cross-functional squad</b> (20+ devs) across 3 workstreams.</p><ul><li><b>Lead of Leads:</b> Defined the governance for tech selection and environment standardization.</li><li><b>Observability:</b> Implemented <b>Trace-ID Context Propagation</b> across the ELK stack for sub-second incident root-cause analysis.</li><li><b>Resiliency:</b> Solved <b>Cache Pollution</b> issues via centralized Redis state management.</li></ul>",
+        "metrics": [
+          "20+ Devs Orchestrated",
+          "100% Env Alignment",
+          "Zero Drift Deployment"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js"
+          },
+          {
+            "emoji": "🐳",
+            "label": "Docker"
+          },
+          {
+            "emoji": "🔴",
+            "label": "Redis"
+          },
+          {
+            "emoji": "📊",
+            "label": "ELK Stack"
+          }
+        ],
+        "demo": "#",
+        "images": [
+          "https://picsum.photos/seed/space_1/800/600"
+        ],
+        "emoji": "🌌"
+      },
+      {
+        "id": "content-mesh",
+        "title": "Quantum Mesh: Edge Content Delivery",
+        "category": "Architecture Lead",
+        "description": "High-velocity content hub for global data distribution.",
+        "badges": [
+          "Edge Mesh",
+          "Triple-Cache",
+          "Headless"
+        ],
+        "desc": "<p><b>Objective:</b> Deliver content to millions of edge nodes with near-zero latency.</p><ul><li><b>Caching Strategy:</b> Combined Next.js ISR with global CDN layers and localized browser persistence.</li><li><b>System decoupling:</b> Used a Headless approach to allow real-time updates without infrastructure redeployment.</li></ul>",
+        "metrics": [
+          "Lighthouse 100",
+          "TTFB < 15ms",
+          "Zero-Latency Sync"
+        ],
+        "tech": [
+          {
+            "emoji": "🌐",
+            "label": "Edge Computing"
+          },
+          {
+            "emoji": "🔄",
+            "label": "ISR"
+          },
+          {
+            "emoji": "🔷",
+            "label": "Headless CMS"
+          }
+        ],
+        "images": [
+          "https://picsum.photos/seed/nebula_2/800/600"
+        ],
+        "emoji": "🕸️"
+      }
+    ]
+  },
+  "ExperiencePage": {
+    "title": "Career Logs",
+    "download_cv_link": "#",
+    "meta_title": "Experience | Engineering Specialist",
+    "meta_description": "Technical career progression log from Specialist to Lead of Leads.",
+    "work_experience_title": "Professional Assignments",
+    "education_section_title": "Academy",
+    "education_title": "BSc (Hons) Computer Science",
+    "education_institution": "City University of Technology",
+    "education_details": "Specialized in Distributed Systems and Software Architecture.",
+    "jobs": [
+      {
+        "id": "exp-lead",
+        "title": "Senior Engineering Specialist (Lead of Leads)",
+        "company": "Global Technology Syndicate",
+        "date": "2024 – 2025",
+        "badge": "Core Strategy",
+        "description": "Led digital transformation for high-scale enterprise logistics hubs.<br/><br/>• <b>Team Orchestration:</b> Scaled engineering capacity from 4 to 20+ members across multiple workstreams.<br/>• <b>Infrastructure Alignment:</b> Enforced Docker-native development to eliminate local-to-production variance.<br/>• <b>State Resilience:</b> Architected Redis-backed persistence for high-concurrency multi-pod K8s clusters."
+      },
+      {
+        "id": "exp-senior",
+        "title": "Technical Lead",
+        "company": "Global Technology Syndicate",
+        "date": "2022 – 2023",
+        "badge": "Infra Systems",
+        "description": "Architected foundational cores for high-traffic promotional engines.<br/><br/>• <b>Next.js Core:</b> Built resilient frontend foundations handling 15x traffic surges.<br/>• <b>Edge Caching:</b> Implemented triple-layer caching strategies for instant content delivery."
+      },
+      {
+        "id": "exp-sabbatical",
+        "title": "Strategic Research Sabbatical",
+        "company": "Independent R&D",
+        "date": "2026 – Present",
+        "badge": "Modernization",
+        "description": "Current focus on Next-Gen DX and Edge Infrastructure.<br/><br/>• <b>Self-Hosting:</b> Deploying resilient micro-services via <b>Docker</b> and <b>Caddy</b>.<br/>• <b>Backend:</b> Deep-diving into <b>NestJS</b> architectural patterns and Cloudflare AI integration."
+      }
+    ]
+  },
+  "Experience": {
+    "title": "Professional Progression",
+    "subtitle": "Engineering Impact over 5.8+ Years",
+    "view_details": "Review Detailed Logs →",
+    "jobs": [
+      {
+        "id": "exp-lead",
+        "title": "Lead of Leads",
+        "company": "Global Syndicate",
+        "date": "2024 – 2025",
+        "description": "Scaled team to 20+ pax. Led Docker-aligned governance and Redis state strategy.",
+        "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-senior",
+        "title": "Technical Lead",
+        "company": "Global Syndicate",
+        "date": "2022 – 2023",
+        "description": "Optimized high-traffic cores via ISR and Triple-Layer Caching.",
+        "icon": "code",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-sabbatical",
+        "title": "R&D Lead",
+        "company": "Sabbatical",
+        "date": "2026 – Present",
+        "description": "Modernizing DX with Docker, Caddy, and NestJS.",
+        "icon": "cpu",
+        "badge_color": "orange"
+      }
+    ]
+  },
+  "Skills": {
+    "title": "Tech Matrix",
+    "subtitle": "Synthesized expertise in enterprise ecosystems",
+    "categories": [
+      {
+        "title": "Frontend Leadership",
+        "icon": "code",
+        "skills": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js 15"
+          },
+          {
+            "emoji": "📘",
+            "label": "TypeScript"
+          },
+          {
+            "emoji": "🎨",
+            "label": "Mantine UI"
+          },
+          {
+            "emoji": "💨",
+            "label": "Tailwind"
+          }
+        ]
+      },
+      {
+        "title": "System Engineering",
+        "icon": "server",
+        "skills": [
+          {
+            "emoji": "🐳",
+            "label": "Docker Alignment"
+          },
+          {
+            "emoji": "🔴",
+            "label": "Redis State"
+          },
+          {
+            "emoji": "☸️",
+            "label": "Kubernetes"
+          },
+          {
+            "emoji": "🦁",
+            "label": "NestJS"
+          }
+        ]
+      },
+      {
+        "title": "Leadership & Ops",
+        "icon": "users",
+        "skills": [
+          {
+            "emoji": "👥",
+            "label": "Team Scaling"
+          },
+          {
+            "emoji": "📋",
+            "label": "SDLC Governance"
+          },
+          {
+            "emoji": "📊",
+            "label": "Observability"
+          }
+        ]
+      }
+    ]
+  },
+  "ContactInfo": {
+    "title": "Establish Connection",
+    "subtitle": "Open for Technical Leadership & Architectural Specialist Roles",
+    "email": "contact@your-domain.com",
+    "phone": "+852 XXXX XXXX",
+    "linkedin": "https://linkedin.com/in/redacted",
+    "copied": "Log Copied!",
+    "icons": {
+      "email": "mail",
+      "phone": "phone",
+      "linkedin": "linkedin"
+    }
+  },
+  "FooterSocial": {
+    "logo": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
+    "alt_text": "Nova Logo",
+    "aria_labels": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "links": {
+      "email": "mailto:contact@your-domain.com",
+      "whatsapp": "#",
+      "linkedin": "#",
+      "github": "https://github.com/kaicmak6"
+    }
+  },
+  "BadgeCard": {
+    "technologies_skills": "System Specs",
+    "view_project": "Decrypt Project"
+  },
+  "ChatBot": {
+    "title": "NOVA AI",
+    "subtitle": "System Liaison",
+    "welcomeMessage": "Greeting. I am the Nova System Liaison. You can ask me about scaling 20-man squads, Docker-aligned architectures, or distributed state management.",
+    "suggestedQueries": [
+      "How do you scale teams to 20+ members?",
+      "Explain the Docker environment alignment.",
+      "Tell me about the Redis Shared State strategy.",
+      "What is your approach to Greenfield Next.js?"
+    ],
+    "inputPlaceholder": "Enter query...",
+    "error": "Comm-link interrupted. Please retry.",
+    "suggestedQuestionsTitle": "Recommended Queries",
+    "devModeCaptchaDisabled": "Simulator: Captcha Bypassed",
+    "poweredBy": "Powered by AI Core",
+    "gatewayInfo": "Data processed through Secure AI Gateway for edge-level security."
+  },
+  "favicon": {
+    "url": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
+    "sizes": "any",
+    "type": "image/x-icon"
+  }
+}

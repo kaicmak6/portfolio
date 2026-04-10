@@ -49,3 +49,27 @@ local
 
 # vercel
 .vercel
+
+# directus
+/directus-data/
+
+# Monorepo builds
+apps/*/dist
+apps/*/.next
+apps/*/node_modules
+packages/*/dist
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# TypeScript
+tsconfig.tsbuildinfo
+
+# Redis
+redis-data/
+
+# Turbo Repo
+.turbo
