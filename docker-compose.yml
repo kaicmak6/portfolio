@@ -42,6 +42,10 @@ services:
       - directus
       - redis
     environment:
+      - .env
+      - .env.local
+      - .env.production
+      - .env.production.local
       # Runtime environment variables (BASE_PATH must match build-time value)
       - BASE_PATH=${BASE_PATH:-}
       - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-}
@@ -54,7 +58,11 @@ services:
       - REDIS_HOST=${REDIS_HOST:-}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_URL=${REDIS_URL:-}
-
+      - CLOUDFLARE_TURNSTILE_SECRET_KEY=${CLOUDFLARE_TURNSTILE_SECRET_KEY:-}
+      - CSP_HEADER=${CSP_HEADER:-}
+      - AI_SYSTEM_PROMPT=${AI_SYSTEM_PROMPT:-}
+      - CLOUDFLARE_AI_GATEWAY_TOKEN=${CLOUDFLARE_AI_GATEWAY_TOKEN:-}
+      - CF_ACCOUNT_ID=${CF_ACCOUNT_ID:-}
   redis:
     image: redis:7-alpine
     restart: unless-stopped
@@ -62,6 +70,11 @@ services:
       - '6379:6379'
     volumes:
       - ./redis-data:/data
+    environment:
+      - .env
+      - .env.local
+      - .env.production
+      - .env.production.local
     networks:
       - proxy-net
     command: redis-server --appendonly yes --notify-keyspace-events Exe

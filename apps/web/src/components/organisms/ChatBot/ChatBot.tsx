@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import Turnstile from 'react-cloudflare-turnstile';
 import useSWRMutation from 'swr/mutation';
 
+import { HtmlContent } from '@/components/atoms';
+
 import classes from './ChatBot.module.scss';
 
 type Message = {
@@ -70,6 +72,7 @@ export function ChatBot() {
     setMessages(newMessages);
     setInput('');
     setStreamingMessage('');
+    console.log('Sending message:', turnstileToken);
 
     try {
       const response = await trigger({
@@ -186,7 +189,7 @@ export function ChatBot() {
                     <Box className={classes.avatar} bg="blue.6">
                       <IconRobot size={18} color="white" />
                     </Box>
-                    <Paper className={classes.assistantMessage} p="sm" radius="md" bg="var(--mantine-color-gray-1)">
+                    <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
                       <Text size="sm" className={classes.messageText}>
                         {t('welcomeMessage')}
                       </Text>
@@ -229,15 +232,15 @@ export function ChatBot() {
                     className={`${classes.message} ${msg.role === 'user' ? classes.userMessage : classes.assistantMessage}`}
                     p="sm"
                     radius="md"
-                    bg={msg.role === 'user' ? 'blue.6' : 'var(--mantine-color-gray-1)'}
-                    c={msg.role === 'user' ? 'white' : 'var(--mantine-color-text)'}
+                    bg={msg.role === 'user' ? 'blue.6' : 'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'}
+                    c={msg.role === 'user' ? 'white' : 'inherit'}
                   >
                     <Text size="sm" className={classes.messageText}>
-                      {msg.content}
+                      <HtmlContent content={msg.content} />
                     </Text>
                   </Paper>
                   {msg.role === 'user' && (
-                    <Box className={classes.avatar} bg="var(--mantine-color-gray-6)">
+                    <Box className={classes.avatar} bg="light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-4))">
                       <IconUser size={18} color="white" />
                     </Box>
                   )}
@@ -248,9 +251,9 @@ export function ChatBot() {
                   <Box className={classes.avatar} bg="blue.6">
                     <IconRobot size={18} color="white" />
                   </Box>
-                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="var(--mantine-color-gray-1)">
+                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
                     <Text size="sm" className={classes.messageText}>
-                      {streamingMessage}
+                      <HtmlContent content={streamingMessage} />
                     </Text>
                   </Paper>
                 </Group>
@@ -260,7 +263,7 @@ export function ChatBot() {
                   <Box className={classes.avatar} bg="blue.6">
                     <IconRobot size={18} color="white" />
                   </Box>
-                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="var(--mantine-color-gray-1)">
+                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
                     <Loader size="sm" />
                   </Paper>
                 </Group>
@@ -276,7 +279,7 @@ export function ChatBot() {
                       <Turnstile
                         turnstileSiteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || ''}
                         callback={(token: string) => setTurnstileToken(token)}
-                        theme="light"
+                        theme="auto"
                         size="normal"
                       />
                     </Flex>

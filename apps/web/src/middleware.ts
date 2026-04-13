@@ -14,15 +14,16 @@ const intlMiddleware = createMiddleware({
 export default function middleware(
   request: NextRequest,
 ) {
-  // Skip intl middleware for API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    return;
-  }
+  const response = intlMiddleware(request);
 
-  return intlMiddleware(request);
+  const cspHeader = process.env.CSP_HEADER || `default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' ${process.env.NEXT_PUBLIC_URL}; connect-src 'self' ${process.env.NEXT_PUBLIC_URL}; frame-src 'self' ${process.env.NEXT_PUBLIC_URL}; img-src 'self' blob: data: ${process.env.NEXT_PUBLIC_URL}; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self';`;
+
+  response.headers.set('Content-Security-Policy', cspHeader);
+
+  return response;
 }
 
 export const config = {
   // Match all routes except static files, _next, and monitoring
-  matcher: ['/((?!.+\\.[\\w]+$|_next|monitoring).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/((?!.+\\.[\\w]+$|_next|monitoring).*)', '/', '/(trpc)(.*)'],
 };

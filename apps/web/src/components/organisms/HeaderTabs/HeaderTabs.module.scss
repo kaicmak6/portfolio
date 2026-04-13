@@ -24,6 +24,7 @@
 
 .tabs {
   align-self: flex-end;
+  margin-left: auto;
 }
 
 .tabsList {
@@ -86,4 +87,8 @@
   &.active {
     background-color: var(--mantine-color-blue-light);
   }
+}
+
+.themeToggle {
+  margin-left: var(--mantine-spacing-xs);
 }

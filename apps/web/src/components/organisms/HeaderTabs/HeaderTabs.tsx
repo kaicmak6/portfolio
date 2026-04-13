@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { ColorSchemeToggle } from './ColorSchemeToggle';
 import classes from './HeaderTabs.module.scss';
 
 export function HeaderTabs() {
@@ -77,7 +78,7 @@ export function HeaderTabs() {
   return (
     <div className={classes.header}>
       <Container className={classes.mainSection} size="md">
-        <Group justify="space-between">
+        <Group>
           <Link
             href={t('profile_link')}
             className={classes.profileLink}
@@ -112,7 +113,12 @@ export function HeaderTabs() {
             ))}
           </Tabs>
 
+          <Group visibleFrom="lg">
+            <ColorSchemeToggle />
+          </Group>
+
           <Burger
+            ml="auto"
             opened={opened}
             onClick={toggle}
             hiddenFrom="lg"
@@ -140,6 +146,7 @@ export function HeaderTabs() {
                 <Text fw={500}>{tab.label}</Text>
               </Link>
             ))}
+            <ColorSchemeToggle />
           </Stack>
         </Container>
       </Collapse>
