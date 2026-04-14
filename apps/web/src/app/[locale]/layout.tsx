@@ -84,7 +84,7 @@ export default function RootLayout(props: {
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       )}
       <head>
-        <ColorSchemeScript data-mantine-script="true" defaultColorScheme="auto" />
+        <ColorSchemeScript suppressHydrationWarning defaultColorScheme="auto" />
       </head>
       <body suppressHydrationWarning>
         {/* PRO: Dark mode support for Shadcn UI */}
