@@ -1,5 +1,6 @@
 import { Carousel } from '@mantine/carousel';
 import { Badge, Button, Card, Group, Text } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -39,6 +40,7 @@ export function BadgeCard({ id, images, title, description, country, badges }: B
           slideSize="100%"
           slideGap="md"
           emblaOptions={{ loop: true }}
+          plugins={[Autoplay({ delay: 4000 })]}
         >
           {images.map((img, index) => (
             <Carousel.Slide key={index}>

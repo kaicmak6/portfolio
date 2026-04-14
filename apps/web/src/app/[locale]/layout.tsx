@@ -57,7 +57,7 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 1800; // Revalidate every 30 minutes (ISR)
+export const revalidate = 600; // Revalidate every 10 minutes to update metadata and content
 export const dynamic = 'force-dynamic'; // Do not pre-render at build time
 
 export default function RootLayout(props: {

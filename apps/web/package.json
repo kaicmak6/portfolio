@@ -43,6 +43,7 @@
     "dompurify": "^3.3.3",
     "drizzle-orm": "^0.35.1",
     "embla-carousel": "^8.6.0",
+    "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "html-react-parser": "^6.0.0",
     "isomorphic-dompurify": "^3.7.1",

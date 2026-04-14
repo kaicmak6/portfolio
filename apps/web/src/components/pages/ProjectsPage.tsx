@@ -1,6 +1,7 @@
 'use client';
 import { Carousel } from '@mantine/carousel';
 import { Badge, Button, Card, Container, Group, SimpleGrid, Text, Title } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -44,6 +45,7 @@ export function ProjectsPage() {
                 slideSize="100%"
                 slideGap="md"
                 emblaOptions={{ loop: true }}
+                plugins={[Autoplay({ delay: 4000 })]}
                 className={classes.carousel}
                 styles={{
                   indicator: {
