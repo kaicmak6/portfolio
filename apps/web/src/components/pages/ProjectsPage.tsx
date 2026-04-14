@@ -41,7 +41,7 @@ export function ProjectsPage() {
               <Carousel
                 withIndicators
                 withControls={false}
-                height={180}
+                height={225}
                 slideSize="100%"
                 slideGap="md"
                 emblaOptions={{ loop: true }}
@@ -59,7 +59,7 @@ export function ProjectsPage() {
                   <Carousel.Slide key={idx}>
                     <Image
                       src={img}
-                      height={180}
+                      height={225}
                       alt={`${p.title} - Image ${idx + 1}`}
                       width={400}
                       className={classes.carouselImage}
