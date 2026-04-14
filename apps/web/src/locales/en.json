@@ -185,6 +185,7 @@
   "ExperiencePage": {
     "title": "Career Logs",
     "download_cv_link": "#",
+    "download_cv": "Download Full CV (PDF)",
     "meta_title": "Experience | Engineering Specialist",
     "meta_description": "Technical career progression log from Specialist to Lead of Leads.",
     "work_experience_title": "Professional Assignments",
