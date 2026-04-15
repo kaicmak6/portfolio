@@ -96,6 +96,7 @@ export function HeroBullets() {
           alt=""
           width={400}
           height={300}
+          priority
         />
       </div>
     </Container>
