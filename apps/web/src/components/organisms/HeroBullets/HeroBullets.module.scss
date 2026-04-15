@@ -48,8 +48,18 @@
   }
 }
 
+.group {
+  @media (max-width: $mantine-breakpoint-md) {
+    justify-content: center;
+  }
+}
+
 .control {
-  @media (max-width: $mantine-breakpoint-xs) {
+  /* Base styles if any, but mostly handled by Mantine */
+}
+
+.button {
+  @media (max-width: $mantine-breakpoint-md) {
     width: 100%;
   }
 }
