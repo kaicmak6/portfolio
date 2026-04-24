@@ -1,4 +1,4 @@
-import { dirname } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import withBundleAnalyzer from '@next/bundle-analyzer';
@@ -62,6 +62,14 @@ export default withSentryConfig(
 
       // Pass filtered environment variables from parent process (Fastify server)
       // env: getFilteredEnv(),
+
+      webpack: (config) => {
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          '@': resolve(__dirname, 'src'),
+        };
+        return config;
+      },
     }),
   ),
   {

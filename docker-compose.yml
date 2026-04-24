@@ -11,8 +11,9 @@ services:
       KEY: ${DIRECTUS_KEY:-directus_key}
       SECRET: ${DIRECTUS_SECRET:-directus_secret}
       DB_CLIENT: sqlite3
+      DB_FILENAME: /directus/database/data.db
     volumes:
-      - ./directus-data:/directus/database
+      - directus-db:/directus/database
       - ./directus-data/uploads:/directus/uploads
     networks:
       - proxy-net
@@ -41,11 +42,12 @@ services:
     depends_on:
       - directus
       - redis
-    environment:
+    env_file:
       - .env
       - .env.local
       - .env.production
       - .env.production.local
+    environment:
       # Runtime environment variables (BASE_PATH must match build-time value)
       - BASE_PATH=${BASE_PATH:-}
       - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-}
@@ -70,7 +72,7 @@ services:
       - '6379:6379'
     volumes:
       - ./redis-data:/data
-    environment:
+    env_file:
       - .env
       - .env.local
       - .env.production
@@ -82,3 +84,6 @@ services:
 networks:
   proxy-net:
     driver: bridge
+
+volumes:
+  directus-db:
