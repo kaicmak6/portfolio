@@ -22,9 +22,12 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Copy workspace package files to allow pnpm to resolve dependencies correctly
 # We copy the package.json of each workspace to ensure correct installation
-COPY apps/web/package.json pnpm-lock.yaml ./apps/web/
+# IMPORTANT: Do NOT overwrite pnpm-lock.yaml - it's already copied from root
+COPY apps/web/package.json ./apps/web/
 COPY apps/api/package.json ./apps/api/
 COPY apps/server/package.json ./apps/server/
+COPY packages/database/package.json ./packages/database/
+COPY packages/shared/package.json ./packages/shared/
 
 # Install dependencies (using --frozen-lockfile for CI)
 RUN pnpm install --frozen-lockfile
@@ -59,7 +62,8 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json ./apps/web/
 COPY apps/api/package.json ./apps/api/
 COPY apps/server/package.json ./apps/server/
-
+COPY packages/database/package.json ./packages/database/
+COPY packages/shared/package.json ./packages/shared/
 # Copy built artifacts from builder stage
 # Server dist files
 COPY --from=builder /app/apps/server/dist ./apps/server/dist

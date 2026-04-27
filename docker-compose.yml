@@ -49,6 +49,10 @@ services:
       - .env.production.local
     environment:
       # Runtime environment variables (BASE_PATH must match build-time value)
+      # NODE_ENV=production is explicitly set here to override .env's NODE_ENV=development
+      # Inside Docker, the app must run in production mode so Next.js serves the pre-built
+      # static output instead of trying to compile modules on-the-fly with webpack dev server.
+      - NODE_ENV=production
       - BASE_PATH=${BASE_PATH:-}
       - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-}
       - DIRECTUS_HOST=${DIRECTUS_HOST:-http://host.docker.internal:18055}
