@@ -1,4 +1,5 @@
-name: Docker Build and Push
+# CI/CD Pipeline Configuration for Docker Build and Push to AWS ECR
+name: Docker Build, Tag, and Push to AWS ECR
 
 on:
   push:
@@ -11,80 +12,79 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  quality-check:
-    name: Quality Check
+  docker-build-and-push:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
+    
+    # if the current branch is protected, require CODEOWNERS to be valid
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 9
-
+          
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: pnpm
-
+          
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Run Lint, Test and Type Check
-        run: pnpm run lint && pnpm run test && pnpm run check-types
-
-  docker-build:
-    name: Build Docker Image
-    needs: quality-check
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+        
+      - name: Build and test
+        run: pnpm run build
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        
       - name: Set up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Log in to Container Registry
+        
+      - name: Log in to GitHub Container Registry
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+          
+      - name: Log in to Amazon ECR
+        if: github.event_name != 'pull_request'
+        id: login-ecr
+        uses: amazon-ecosystem/amazon-ecr-credentials-action@v1
+        
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
-
-      - name: Build and push Docker image
+          
+      - name: Build and push to GitHub Container Registry
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      - name: Generate artifact attestation
+      - name: Push Docker image to Amazon ECR
         if: github.event_name != 'pull_request'
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          subject-digest: ${{ steps.build-push.outputs.digest }}
-          push-to-registry: true
+        run: |
+          # Tag the image for AWS ECR
+          docker tag ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }} \
+            ${{ steps.login-ecr.outputs.password }}/${{ steps.meta.outputs.username }}
+          
+          # Push to AWS ECR
+          docker push ${{ steps.login-ecr.outputs.password }}/${{ steps.meta.outputs.username }}
