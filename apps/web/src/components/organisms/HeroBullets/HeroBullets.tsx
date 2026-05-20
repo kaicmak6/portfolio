@@ -1,5 +1,5 @@
 'use client';
-import { Button, Container, Group, List, ThemeIcon, Title } from '@mantine/core';
+import { Button, Container, Group, List, Text, ThemeIcon, Title } from '@mantine/core';
 import { IconBrandGithub, IconCheck, IconMail } from '@tabler/icons-react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -86,15 +86,48 @@ export function HeroBullets() {
             </Button>
           </Group>
         </div>
-        <Image
-          src={image}
-          className={`${classes.image} ${classes.heroImage}`}
-          alt=""
-          width={400}
-          height={300}
-          priority
-        />
+        <div className={classes.imageColumn}>
+          <Image
+            src={image}
+            className={`${classes.image} ${classes.heroImage}`}
+            alt=""
+            width={400}
+            height={300}
+            priority
+          />
+        </div>
       </div>
+      {/* AWS & Cloudflare infrastructure showcase */}
+      <div className={classes.infraShowcase}>
+        <div className={classes.infraShowcaseTitle}>{t('infra_title')}</div>
+        <div className={classes.infraShowcaseRow}>
+          <div className={classes.infraItem}>
+            <Image
+              src={t('infra_aws_logo')}
+              alt="AWS"
+              width={100}
+              height={60}
+              className={classes.infraLogo}
+              priority
+            />
+            <Text size="sm" fw={700} className={classes.infraLabel}>AWS</Text>
+            <Text size="xs" c="dimmed" className={classes.infraDesc}>{t('infra_aws')}</Text>
+          </div>
+          <div className={classes.infraItem}>
+            <Image
+              src={t('infra_cf_logo')}
+              alt="Cloudflare"
+              width={100}
+              height={60}
+              className={classes.infraLogo}
+              priority
+            />
+            <Text size="sm" fw={700} className={classes.infraLabel}>Cloudflare</Text>
+            <Text size="xs" c="dimmed" className={classes.infraDesc}>{t('infra_cf')}</Text>
+          </div>
+        </div>
+      </div>
+
     </Container>
   );
 }

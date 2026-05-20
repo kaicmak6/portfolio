@@ -1,4 +1,5 @@
 export * from './BadgeCardGridSection';
+export * from './CertificationsSection';
 export * from './ChatBot';
 export * from './ContactInfo';
 export * from './ExperienceSection';
