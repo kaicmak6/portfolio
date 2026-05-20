@@ -46,7 +46,7 @@ jobs:
           build-args: |
             DIRECTUS_HOST=${{ secrets.DIRECTUS_HOST }}
             BASE_PATH=${{ vars.BASE_PATH }}
-            NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
+            NEXT_PUBLIC_URL=${{ vars.NEXT_PUBLIC_URL }}
             IMAGE_DOMAINS=${{ vars.IMAGE_DOMAINS }}
             NEXT_PUBLIC_CLOUDFLARE_SITE_KEY=${{ secrets.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY }}
             NEXT_PUBLIC_GTM_ID=${{ secrets.NEXT_PUBLIC_GTM_ID }}
