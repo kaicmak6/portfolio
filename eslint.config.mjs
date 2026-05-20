@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import antfu from '@antfu/eslint-config';
 import nextPlugin from '@next/eslint-plugin-next';
 import jestDom from 'eslint-plugin-jest-dom';
@@ -6,6 +9,8 @@ import playwright from 'eslint-plugin-playwright';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tailwind from 'eslint-plugin-tailwindcss';
 import testingLibrary from 'eslint-plugin-testing-library';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default antfu({
   react: true,
@@ -33,21 +38,24 @@ export default antfu({
     '**/*.yaml',
     '**/*.yml',
   ],
-}, {
+}, ...tailwind.configs['flat/recommended'].map(config => ({
+  ...config,
   files: ['apps/web/**/*.{js,jsx,ts,tsx}'],
-  ...tailwind.configs['flat/recommended'],
   settings: {
+    ...config.settings,
     tailwindcss: {
-      config: './apps/web/tailwind.config.ts',
+      ...config.settings?.tailwindcss,
+      config: path.join(__dirname, 'apps/web/tailwind.config.ts'),
     },
   },
-}, jsxA11y.flatConfigs.recommended, {
+})), jsxA11y.flatConfigs.recommended, {
   plugins: {
     '@next/next': nextPlugin,
   },
   rules: {
     ...nextPlugin.configs.recommended.rules,
     ...nextPlugin.configs['core-web-vitals'].rules,
+    '@next/next/no-html-link-for-pages': ['error', path.join(__dirname, 'apps/web/src/app')],
   },
 }, {
   plugins: {
@@ -71,14 +79,14 @@ export default antfu({
   ...playwright.configs['flat/recommended'],
 }, {
   rules: {
-    'no-console': 'off', //
-    'import/order': 'off', // Avoid conflicts with `simple-import-sort` plugin
-    'sort-imports': 'off', // Avoid conflicts with `simple-import-sort` plugin
-    'style/brace-style': ['error', '1tbs'], // Use the default brace style
-    'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
-    'react/prefer-destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
-    'node/prefer-global/process': 'off', // Allow using `process.env`
-    'test/padding-around-all': 'error', // Add padding in test files
-    'test/prefer-lowercase-title': 'off', // Allow using uppercase titles in test titles
+    'no-console': 'off',
+    'import/order': 'off',
+    'sort-imports': 'off',
+    'style/brace-style': ['error', '1tbs'],
+    'ts/consistent-type-definitions': ['error', 'type'],
+    'react/prefer-destructuring-assignment': 'off',
+    'node/prefer-global/process': 'off',
+    'test/padding-around-all': 'error',
+    'test/prefer-lowercase-title': 'off',
   },
 });

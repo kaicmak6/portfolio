@@ -32,6 +32,17 @@
   }
 }
 
+.imageColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mantine-spacing-md);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    order: 1;
+  }
+}
+
 .title {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-family: var(--font-outfit), var(--mantine-font-family);
@@ -93,4 +104,59 @@
 
 .heroImage {
   object-fit: cover;
+}
+
+/* ======= Infrastructure Showcase (centered below hero, two logos side by side) ======= */
+.infraShowcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mantine-spacing-lg);
+  padding-top: var(--mantine-spacing-lg);
+  margin-top: var(--mantine-spacing-xl);
+  border-top: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
+
+  @media (max-width: $mantine-breakpoint-md) {
+    margin-top: var(--mantine-spacing-md);
+    padding-top: var(--mantine-spacing-md);
+  }
+}
+
+.infraShowcaseTitle {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: light-dark(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.4));
+}
+
+.infraShowcaseRow {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--mantine-spacing-xl) * 2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.infraItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mantine-spacing-xs);
+  text-align: center;
+  max-width: 240px;
+}
+
+.infraLogo {
+  object-fit: contain;
+  width: 120px;
+  height: auto;
+}
+
+.infraLabel {
+  /* Label styling inherited from Mantine Text */
+}
+
+.infraDesc {
+  line-height: 1.4;
+  opacity: 0.75;
 }

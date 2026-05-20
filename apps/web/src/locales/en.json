@@ -95,8 +95,14 @@
     "secondary_button": "Request Briefing",
     "primary_button_link": "https://github.com/kaicmak6",
     "secondary_button_action": "scroll_to_contact",
-    "image": "https://picsum.photos/seed/blueprint/800/600"
+    "image": "https://picsum.photos/seed/blueprint/800/600",
+    "infra_title": "Powered by",
+    "infra_aws_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+    "infra_aws": "Cloud Hosting — Cost Efficiency & Enterprise Security & Elasticity",
+    "infra_cf_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cloudflare_Logo.svg/2560px-Cloudflare_Logo.svg.png",
+    "infra_cf": "CDN & API Gateway — Global Edge Network & WAF Protection & Rate Limiting"
   },
+
   "Projects": {
     "title": "System Deployments",
     "meta_title": "Project Portfolio | Kaius M.",
@@ -319,6 +325,23 @@
             "label": "Observability"
           }
         ]
+      }
+    ]
+  },
+  "Certifications": {
+    "title": "Certifications & Credentials",
+    "badges": [
+      {
+        "title": "AWS Cloud Practitioner",
+        "issuer": "Amazon Web Services",
+        "image": "https://images.credly.com/size/110x110/images/00634f82-b07f-4bbd-a6bb-53de397fc3af/image.png",
+        "link": "https://www.credly.com/badges/your-cloud-practitioner-badge"
+      },
+      {
+        "title": "AWS Solutions Architect Associate",
+        "issuer": "Amazon Web Services",
+        "image": "https://images.credly.com/size/110x110/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
+        "link": "https://www.credly.com/badges/your-saa-badge"
       }
     ]
   },
