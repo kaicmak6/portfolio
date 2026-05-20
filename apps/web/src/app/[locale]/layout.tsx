@@ -5,12 +5,23 @@ import '@/styles/global.css';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
+import { Inter, Outfit } from 'next/font/google';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 import { GlobalClickTracker } from '@/components/atoms/GlobalClickTracker';
 import { theme } from '@/styles/theme';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+});
 
 export async function generateMetadata({
   params,
@@ -57,7 +68,7 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 1800; // Revalidate every 30 minutes (ISR)
+export const revalidate = 600; // Revalidate every 10 minutes to update metadata and content
 export const dynamic = 'force-dynamic'; // Do not pre-render at build time
 
 export default function RootLayout(props: {
@@ -76,7 +87,7 @@ export default function RootLayout(props: {
   // The `suppressHydrationWarning` attribute in <body> is used to prevent hydration errors caused by Sentry Overlay,
   // which dynamically adds a `style` attribute to the body tag.
   return (
-    <html lang={locale} {...mantineHtmlProps}>
+    <html lang={locale} {...mantineHtmlProps} className={`${inter.variable} ${outfit.variable}`}>
       {process.env.NEXT_PUBLIC_GTM_ID && (
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ''} />
       )}

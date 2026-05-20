@@ -1,4 +1,4 @@
-import { dirname } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import withBundleAnalyzer from '@next/bundle-analyzer';
@@ -49,10 +49,27 @@ export default withSentryConfig(
       images: {
         // @ts-expect-error - Next.js type inference issue with remotePatterns
         remotePatterns: imageRemotePatterns,
+        formats: ['image/avif', 'image/webp'],
+
+        deviceSizes: [576, 768, 992, 1200, 1408, 1920],
+
+        minimumCacheTTL: 300, // 5 minutes
+
+        dangerouslyAllowSVG: false,
+        contentDispositionType: 'attachment',
+        contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
       },
 
       // Pass filtered environment variables from parent process (Fastify server)
       // env: getFilteredEnv(),
+
+      webpack: (config) => {
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          '@': resolve(__dirname, 'src'),
+        };
+        return config;
+      },
     }),
   ),
   {

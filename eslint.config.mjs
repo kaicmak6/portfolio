@@ -25,8 +25,23 @@ export default antfu({
   ignores: [
     'migrations/**/*',
     'next-env.d.ts',
+    'docker-compose.yml',
+    'Dockerfile',
+    '.dockerignore',
+    '.env*',
+    '**/*.lock',
+    '**/*.yaml',
+    '**/*.yml',
   ],
-}, ...tailwind.configs['flat/recommended'], jsxA11y.flatConfigs.recommended, {
+}, {
+  files: ['apps/web/**/*.{js,jsx,ts,tsx}'],
+  ...tailwind.configs['flat/recommended'],
+  settings: {
+    tailwindcss: {
+      config: './apps/web/tailwind.config.ts',
+    },
+  },
+}, jsxA11y.flatConfigs.recommended, {
   plugins: {
     '@next/next': nextPlugin,
   },

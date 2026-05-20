@@ -34,7 +34,7 @@
 
 .title {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  font-family: Outfit, var(--mantine-font-family);
+  font-family: var(--font-outfit), var(--mantine-font-family);
   font-size: 44px;
   line-height: 1.2;
   font-weight: 500;
@@ -48,8 +48,18 @@
   }
 }
 
+.group {
+  @media (max-width: $mantine-breakpoint-md) {
+    justify-content: center;
+  }
+}
+
 .control {
-  @media (max-width: $mantine-breakpoint-xs) {
+  /* Base styles if any, but mostly handled by Mantine */
+}
+
+.button {
+  @media (max-width: $mantine-breakpoint-md) {
     width: 100%;
   }
 }

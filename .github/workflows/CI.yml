@@ -1,26 +1,34 @@
+# CI/CD Pipeline Configuration
+# This workflow runs on pushes to main branch and pull requests
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   build:
     name: Build with Node.js 24.x
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          
       - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: pnpm
+          
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        
       - name: Cache Turbo artifacts
         uses: actions/cache@v4
         with:
@@ -28,6 +36,7 @@ jobs:
           key: turbo-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             turbo-${{ runner.os }}-
+            
       - name: Build all apps
         run: pnpm run build
         env:
@@ -36,40 +45,51 @@ jobs:
           IMAGE_DOMAINS: portfolio-cms.mak-cloud.com
           CLOUDFLARE_AI_GATEWAY_TOKEN: ${{ secrets.CLOUDFLARE_AI_GATEWAY_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          
   test-fast:
     name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          
       - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: pnpm
+          
       - run: pnpm install --frozen-lockfile
+      
       - name: Linter
         run: pnpm run lint
+        
       - name: Type checking
         run: pnpm run check-types
+        
   test-unit:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          
       - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: pnpm
+          
       - run: pnpm install --frozen-lockfile
+      
       - name: Cache Turbo artifacts
         uses: actions/cache@v4
         with:
@@ -77,6 +97,7 @@ jobs:
           key: turbo-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             turbo-${{ runner.os }}-
+            
       - name: Run tests (using cached build)
         run: pnpm run test
         env:
@@ -84,92 +105,112 @@ jobs:
           NEXT_PUBLIC_URL: https://mak-cloud.com
           IMAGE_DOMAINS: portfolio-cms.mak-cloud.com
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          
       - name: Run unit tests with coverage
         run: pnpm run test -- --coverage
+        
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          
   test-visual:
     name: Storybook & E2E Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          
       - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: pnpm
+          
       - run: pnpm install --frozen-lockfile
+      
       - name: Install Playwright
         run: npx playwright install --with-deps
+        
       - name: Run storybook tests
         run: pnpm run test-storybook:ci
+        
       - name: Run E2E tests
         run: npx percy exec -- pnpm run test:e2e
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results
           path: test-results/
           retention-days: 7
+          
   test-commitlint:
     name: Commit Lint
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          
       - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: pnpm
+          
       - run: pnpm install --frozen-lockfile
+      
       - name: Validate all commits from PR
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+        
   docker-compose-test:
     name: Test Docker Compose with Redis
     runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v4
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        
       - name: Build Docker Compose services
         run: |
           docker compose build
+          
       - name: Start services
         run: |
           docker compose up -d
           timeout 60s bash -c 'until docker exec portfolio-portfolio-1 redis-cli -h redis ping; do sleep 2; done' || (echo "Redis failed to start" && exit 1)
+          
       - name: Test Redis connection
         run: |
           docker exec portfolio-portfolio-1 redis-cli -h redis ping
+          
       - name: Test API health
         run: |
           curl -f http://localhost:30000/health
           curl -f http://localhost:30000/portfolio/api/health
+          
       - name: Test frontend
         run: |
           curl -f http://localhost:30000/portfolio/en
+          
       - name: Stop services
         run: |
           docker compose down
+          
   synchronize-with-crowdin:
     name: GitHub PR synchronize with Crowdin
     runs-on: ubuntu-latest
@@ -177,9 +218,7 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
+      
       - name: crowdin action
         uses: crowdin/github-action@v2
         with:

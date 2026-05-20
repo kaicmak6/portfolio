@@ -1,5 +1,6 @@
 import { Carousel } from '@mantine/carousel';
 import { Badge, Button, Card, Group, Text } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -35,10 +36,11 @@ export function BadgeCard({ id, images, title, description, country, badges }: B
         <Carousel
           withIndicators={false}
           withControls={false}
-          height={180}
+          height={225}
           slideSize="100%"
           slideGap="md"
           emblaOptions={{ loop: true }}
+          plugins={[Autoplay({ delay: 4000 })]}
         >
           {images.map((img, index) => (
             <Carousel.Slide key={index}>
@@ -46,7 +48,7 @@ export function BadgeCard({ id, images, title, description, country, badges }: B
                 src={img}
                 alt={`${title} - Image ${index + 1}`}
                 width={400}
-                height={180}
+                height={225}
                 className={classes.carouselImage}
               />
             </Carousel.Slide>

@@ -107,7 +107,7 @@ export function ExperiencePage() {
             leftSection={<IconDownload size={20} />}
             radius="xl"
           >
-            Download Full CV (PDF)
+            {t('download_cv')}
           </Button>
         </Group>
       </Stack>

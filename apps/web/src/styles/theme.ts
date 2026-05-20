@@ -19,11 +19,11 @@ export const theme = createTheme({
   primaryColor: 'indigo',
   colors: { indigo },
 
-  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   fontFamilyMonospace: 'JetBrains Mono, Menlo, Monaco, Consolas, monospace',
 
   headings: {
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: 'var(--font-inter), sans-serif',
     fontWeight: '800',
     sizes: {
       h1: { fontSize: rem(48), lineHeight: '1.1' },

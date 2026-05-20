@@ -26,7 +26,8 @@ async function sendChatMessage(url: string, { arg }: { arg: { messages: Message[
   });
 
   if (!response.ok) {
-    throw new Error('fetch_error');
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || 'fetch_error');
   }
 
   return response;
@@ -38,6 +39,7 @@ export function ChatBot() {
   const [input, setInput] = useState('');
   const [streamingMessage, setStreamingMessage] = useState('');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState(false);
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const { trigger, isMutating } = useSWRMutation('/portfolio/api/chat', sendChatMessage);
@@ -154,12 +156,18 @@ export function ChatBot() {
         setMessages(prev => [...prev, { role: 'assistant', content: assistantMessage }]);
         setStreamingMessage('');
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: t('error') }]);
+        throw new Error('empty_response');
       }
     } catch (error) {
       console.error('Chat error:', error);
-      setMessages(prev => [...prev, { role: 'assistant', content: t('error') }]);
       setStreamingMessage('');
+      const errorMessage = error instanceof Error ? error.message : 'unknown_error';
+      // We use the error message if it's a known one, otherwise fallback to translation
+      const content = errorMessage === 'fetch_error' || errorMessage === 'empty_response'
+        ? t('error')
+        : (errorMessage === 'unknown_error' ? t('error') : errorMessage);
+
+      setMessages(prev => [...prev, { role: 'assistant', content }]);
     }
   };
 
@@ -208,6 +216,7 @@ export function ChatBot() {
                           size="xs"
                           radius="xl"
                           onClick={() => handleSendMessage(query)}
+                          disabled={turnstileError}
                         >
                           {query}
                         </Button>
@@ -278,7 +287,14 @@ export function ChatBot() {
                     <Flex justify="center">
                       <Turnstile
                         turnstileSiteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || ''}
-                        callback={(token: string) => setTurnstileToken(token)}
+                        callback={(token: string) => {
+                          setTurnstileToken(token);
+                          setTurnstileError(false);
+                        }}
+                        errorCallback={() => {
+                          setTurnstileError(true);
+                          setTurnstileToken(null);
+                        }}
                         theme="auto"
                         size="normal"
                       />

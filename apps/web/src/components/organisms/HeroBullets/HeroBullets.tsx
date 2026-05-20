@@ -1,6 +1,5 @@
 'use client';
 import { Button, Container, Group, List, ThemeIcon, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
 import { IconBrandGithub, IconCheck, IconMail } from '@tabler/icons-react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -11,7 +10,6 @@ import classes from './HeroBullets.module.scss';
 
 export function HeroBullets() {
   const t = useTranslations('HeroBullets');
-  const isMobile = useMediaQuery('(max-width: 768px)');
   const image = t('image');
   const features = t.raw('features') as Array<{ title: string; description: string }>;
 
@@ -65,12 +63,11 @@ export function HeroBullets() {
             ))}
           </List>
 
-          <Group maw={500} mt="lg" ml="auto" mr="auto" gap="sm" justify={isMobile ? 'center' : 'flex-start'}>
+          <Group maw={500} mt="lg" ml="auto" mr="auto" gap="sm" className={classes.group}>
             <Button
               radius="xl"
               size="md"
-              className={classes.control}
-              fullWidth={isMobile}
+              className={`${classes.control} ${classes.button}`}
               component="a"
               href={t('primary_button_link')}
               leftSection={<IconBrandGithub size={18} />}
@@ -81,8 +78,7 @@ export function HeroBullets() {
               variant="default"
               radius="xl"
               size="md"
-              className={classes.control}
-              fullWidth={isMobile}
+              className={`${classes.control} ${classes.button}`}
               onClick={scrollToContact}
               leftSection={<IconMail size={18} />}
             >
@@ -96,6 +92,7 @@ export function HeroBullets() {
           alt=""
           width={400}
           height={300}
+          priority
         />
       </div>
     </Container>

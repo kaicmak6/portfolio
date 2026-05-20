@@ -4,6 +4,7 @@
 }
 
 .chatContainer {
+  font-family: var(--font-outfit), var(--mantine-font-family);
   background-color: var(--mantine-color-body);
   border: 1px solid var(--mantine-color-gray-3);
 }
