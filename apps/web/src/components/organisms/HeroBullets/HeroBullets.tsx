@@ -86,16 +86,14 @@ export function HeroBullets() {
             </Button>
           </Group>
         </div>
-        <div className={classes.imageColumn}>
-          <Image
-            src={image}
-            className={`${classes.image} ${classes.heroImage}`}
-            alt=""
-            width={400}
-            height={300}
-            priority
-          />
-        </div>
+        <Image
+          src={image}
+          className={`${classes.image} ${classes.heroImage}`}
+          alt=""
+          width={400}
+          height={300}
+          priority
+        />
       </div>
       {/* AWS & Cloudflare infrastructure showcase */}
       <div className={classes.infraShowcase}>

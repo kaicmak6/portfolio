@@ -32,17 +32,6 @@
   }
 }
 
-.imageColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--mantine-spacing-md);
-
-  @media (max-width: $mantine-breakpoint-md) {
-    order: 1;
-  }
-}
-
 .title {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-family: var(--font-outfit), var(--mantine-font-family);
