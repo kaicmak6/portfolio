@@ -42,5 +42,13 @@ jobs:
             ghcr.io/${{ github.actor }}/portfolio:latest
             ghcr.io/${{ github.actor }}/portfolio:${{ github.sha }}
           # Utilizes GitHub Actions cache to speed up subsequent builds
+          build-args: |
+            DIRECTUS_HOST=${{ secrets.DIRECTUS_HOST }}
+            BASE_PATH=${{ vars.BASE_PATH }}
+            NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
+            IMAGE_DOMAINS=${{ vars.IMAGE_DOMAINS }}
+            NEXT_PUBLIC_CLOUDFLARE_SITE_KEY=${{ secrets.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY }}
+            NEXT_PUBLIC_GTM_ID=${{ secrets.NEXT_PUBLIC_GTM_ID }}
+            NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
