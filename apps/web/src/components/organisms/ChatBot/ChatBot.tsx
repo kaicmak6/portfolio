@@ -95,8 +95,9 @@ export function ChatBot() {
       return;
     }
 
-    // Skipping the widget only works when the server opts out too (CAPTCHA_DISABLED).
-    setTurnstileToken('dev-mode-bypass');
+    // A production build on a host the site key cannot serve: leave the panel
+    // closed instead of sending a token the server will reject. Can't be reached
+    // in development, which returned above.
     setCaptchaMode('skip');
   }, []);
 
