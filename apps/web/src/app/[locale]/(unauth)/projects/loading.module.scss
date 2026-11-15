@@ -1,0 +1,55 @@
+/* One case on the projects route: a labelled head over a full-width figure, then
+   the description beside its evidence. The rules are the page's own, so a case
+   keeps its frame while its text is still loading. */
+
+.case {
+  display: grid;
+  gap: var(--mantine-spacing-lg);
+  padding: calc(var(--mantine-spacing-xl) * 1.5) 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  & + & {
+    border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  }
+}
+
+.head {
+  max-width: 46ch;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--mantine-spacing-xl) * 1.75);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mantine-spacing-lg);
+  }
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-lg);
+}
+
+.stats {
+  display: flex;
+  gap: var(--mantine-spacing-md);
+  padding-top: var(--mantine-spacing-xs);
+  border-top: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.stat {
+  flex: 1 1 30%;
+}
+
+.tech {
+  display: flex;
+  gap: 6px;
+}

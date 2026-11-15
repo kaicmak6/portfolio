@@ -1,0 +1,92 @@
+/* The home route's first screen is a full-bleed navy hero, so its fallback is
+   that same section: same ground, same two columns, same height. The previous
+   paper-coloured fallback of a different layout changed the page's tone and grew
+   it in one frame, which is what the eye reads as a jump.
+
+   Nothing here reserves the page below the first screen. This file knows the
+   hero's shape, not how long the page will be. */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--mantine-color-brand-9);
+
+  --hero-rule: rgba(232, 241, 249, 0.16);
+}
+
+/* Mantine paints a Skeleton with the body colour under a pulsing gray-3 layer.
+   At a fifth of full strength over brand-9 the two read as paper ghosted into
+   the section, the relationship the real hero's scrim has to its plate. */
+.onInk {
+  opacity: 0.2;
+}
+
+.container {
+  padding-top: calc(var(--mantine-spacing-xl) * 2.5);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    padding-top: var(--mantine-spacing-xl);
+  }
+}
+
+.headline {
+  padding-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    padding-bottom: var(--mantine-spacing-xl);
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: calc(var(--mantine-spacing-xl) * 2);
+  padding-top: calc(var(--mantine-spacing-xl) * 1.25);
+  border-top: 1px solid var(--hero-rule);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mantine-spacing-xl);
+  }
+}
+
+/* The portrait has no frame on the page: its crop dissolves into the plate. The
+   block that reserves it dissolves the same way, so the photograph arrives where
+   the ghost was instead of replacing a rectangle. */
+.media {
+  justify-self: end;
+  width: 100%;
+  max-width: 464px;
+  aspect-ratio: 1;
+  -webkit-mask-image: radial-gradient(
+    74% 70% at 48% 38%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.9) 66%,
+    rgba(0, 0, 0, 0.4) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: radial-gradient(
+    74% 70% at 48% 38%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.9) 66%,
+    rgba(0, 0, 0, 0.4) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  @media (max-width: $mantine-breakpoint-md) {
+    order: -1;
+    max-width: 420px;
+  }
+}
+
+/* A pulse is motion. Mantine only suppresses it when the provider is told to,
+   so the rule is made here instead: this is the app's only use of a Skeleton. */
+@media (prefers-reduced-motion: reduce) {
+  :global(.mantine-Skeleton-root)::after {
+    animation: none;
+  }
+}

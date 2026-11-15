@@ -1,45 +1,73 @@
 'use client';
-import { Box, Container, Grid, Skeleton } from '@mantine/core';
+import { Box, Container, Skeleton } from '@mantine/core';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-const rule = '1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5))';
+import ExperienceLoading from './experience/loading';
+import classes from './loading.module.scss';
+import ProjectsLoading from './projects/loading';
+
+const rule = '1px solid var(--hero-rule)';
 
 /**
- * The projects route's shape: one title, a full-bleed rule, then the case rows
- * that alternate media and text. Same bars, same grid, no motion.
+ * The group's boundary: it is the home page's fallback, and it is also what
+ * paints first when a navigation enters `projects` or `experience` from here.
+ * The pathname is already the destination's while it renders, so it hands the
+ * other two routes their own fallback rather than inventing a second, slightly
+ * different one — two shapes would mean a jump between the two loading states.
  */
 export default function Loading() {
-  const projectsT = useTranslations('Projects');
-  const projects = projectsT.raw('items') as Array<unknown>;
+  const pathname = usePathname();
+
+  if (pathname.endsWith('/projects')) {
+    return <ProjectsLoading />;
+  }
+
+  if (pathname.endsWith('/experience')) {
+    return <ExperienceLoading />;
+  }
+
+  return <HomeFirstScreen />;
+}
+
+/**
+ * The home page's first screen, which is the whole of the home page's promise:
+ * a full-bleed navy hero with the headline, the lede, the features column and
+ * the portrait's place held open. The page below it is seven sections long and
+ * this file cannot know that, so it reserves none of them.
+ */
+function HomeFirstScreen() {
+  const bulletsT = useTranslations('HeroBullets');
+  const features = bulletsT.raw('features') as Array<unknown>;
 
   return (
-    <Container size="lg" pt={48} pb={64}>
-      <Skeleton height={46} width="42%" />
+    <section className={classes.hero}>
+      <Container size="lg" className={classes.container}>
+        <div className={classes.headline}>
+          <Skeleton className={classes.onInk} height="clamp(2.75rem, 6vw, 5rem)" width="58%" />
+          <Skeleton className={classes.onInk} height="clamp(2.75rem, 6vw, 5rem)" width="34%" />
 
-      <Box mt={32} pt={32} style={{ borderTop: rule }}>
-        {projects.map((_, index) => (
-          <Box key={index} pb={48} pt={index === 0 ? 0 : 48} style={index === 0 ? undefined : { borderTop: rule }}>
-            <Grid gutter={48} align="flex-start">
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Skeleton style={{ aspectRatio: '16 / 10', height: 'auto' }} />
-              </Grid.Col>
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <Box pt="xs">
-                  <Skeleton height={10} width={120} />
-                  <Skeleton height={26} width="76%" mt={12} />
-                  <Skeleton height={13} mt={18} />
-                  <Skeleton height={13} width="92%" mt={7} />
-                  <Skeleton height={13} width="64%" mt={7} />
-                  <Box mt={19} pt="md" style={{ borderTop: rule }}>
-                    <Skeleton height={10} width={104} />
-                    <Skeleton height={10} width={88} mt={10} />
-                  </Box>
-                </Box>
-              </Grid.Col>
-            </Grid>
+          <Box maw={606} mt="lg">
+            <Skeleton className={classes.onInk} height={26} />
+            <Skeleton className={classes.onInk} height={26} width="94%" mt={2} />
+            <Skeleton className={classes.onInk} height={26} width="61%" mt={2} />
           </Box>
-        ))}
-      </Box>
-    </Container>
+        </div>
+
+        <div className={classes.columns}>
+          <div>
+            {features.map((_, index) => (
+              <Box key={index} py="md" style={index === 0 ? undefined : { borderTop: rule }}>
+                <Skeleton className={classes.onInk} height={10} width={128} />
+                <Skeleton className={classes.onInk} height={26} mt={10} />
+                <Skeleton className={classes.onInk} height={26} width="88%" mt={2} />
+              </Box>
+            ))}
+          </div>
+
+          <Skeleton className={`${classes.onInk} ${classes.media}`} />
+        </div>
+      </Container>
+    </section>
   );
 }
