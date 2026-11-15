@@ -17,7 +17,7 @@ export class ChatController {
   @Header('X-Content-Type-Options', 'nosniff')
   async chat(@Body() chatRequest: ChatRequestDto, @Res() reply: FastifyReply) {
     try {
-      const stream = this.chatService.createChatStream(chatRequest);
+      const stream = this.chatService.createChatStream(chatRequest, this.clientIp(reply));
 
       const encoder = new TextEncoder();
 
@@ -46,13 +46,24 @@ export class ChatController {
     }));
   }
 
+  // Cloudflare puts the visitor's address in cf-connecting-ip; behind the tunnel
+  // the socket address is always the local one, so that header is the only
+  // per-visitor identity available here.
+  private clientIp(reply: FastifyReply): string {
+    const headers = reply.request.headers;
+    const forwarded = headers['cf-connecting-ip'] ?? headers['x-forwarded-for'] ?? headers['x-real-ip'];
+    const value = Array.isArray(forwarded) ? forwarded[0] : forwarded;
+
+    return (value ?? reply.request.ip ?? 'unknown').toString().split(',')[0].trim();
+  }
+
   private getHttpStatus(error: unknown): number {
     if (error instanceof Error) {
-      if (error.message === 'Turnstile token is required') {
-        return 400;
-      }
       if (error.message === 'Invalid Turnstile token') {
         return 403;
+      }
+      if (error.message === 'Too many messages') {
+        return 429;
       }
     }
     return 500;

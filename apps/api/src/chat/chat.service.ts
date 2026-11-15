@@ -7,6 +7,37 @@ import type { ChatRequestDto, ChatResponseStream } from './dto/chat.dto';
 // ordinary message text on an HTTP 200 response.
 const UPSTREAM_ERROR = /^(?:OpenCode 回報錯誤|provider\.(?:rate-limit|go-limit|quota))/;
 
+// Per-IP ceiling for the chat endpoint. Turnstile is verified when the browser
+// manages to obtain a token, but the challenge does not complete everywhere (some
+// clients, filter proxies and VPNs never get one), so the real spend control is
+// this limiter rather than the captcha.
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX_REQUESTS = 15;
+const recentRequests = new Map<string, number[]>();
+
+function withinRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const hits = (recentRequests.get(ip) ?? []).filter(at => now - at < RATE_WINDOW_MS);
+
+  if (hits.length >= RATE_MAX_REQUESTS) {
+    recentRequests.set(ip, hits);
+    return false;
+  }
+
+  hits.push(now);
+  recentRequests.set(ip, hits);
+
+  if (recentRequests.size > 5000) {
+    for (const [key, times] of recentRequests) {
+      if (times.length === 0 || now - times[times.length - 1] > RATE_WINDOW_MS) {
+        recentRequests.delete(key);
+      }
+    }
+  }
+
+  return true;
+}
+
 @Injectable()
 export class ChatService {
   private readonly logger = new Logger(ChatService.name);
@@ -69,17 +100,20 @@ export class ChatService {
     }
   }
 
-  async *createChatStream(request: ChatRequestDto): AsyncGenerator<ChatResponseStream> {
+  async *createChatStream(request: ChatRequestDto, clientIp = 'unknown'): AsyncGenerator<ChatResponseStream> {
     const { messages, turnstileToken } = request;
 
-    // Validate Turnstile token
-    if (!turnstileToken) {
-      throw new Error('Turnstile token is required');
+    if (!withinRateLimit(clientIp)) {
+      throw new Error('Too many messages');
     }
 
     // CAPTCHA_DISABLED is an escape hatch for local stacks only. Never set it on a
     // publicly reachable deployment: it lets anyone spend the owner's AI credits.
-    if (process.env.NODE_ENV !== 'development' && process.env.CAPTCHA_DISABLED !== 'true') {
+    const captchaOff = process.env.NODE_ENV === 'development' || process.env.CAPTCHA_DISABLED === 'true';
+
+    // A token is optional because the challenge cannot complete on every client;
+    // one that is supplied still has to be genuine.
+    if (!captchaOff && turnstileToken) {
       const isValidToken = await this.validateTurnstileToken(turnstileToken);
       if (!isValidToken) {
         throw new Error('Invalid Turnstile token');

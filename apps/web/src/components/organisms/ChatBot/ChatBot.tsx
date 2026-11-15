@@ -59,7 +59,6 @@ export function ChatBot() {
   const [input, setInput] = useState('');
   const [streamingMessage, setStreamingMessage] = useState('');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const [turnstileError, setTurnstileError] = useState(false);
   // Resolved after mount: the hostname is browser-only, and rendering the widget
   // on the first pass would mismatch hydration.
   const [captchaMode, setCaptchaMode] = useState<'pending' | 'mount' | 'skip'>('pending');
@@ -102,9 +101,7 @@ export function ChatBot() {
   }, []);
 
   const handleSendMessage = async (content: string) => {
-    // The prompt rows bypass the send button, so the gate has to be checked here
-    // too: without a token the server answers 400 and the panel says it failed.
-    if (!content.trim() || isMutating || (captchaMode === 'mount' && !turnstileToken)) {
+    if (!content.trim() || isMutating) {
       return;
     }
 
@@ -284,7 +281,6 @@ export function ChatBot() {
                     type="button"
                     className={classes.prompt}
                     onClick={() => handleSendMessage(query)}
-                    disabled={turnstileError || (captchaMode === 'mount' && !turnstileToken)}
                   >
                     <span className={classes.promptIndex}>{String(i + 1).padStart(2, '0')}</span>
                     <span className={classes.promptText}>{query}</span>
@@ -316,7 +312,7 @@ export function ChatBot() {
                 radius={0}
                 className={classes.send}
                 loading={isMutating}
-                disabled={!input.trim() || !turnstileToken}
+                disabled={!input.trim()}
                 aria-label={t('inputPlaceholder')}
               >
                 <IconArrowRight size={16} />
@@ -335,10 +331,11 @@ export function ChatBot() {
                 turnstileSiteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || ''}
                 callback={(token: string) => {
                   setTurnstileToken(token);
-                  setTurnstileError(false);
                 }}
                 errorCallback={() => {
-                  setTurnstileError(true);
+                  // Not fatal: the server treats the token as optional and limits
+                  // by IP instead, so the panel stays usable when the challenge
+                  // cannot render on this client.
                   setTurnstileToken(null);
                 }}
                 theme="auto"
