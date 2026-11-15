@@ -1,6 +1,6 @@
 'use client';
-import { Badge, Box, Button, Container, Flex, Group, Loader, Paper, ScrollArea, Stack, Text, TextInput, Title } from '@mantine/core';
-import { IconBrandOpenai, IconRobot, IconSend, IconUser } from '@tabler/icons-react';
+import { Button, Container, ScrollArea, TextInput, Title } from '@mantine/core';
+import { IconArrowRight } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import Turnstile from 'react-cloudflare-turnstile';
@@ -14,6 +14,26 @@ type Message = {
   role: 'user' | 'assistant';
   content: string;
 };
+
+// A Turnstile site key is authorised for specific hostnames; on any other host the
+// widget answers 110200 and retries forever. NEXT_PUBLIC_CAPTCHA_HOSTS is an explicit
+// allowlist (build-time, like every NEXT_PUBLIC_* value in this repo). Left unset the
+// widget keeps mounting in production, except on loopback, where a deployed key is
+// never authorised and the panel would stay permanently disabled.
+function shouldMountCaptcha(hostname: string) {
+  const allowedHosts = (process.env.NEXT_PUBLIC_CAPTCHA_HOSTS || '')
+    .split(',')
+    .map(host => host.trim().toLowerCase())
+    .filter(Boolean);
+
+  const host = hostname.toLowerCase();
+  if (allowedHosts.length > 0) {
+    return allowedHosts.includes(host);
+  }
+
+  const isLoopback = /^(?:localhost|127\.0\.0\.1|\[::1\]|::1|0\.0\.0\.0)$/.test(host) || host.endsWith('.localhost');
+  return !isLoopback;
+}
 
 async function sendChatMessage(url: string, { arg }: { arg: { messages: Message[]; turnstileToken: string | null } }) {
   const response = await fetch(url, {
@@ -40,6 +60,9 @@ export function ChatBot() {
   const [streamingMessage, setStreamingMessage] = useState('');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileError, setTurnstileError] = useState(false);
+  // Resolved after mount: the hostname is browser-only, and rendering the widget
+  // on the first pass would mismatch hydration.
+  const [captchaMode, setCaptchaMode] = useState<'pending' | 'mount' | 'skip'>('pending');
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const { trigger, isMutating } = useSWRMutation('/portfolio/api/chat', sendChatMessage);
@@ -47,7 +70,9 @@ export function ChatBot() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const hasConversation = messages.length > 0 || streamingMessage;
-  const scrollAreaHeight = hasConversation ? 500 : 300;
+  // Empty state sizes to its own content; only a live conversation gets a
+  // fixed transcript window, so the console never opens with dead space.
+  const scrollAreaHeight = hasConversation ? 500 : undefined;
 
   useEffect(() => {
     if (viewportRef.current) {
@@ -61,7 +86,18 @@ export function ChatBot() {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       setTurnstileToken('dev-mode-bypass');
+      setCaptchaMode('skip');
+      return;
     }
+
+    if (shouldMountCaptcha(window.location.hostname)) {
+      setCaptchaMode('mount');
+      return;
+    }
+
+    // Skipping the widget only works when the server opts out too (CAPTCHA_DISABLED).
+    setTurnstileToken('dev-mode-bypass');
+    setCaptchaMode('skip');
   }, []);
 
   const handleSendMessage = async (content: string) => {
@@ -177,160 +213,144 @@ export function ChatBot() {
   };
 
   return (
-    <Container size="md" py="xl">
-      <Stack gap="lg">
-        <Stack gap="xs" ta="center">
-          <Title order={2} className={classes.title}>
-            {t('title')}
-          </Title>
-          <Text c="dimmed" size="lg">
-            {t('subtitle')}
-          </Text>
-        </Stack>
+    <Container size="lg" py="xl">
+      <div className={classes.shell} data-busy={isMutating ? 'true' : undefined}>
+        <header className={classes.head}>
+          <div className={classes.headTitle}>
+            <div className={classes.eyebrow}>{t('subtitle')}</div>
+            <Title order={2} className={classes.title}>
+              {t('title')}
+            </Title>
+          </div>
+          <div className={classes.headMeta}>
+            <span className={classes.pulse} aria-hidden="true" />
+            <span>{t('poweredBy')}</span>
+          </div>
+        </header>
 
-        <Paper className={classes.chatContainer} p="md" radius="lg" shadow="xl" withBorder>
+        <div className={classes.console}>
           <ScrollArea h={scrollAreaHeight} viewportRef={viewportRef} type="auto" className={classes.scrollArea}>
-            <Stack gap="md" p="xs">
-              {messages.length === 0 && (
-                <Stack gap="md" py="xl">
-                  <Group justify="center" gap="sm" align="flex-start">
-                    <Box className={classes.avatar} bg="blue.6">
-                      <IconRobot size={18} color="white" />
-                    </Box>
-                    <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
-                      <Text size="sm" className={classes.messageText}>
-                        {t('welcomeMessage')}
-                      </Text>
-                    </Paper>
-                  </Group>
+            <div className={classes.transcript}>
+              <div className={classes.turn} data-role="assistant">
+                <div className={classes.turnIndex}>00</div>
+                <div className={classes.turnBody}>
+                  <HtmlContent content={t('welcomeMessage')} />
+                </div>
+              </div>
 
-                  <Box>
-                    <Text size="xs" fw={700} c="dimmed" mb="xs" ta="center" tt="uppercase" lts="1px">
-                      {t('suggestedQuestionsTitle')}
-                    </Text>
-                    <Group justify="center" gap="xs">
-                      {suggestedQueries.map((query, i) => (
-                        <Button
-                          key={i}
-                          variant="light"
-                          size="xs"
-                          radius="xl"
-                          onClick={() => handleSendMessage(query)}
-                          disabled={turnstileError}
-                        >
-                          {query}
-                        </Button>
-                      ))}
-                    </Group>
-                  </Box>
-                </Stack>
-              )}
               {messages.map((msg, index) => (
-                <Group
-                  key={index}
-                  align="flex-start"
-                  gap="sm"
-                  justify={msg.role === 'user' ? 'flex-end' : 'flex-start'}
-                >
-                  {msg.role === 'assistant' && (
-                    <Box className={classes.avatar} bg="blue.6">
-                      <IconRobot size={18} color="white" />
-                    </Box>
-                  )}
-                  <Paper
-                    className={`${classes.message} ${msg.role === 'user' ? classes.userMessage : classes.assistantMessage}`}
-                    p="sm"
-                    radius="md"
-                    bg={msg.role === 'user' ? 'blue.6' : 'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'}
-                    c={msg.role === 'user' ? 'white' : 'inherit'}
-                  >
-                    <Text size="sm" className={classes.messageText}>
-                      <HtmlContent content={msg.content} />
-                    </Text>
-                  </Paper>
-                  {msg.role === 'user' && (
-                    <Box className={classes.avatar} bg="light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-4))">
-                      <IconUser size={18} color="white" />
-                    </Box>
-                  )}
-                </Group>
+                <div key={index} className={classes.turn} data-role={msg.role}>
+                  <div className={classes.turnIndex}>{String(index + 1).padStart(2, '0')}</div>
+                  <div className={classes.turnBody}>
+                    <HtmlContent content={msg.content} />
+                  </div>
+                </div>
               ))}
+
               {streamingMessage && (
-                <Group gap="sm" align="flex-start">
-                  <Box className={classes.avatar} bg="blue.6">
-                    <IconRobot size={18} color="white" />
-                  </Box>
-                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
-                    <Text size="sm" className={classes.messageText}>
-                      <HtmlContent content={streamingMessage} />
-                    </Text>
-                  </Paper>
-                </Group>
+                <div className={classes.turn} data-role="assistant" data-streaming="true">
+                  <div className={classes.turnIndex}>{String(messages.length + 1).padStart(2, '0')}</div>
+                  <div className={classes.turnBody}>
+                    <HtmlContent content={streamingMessage} />
+                    <span className={classes.caret} aria-hidden="true" />
+                  </div>
+                </div>
               )}
+
               {isMutating && !streamingMessage && (
-                <Group gap="sm" align="flex-start">
-                  <Box className={classes.avatar} bg="blue.6">
-                    <IconRobot size={18} color="white" />
-                  </Box>
-                  <Paper className={classes.assistantMessage} p="sm" radius="md" bg="light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))">
-                    <Loader size="sm" />
-                  </Paper>
-                </Group>
+                <div className={classes.turn} data-role="assistant" data-pending="true">
+                  <div className={classes.turnIndex}>{String(messages.length + 1).padStart(2, '0')}</div>
+                  <div className={classes.turnBody}>
+                    <span className={classes.signal} aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                    </span>
+                  </div>
+                </div>
               )}
-            </Stack>
+            </div>
           </ScrollArea>
 
-          <form onSubmit={handleSubmit} ref={formRef}>
-            <Box mt="md">
-              {process.env.NODE_ENV === 'production'
-                ? (
-                    <Flex justify="center">
-                      <Turnstile
-                        turnstileSiteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || ''}
-                        callback={(token: string) => {
-                          setTurnstileToken(token);
-                          setTurnstileError(false);
-                        }}
-                        errorCallback={() => {
-                          setTurnstileError(true);
-                          setTurnstileToken(null);
-                        }}
-                        theme="auto"
-                        size="normal"
-                      />
-                    </Flex>
-                  )
-                : (
-                    <Text size="xs" c="dimmed" ta="center">
-                      {t('devModeCaptchaDisabled')}
-                    </Text>
-                  )}
-              <Group gap="sm" mt="sm">
-                <TextInput
-                  placeholder={t('inputPlaceholder')}
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  className={classes.inputField}
-                  radius="md"
-                  disabled={isMutating}
-                />
-                <Button type="submit" radius="md" loading={isMutating} disabled={!input.trim() || !turnstileToken}>
-                  <IconSend size={18} />
-                </Button>
-              </Group>
-            </Box>
-          </form>
+          {!hasConversation && (
+            <div className={classes.prompts}>
+              <div className={classes.promptsTitle}>{t('suggestedQuestionsTitle')}</div>
+              <div className={classes.promptList}>
+                {suggestedQueries.map((query, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={classes.prompt}
+                    onClick={() => handleSendMessage(query)}
+                    disabled={turnstileError}
+                  >
+                    <span className={classes.promptIndex}>{String(i + 1).padStart(2, '0')}</span>
+                    <span className={classes.promptText}>{query}</span>
+                    <span className={classes.promptArrow} aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M3 1.5L7.5 6L3 10.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
+                      </svg>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
-          <Stack gap="xs" align="center" mt="sm">
-            <Badge variant="light" color="gray" leftSection={<IconBrandOpenai size={14} />}>
-              {t('poweredBy')}
-            </Badge>
-            <Text c="dimmed" size="xs" ta="center">
-              {t('gatewayInfo')}
-            </Text>
-          </Stack>
-        </Paper>
-      </Stack>
+          <form onSubmit={handleSubmit} ref={formRef} className={classes.form}>
+            <div className={classes.inputRow}>
+              <span className={classes.inputGlyph} aria-hidden="true">&gt;</span>
+              <TextInput
+                placeholder={t('inputPlaceholder')}
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                className={classes.inputField}
+                radius={0}
+                variant="unstyled"
+                disabled={isMutating}
+              />
+              <Button
+                type="submit"
+                radius={0}
+                className={classes.send}
+                loading={isMutating}
+                disabled={!input.trim() || !turnstileToken}
+                aria-label={t('inputPlaceholder')}
+              >
+                <IconArrowRight size={16} />
+              </Button>
+            </div>
+          </form>
+        </div>
+
+        {/* Compliance strip: the gate and its explanation share one line, so the
+            panel closes on the input rather than on an empty half-row. */}
+        <div className={classes.foot}>
+          <span className={classes.footnote}>{t('gatewayInfo')}</span>
+          {captchaMode === 'mount' && (
+            <div className={classes.gate}>
+              <Turnstile
+                turnstileSiteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY || ''}
+                callback={(token: string) => {
+                  setTurnstileToken(token);
+                  setTurnstileError(false);
+                }}
+                errorCallback={() => {
+                  setTurnstileError(true);
+                  setTurnstileToken(null);
+                }}
+                theme="auto"
+                size="normal"
+              />
+            </div>
+          )}
+          {captchaMode === 'skip' && (
+            <span className={classes.simulator}>
+              {t('devModeCaptchaDisabled')}
+            </span>
+          )}
+        </div>
+      </div>
     </Container>
   );
 }

@@ -77,8 +77,8 @@ export function HeaderTabs() {
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="md">
-        <Group>
+      <Container className={classes.mainSection} size="lg">
+        <Group gap={0} wrap="nowrap" justify="space-between">
           <Link
             href={t('profile_link')}
             className={classes.profileLink}
@@ -91,13 +91,13 @@ export function HeaderTabs() {
                 height={40}
                 className={classes.avatarImage}
               />
-              <Text fw={700} size="lg">{t('name')}</Text>
+              <Text className={classes.name}>{t('name')}</Text>
             </Group>
           </Link>
 
           <Tabs
             value={getActiveTab()}
-            variant="outline"
+            variant="default"
             visibleFrom="lg"
             classNames={{
               root: classes.tabs,
@@ -128,7 +128,7 @@ export function HeaderTabs() {
         </Group>
       </Container>
       <Collapse in={opened}>
-        <Container size="md" py="md">
+        <Container size="lg" py="md">
           <Stack gap="sm">
             {tabs.map(tab => (
               <Link

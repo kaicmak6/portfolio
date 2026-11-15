@@ -1,0 +1,128 @@
+/* A photographic plate at the page's one wide ratio. The band owns the box; the
+   photo and the wedge drift inside it, so parallax can never shift layout. */
+
+.band {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 16 / 9;
+  min-height: 300px;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--mantine-color-brand-9);
+
+  --px: 0;
+  --py: 0;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    min-height: 260px;
+  }
+}
+
+.plate {
+  /* The 6% bleed is the whole travel of the drift; nothing can ever reveal an
+     edge because the frame is always 3% larger than the hole it shows through. */
+  position: absolute;
+  inset: -6% 0;
+  z-index: 0;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Colour photographs, not a grey register: the plates carry the only real
+     colour on the page, so they keep their own hues and are only nudged in
+     contrast so a dark band stays dark behind the caption. */
+  filter: contrast(1.04) saturate(0.94);
+  transition: filter 180ms ease;
+}
+
+.band:hover .image {
+  filter: contrast(1.1) saturate(1) brightness(1.03);
+}
+
+@keyframes plate-drift {
+  from {
+    transform: translate3d(calc(var(--px) * 7px), calc(-3% + var(--py) * 5px), 0);
+  }
+
+  to {
+    transform: translate3d(calc(var(--px) * 7px), calc(3% + var(--py) * 5px), 0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .photo {
+    animation: plate-drift linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+/* The caption plate: one flat tone step across the bottom of the photograph.
+   Its top edge is level, because a diagonal across the full width cuts a boom,
+   a pair of hoist ropes and two legs at four different heights and shears the
+   subject. A hairline on the edge does the graphic work the diagonal was doing,
+   and it is the same rule the rest of the page is drawn with. */
+.wedge {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  height: 20%;
+  background-color: var(--mantine-color-brand-9);
+  border-top: 1px solid var(--mantine-color-brand-7);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  /* A Container inside a flex parent shrink-wraps unless this is explicit. */
+  width: 100%;
+  padding-bottom: calc(var(--mantine-spacing-xl) * 0.9);
+}
+
+.flip .inner {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.copy {
+  max-width: 46ch;
+}
+
+.label {
+  display: block;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mantine-color-brand-2);
+}
+
+.caption {
+  margin: 6px 0 0;
+  font-size: var(--mantine-font-size-sm);
+  line-height: 1.5;
+  color: var(--mantine-color-brand-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo {
+    animation: none;
+    transform: none;
+  }
+
+  .image {
+    transition: none;
+  }
+}

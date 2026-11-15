@@ -13,43 +13,39 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   'users': IconUsers,
 };
 
-const categoryColors: Record<string, string> = {
-  'code': 'blue',
-  'server': 'orange',
-  'file-text': 'cyan',
-  'activity': 'indigo',
-  'users': 'indigo',
-};
+// The Directus category objects carry no icon key, so every card used to fall
+// back to the same `</>` mark. Follow the order the categories are authored in.
+const iconOrder = ['code', 'server', 'users'];
 
 export function SkillsSection() {
   const t = useTranslations('Skills');
-  const categories = t.raw('categories') as Array<{ title: string; icon: string; skills: Array<{ emoji: string; label: string }> }>;
+  const categories = t.raw('categories') as Array<{ title: string; skills: Array<{ emoji: string; label: string }> }>;
 
   return (
     <Container size="lg" py="xl">
-      <Title ta="center" className={classes.title}>
+      <Title className={classes.title}>
         {t('title')}
       </Title>
-      <Text c="dimmed" ta="center" mt="md" mb="xl" size="lg">
+      <Text c="dimmed" mt="xs" mb="xl" size="lg">
         {t('subtitle')}
       </Text>
 
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg">
         {categories.map((category, index) => {
-          const IconComponent = iconMap[category.icon] || IconCode;
+          const IconComponent = iconMap[iconOrder[index] ?? ''] || IconCode;
           return (
-            <Card key={index} shadow="sm" p="lg" radius="md" withBorder className={classes.card}>
-              <Group mb="md">
-                <ThemeIcon size={40} variant="light" radius="xl">
-                  <IconComponent size={20} />
+            <Card key={category.title} p="lg" radius={0} withBorder className={classes.card}>
+              <Group mb="md" gap="sm" wrap="nowrap">
+                <ThemeIcon size={34} variant="default" radius={0}>
+                  <IconComponent size={18} />
                 </ThemeIcon>
                 <Text fw={600} size="lg">
                   {category.title}
                 </Text>
               </Group>
-              <Group gap="xs" wrap="wrap">
+              <Group gap={6} wrap="wrap">
                 {category.skills.map(skill => (
-                  <Badge key={skill.label} variant="light" size="lg" color={categoryColors[category.icon] || 'blue'} leftSection={skill.emoji}>
+                  <Badge key={skill.label} variant="default" leftSection="▪">
                     {skill.label}
                   </Badge>
                 ))}

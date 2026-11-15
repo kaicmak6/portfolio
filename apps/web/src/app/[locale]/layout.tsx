@@ -37,13 +37,17 @@ export async function generateMetadata({
     getTranslations({ locale, namespace: 'favicon' }),
   ]);
 
+  // An `http:` CMS asset cannot be loaded from the page: Chrome upgrades it to
+  // `https://`, which this container does not serve, and `img-src` admits only
+  // the http origin. Fall back to the bundled same-origin copy of that icon.
   const faviconUrl = String(tFavicon('url'));
-  const faviconSizes = String(tFavicon('sizes'));
-  const faviconType = String(tFavicon('type'));
+  const isInsecureRemote = faviconUrl.startsWith('http://');
 
-  const resolvedFaviconUrl = faviconUrl.startsWith('http')
-    ? faviconUrl
-    : `${process.env.BASE_PATH ?? ''}${faviconUrl}`;
+  const resolvedFaviconUrl = isInsecureRemote
+    ? `${process.env.BASE_PATH ?? ''}/favicon.png`
+    : faviconUrl.startsWith('http')
+      ? faviconUrl
+      : `${process.env.BASE_PATH ?? ''}${faviconUrl}`;
 
   return {
     title: {
@@ -55,8 +59,8 @@ export async function generateMetadata({
       {
         rel: 'icon',
         url: resolvedFaviconUrl,
-        sizes: faviconSizes,
-        type: faviconType,
+        sizes: isInsecureRemote ? '96x96' : String(tFavicon('sizes')),
+        type: isInsecureRemote ? 'image/png' : String(tFavicon('type')),
       },
     ],
     openGraph: {
@@ -95,7 +99,7 @@ export default function RootLayout(props: {
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       )}
       <head>
-        <ColorSchemeScript suppressHydrationWarning defaultColorScheme="auto" />
+        <ColorSchemeScript suppressHydrationWarning defaultColorScheme="light" />
       </head>
       <body suppressHydrationWarning>
         {/* PRO: Dark mode support for Shadcn UI */}
@@ -103,7 +107,7 @@ export default function RootLayout(props: {
           locale={locale}
           messages={messages}
         >
-          <MantineProvider defaultColorScheme="auto" theme={theme}>
+          <MantineProvider defaultColorScheme="light" theme={theme}>
             {props.children}
           </MantineProvider>
         </NextIntlClientProvider>

@@ -55,7 +55,7 @@ export function ExperiencePage() {
               return (
                 <Timeline.Item
                   key={index}
-                  bullet={<ThemeIcon size={isMobile ? 40 : 48} radius="xl" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}><IconComponent size={isMobile ? 20 : 24} /></ThemeIcon>}
+                  bullet={<ThemeIcon size={isMobile ? 34 : 40} radius={0} variant="gradient" gradient={{ from: 'brand.8', to: 'brand.9' }}><IconComponent size={isMobile ? 18 : 20} /></ThemeIcon>}
                   title={<Text size={isMobile ? 'sm' : 'md'} fw={700}>{job.title}</Text>}
                   id={job.id}
                 >
@@ -84,7 +84,7 @@ export function ExperiencePage() {
             bulletSize={isMobile ? 40 : 48}
           >
             <Timeline.Item
-              bullet={<ThemeIcon size={isMobile ? 40 : 48} radius="xl" variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}><IconSchool size={isMobile ? 20 : 24} /></ThemeIcon>}
+              bullet={<ThemeIcon size={isMobile ? 34 : 40} radius={0} variant="gradient" gradient={{ from: 'brand.8', to: 'brand.9' }}><IconSchool size={isMobile ? 18 : 20} /></ThemeIcon>}
               title={<Text size={isMobile ? 'sm' : 'md'} fw={700}>{educationTitle}</Text>}
             >
               <Text size={isMobile ? 'sm' : 'md'}>{educationInstitution}</Text>
@@ -105,7 +105,6 @@ export function ExperiencePage() {
             variant="outline"
             size="lg"
             leftSection={<IconDownload size={20} />}
-            radius="xl"
           >
             {t('download_cv')}
           </Button>

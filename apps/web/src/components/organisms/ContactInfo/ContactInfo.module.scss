@@ -1,10 +1,23 @@
 .title {
+  position: relative;
+  padding-top: calc(var(--mantine-spacing-md) + 4px);
+  margin-bottom: var(--mantine-spacing-xs);
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-family: var(--font-outfit), var(--mantine-font-family);
-  font-size: 48px;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 1px;
+    background-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
 
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: 36px;
@@ -15,6 +28,91 @@
   }
 }
 
-.copyText {
-  cursor: pointer;
+/* The one filled control on the site: the address itself is the call to action,
+   and the rows beside it are the quieter ways to reach the same person. */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--mantine-spacing-xl) * 1.75);
+  margin-top: var(--mantine-spacing-xl);
+  padding-top: var(--mantine-spacing-lg);
+  border-top: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+
+  @media (max-width: $mantine-breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mantine-spacing-lg);
+  }
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--mantine-spacing-sm) 0;
+  border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  font-size: var(--mantine-font-size-sm);
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));
+    text-decoration: none;
+    transition: color 160ms ease;
+
+    /* The rows already end in a mark; keeping it quiet until the row is hovered
+       or focused lets the address stay the loudest thing on the line. */
+    svg:last-child {
+      color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+      opacity: 0.55;
+      transition:
+        opacity 160ms ease,
+        transform 160ms ease;
+    }
+
+    &:hover {
+      color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+
+      svg:last-child {
+        opacity: 1;
+        transform: translate(1px, -1px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+      outline-offset: 2px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item a {
+    transition: none;
+  }
 }

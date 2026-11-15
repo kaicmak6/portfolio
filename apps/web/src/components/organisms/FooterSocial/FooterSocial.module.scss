@@ -24,3 +24,11 @@
 .logoImage {
   object-fit: contain;
 }
+
+.credits {
+  padding-top: 0;
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--mantine-color-gray-7);
+}

@@ -1,9 +1,22 @@
 .title {
+  position: relative;
+  padding-top: calc(var(--mantine-spacing-md) + 4px);
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-family: var(--font-outfit), var(--mantine-font-family);
-  font-size: 44px;
-  line-height: 1.2;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1.1;
   font-weight: 500;
+  letter-spacing: -0.025em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 1px;
+    background-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
 
   @media (max-width: $mantine-breakpoint-xs) {
     font-size: 28px;

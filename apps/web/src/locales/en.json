@@ -1,7 +1,7 @@
 {
   "Index": {
-    "meta_title": "Kaius Mak | Frontend Web Lead & Engineering Manager",
-    "meta_description": "Engineering Lead specialized in scaling high-resiliency web architectures and multi-workstream teams for global aviation and membership systems."
+    "meta_title": "Kaius Mak | Frontend Technical Lead & Lead of Leads",
+    "meta_description": "Lead of Leads specialized in scaling high-resiliency web systems and multi-workstream teams for global aviation and membership platforms."
   },
   "ThemeConfig": {
     "primary": "Slate",
@@ -19,7 +19,7 @@
     "profile_link": "/"
   },
   "PortfolioHero": {
-    "badge": "Frontend Web Lead | Engineering Manager",
+    "badge": "Lead of Leads | Frontend Engineering Lead",
     "title": "Scaling Enterprise Resilience",
     "subtitle": "Lead of Leads for mission-critical booking engines and global membership ecosystems.",
     "cards": [
@@ -27,7 +27,7 @@
         "id": "cathay-booking",
         "title": "Cathay: Global Booking Core",
         "category": "Greenfield Lead of Leads",
-        "description": "Spearheaded a Next.js 16 monorepo for a high-concurrency booking engine. Scaled the engineering organization from 4 to 20 members.",
+        "description": "Spearheaded a Next.js 16 monorepo for a high-concurrency booking engine. Scaled the engineering organization from 4 to 20 members across 4 workstreams.",
         "badges": [
           "Next.js 16",
           "React.js",
@@ -52,12 +52,14 @@
         "id": "hkexpress-sitecore",
         "title": "HK Express: Content Modernization",
         "category": "Technical Pioneer",
-        "description": "Led the first Sitecore Cloud SaaS + Next.js integration in Accenture HK, achieving ultra-low latency via Edge Caching.",
+        "description": "Led the first Sitecore Cloud SaaS + Next.js integration in Accenture HK, achieving ultra-low latency via Akamai Edge Caching.",
         "badges": [
+          "Next.js 14",
+          "React.js",
+          "TypeScript",
           "Sitecore Cloud",
           "Akamai Edge",
-          "Redis Caching",
-          "ISR"
+          "Redis Caching"
         ],
         "images": [
           "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
@@ -73,6 +75,7 @@
         "description": "Modernized legacy loyalty infrastructure with Secure 2FA, managing cross-border delivery and quality assurance.",
         "badges": [
           "React.js",
+          "TypeScript",
           "Adobe AEM",
           "Offshore Mgmt",
           "2FA Implementation"
@@ -89,7 +92,7 @@
   },
   "HeroBullets": {
     "title": "Engineering Governance. Global Scale.",
-    "description": "Expertise in transforming legacy monoliths into distributed Next.js architectures while enforcing high-end engineering standards across multi-workstream teams.",
+    "description": "Expertise in transforming legacy monoliths into distributed Next.js systems while enforcing high-end engineering standards across multi-workstream teams.",
     "features": [
       {
         "title": "Lead of Leads Capacity",
@@ -131,13 +134,14 @@
         "badges": [
           "Next.js 16",
           "React.js",
+          "TypeScript",
           "NestJS BFF",
           "Typia Safety"
         ],
-        "desc": "<ul><li><b>Organizational Scaling:</b> Orchestrated the scaling of a 4-man squad into a 20-man organization across 4 functional workstreams.</li><li><b>Runtime Integrity:</b> Integrated <b>Typia</b> for runtime schema validation, ensuring 99.9% system stability against external API inconsistencies.</li><li><b>Observability:</b> Implemented structural logging (IP/Trace ID/Span ID) and NanoID for production incident tracing via ELK.</li><li><b>Engineering Standard:</b> Enforced Atomic Design with isolation testing via Storybook and comprehensive Vitest suites.</li></ul>",
+        "desc": "<ul><li><b>Organizational Scaling:</b> Orchestrated the scaling of a 4-man squad into a 20-member organization across 4 functional workstreams.</li><li><b>Runtime Integrity:</b> Integrated <b>Typia</b> for runtime schema validation, reinforcing system stability by eliminating runtime type-mismatch errors from external APIs.</li><li><b>Observability:</b> Implemented structural logging (IP/Trace ID/Span ID) and NanoID for production incident tracing via ELK.</li><li><b>Engineering Standard:</b> Enforced Atomic Design with isolation testing via Storybook and comprehensive Vitest suites.</li></ul>",
         "metrics": [
           "Scaled 4 to 20 Engineers",
-          "99.9% Uptime Focus",
+          "High-Reliability Runtime Validation",
           "Lead of Leads structure"
         ],
         "tech": [
@@ -173,13 +177,15 @@
         "description": "High-velocity airline content hub with Sitecore Cloud SaaS integration.",
         "badges": [
           "Next.js 14",
+          "React.js",
+          "TypeScript",
           "Sitecore Cloud",
           "Akamai Edge"
         ],
         "desc": "<ul><li><b>Pioneer Integration:</b> Led the first Sitecore Cloud SaaS + Next.js integration at Accenture HK.</li><li><b>Edge Performance:</b> Optimized performance via Akamai Cache Control for both static HTML and React Server Components (RSC).</li><li><b>System Resilience:</b> Utilized Redis for multi-pod container state persistence and ISR caching to support real-time content previews.</li></ul>",
         "metrics": [
           "1st Sitecore SaaS Pioneer",
-          "Edge-First Architecture",
+          "Edge-First Performance",
           "Global Content Delivery"
         ],
         "tech": [
@@ -211,14 +217,15 @@
         "badges": [
           "Next.js 14",
           "React.js",
+          "TypeScript",
           "MUI",
-          "BFF Architecture"
+          "BFF Pattern"
         ],
-        "desc": "<ul><li><b>Architectural Foundation:</b> Defined the core Next.js structure, build configurations, and folder standards for the entire booking ecosystem.</li><li><b>Developer Experience:</b> Established frontend practices that streamlined development for multi-squad delivery.</li><li><b>Hybrid Rendering:</b> Implemented optimized mix of ISR and SSR to balance static performance with dynamic booking sessions.</li></ul>",
+        "desc": "<ul><li><b>Technical Foundation:</b> Defined the core Next.js structure, build configurations, and folder standards for the entire booking ecosystem.</li><li><b>Developer Experience:</b> Established frontend practices that streamlined development for multi-squad delivery.</li><li><b>Hybrid Rendering:</b> Implemented optimized mix of ISR and SSR to balance static performance with dynamic booking sessions.</li></ul>",
         "metrics": [
           "Next.js 14 Early Adopter",
           "Optimized Build Config",
-          "Standardized Architecture"
+          "Standardized Dev Standards"
         ],
         "tech": [
           {
@@ -248,10 +255,11 @@
         "description": "Modernizing legacy loyalty infrastructure with Secure 2FA and React.",
         "badges": [
           "React.js",
+          "TypeScript",
           "Adobe AEM",
           "2FA Implementation"
         ],
-        "desc": "<ul><li><b>Modernization:</b> Led the UI rebuild from legacy React versions and implemented secure 2FA flows for global loyalty members.</li><li><b>Delivery Mgmt:</b> Directed delivery for offshore teams, ensuring code quality through rigorous reviews and adherence to standards.</li><li><b>Stakeholder Alignment:</b> Acted as the primary technical interface for C-suite clients to manage expectations and provide architectural solutions.</li></ul>",
+        "desc": "<ul><li><b>Modernization:</b> Led the UI rebuild from legacy React versions and implemented secure 2FA flows for global loyalty members.</li><li><b>Delivery Mgmt:</b> Directed delivery for offshore teams, ensuring code quality through rigorous reviews and adherence to standards.</li><li><b>Stakeholder Alignment:</b> Acted as the primary technical interface for C-suite clients to manage expectations and provide solutions.</li></ul>",
         "metrics": [
           "2FA Security Rollout",
           "Managed Offshore QA",
@@ -318,12 +326,12 @@
     "download_cv_link": "#",
     "download_cv": "Download Full CV (PDF)",
     "meta_title": "Experience | Kaius Mak",
-    "meta_description": "Professional journey from Frontend Specialist to Engineering Manager at Accenture.",
+    "meta_description": "Professional journey from Software Engineer to Lead of Leads at Accenture.",
     "work_experience_title": "Professional Assignments",
     "education_section_title": "Academy",
     "education_title": "BSc (Hons) Computer Science",
     "education_institution": "City University of Hong Kong",
-    "education_details": "Graduated with Upper Second Class Honors (2:1). Specialized in high-performance web architectures.",
+    "education_details": "Graduated with Upper Second Class Honors (2:1). Specialized in high-performance web systems.",
     "jobs": [
       {
         "id": "exp-accenture-specialist",
@@ -347,7 +355,7 @@
         "company": "Accenture Hong Kong",
         "date": "2021 – 2023",
         "badge": "Frontend Lead",
-        "description": "Led the frontend team for the Cathay Membership System UI modernization.<br/><br/>• <b>UI/UX Modernization:</b> Managed legacy React migration and 2FA loyalty features.<br/>• <b>Global Delivery:</b> Coordinated with offshore teams to ensure delivery quality; utilized Kibana for production incident resolution."
+        "description": "Led the frontend team for the Cathay Membership System UI modernization.<br/><br/>• <b>UI/UX Modernization:</b> Managed legacy React migration and 2FA loyalty features.<br/>• <b>Client Solutions:</b> Advised clients on technical feasibility and managed expectations on deliverables.<br/>• <b>Global Delivery:</b> Coordinated with offshore teams to ensure delivery quality; utilized Kibana for production incident resolution."
       },
       {
         "id": "exp-accenture-associate",
@@ -379,22 +387,49 @@
         "company": "Personal Knowledge Expansion",
         "date": "2026 – Present",
         "badge": "R&D",
-        "description": "Mastering edge infrastructure (Cloudflare, Caddy)."
+        "description": "Mastering edge infrastructure (Cloudflare, Caddy), earning AWS certifications (Practitioner &amp; SAA), and building a Next.js portfolio with AI-assisted development (Cline/Gemini)."
       }
     ]
   },
   "Experience": {
     "title": "Professional Progression",
-    "subtitle": "6 Years of Engineering Excellence",
+    "subtitle": "5.5 Years of Engineering Excellence",
     "view_details": "Review Detailed Logs →",
     "jobs": [
       {
-        "id": "exp-accenture-lead",
+        "id": "exp-accenture-specialist",
         "title": "Engineering Lead (Lead of Leads)",
         "company": "Accenture HK",
-        "date": "2020 – 2026",
-        "description": "Led 20 engineers for Cathay Booking Core. Enforced Monorepo and Typia validation standards.",
+        "date": "2025 – 2026",
+        "description": "Scaled booking engine team 4→20 across 4 streams. Established Typia runtime validation standard & structural logging practice across 4 streams.",
         "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-senior",
+        "title": "Senior Analyst / Sitecore Pioneer",
+        "company": "Accenture HK",
+        "date": "2023 – 2024",
+        "description": "First Sitecore Cloud SaaS + Next.js integration; optimized global delivery with Akamai &amp; Redis.",
+        "icon": "code",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-analyst",
+        "title": "Software Engineering Analyst / Frontend Lead",
+        "company": "Accenture HK",
+        "date": "2021 – 2023",
+        "description": "Led Cathay Membership UI modernization, 2FA rollout, and offshore quality governance.",
+        "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-associate",
+        "title": "Software Engineering Analyst",
+        "company": "Accenture HK",
+        "date": "2020 – 2021",
+        "description": "Developed AXA Emma mobile app in React Native.",
+        "icon": "code",
         "badge_color": "blue"
       },
       {
@@ -411,7 +446,7 @@
         "title": "R&D Specialist",
         "company": "Sabbatical",
         "date": "2026 – Present",
-        "description": "Modernizing DX with Cloudflare, Docker, and AI-assisted development (Gemini).",
+        "description": "Mastering Cloudflare, Docker, AWS SAA &amp; building AI-assisted Next.js portfolio.",
         "icon": "cpu",
         "badge_color": "orange"
       }
@@ -534,12 +569,12 @@
   },
   "BadgeCard": {
     "technologies_skills": "System Specs",
-    "view_project": "Decrypt Project"
+    "view_project": "View Project"
   },
   "ChatBot": {
     "title": "KAIUS AI",
     "subtitle": "Digital Twins AI Agent",
-    "welcomeMessage": "Greeting. I am the Kaius System Liaison. You can ask me about scaling 20-man engineering squads, mission-critical aviation systems, or runtime schema validation strategies.",
+    "welcomeMessage": "Greeting. I am the Kaius System Liaison. You can ask me about scaling 20-member engineering squads, mission-critical aviation systems, or runtime schema validation strategies.",
     "suggestedQueries": [
       "How do you manage a 20-member team?",
       "Why use Typia for runtime validation?",

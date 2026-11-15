@@ -2,32 +2,55 @@
 import type { MantineColorsTuple } from '@mantine/core';
 import { createTheme, rem } from '@mantine/core';
 
-const indigo: MantineColorsTuple = [
-  '#eef2ff',
-  '#e0e7ff',
-  '#c7d2fe',
-  '#a5b4fc',
-  '#818cf8',
-  '#6366f1',
-  '#4f46e5',
-  '#4338ca',
-  '#3730a3',
-  '#312e81',
+// One hue, ten steps — Port of Rotterdam's ladder applied to Hutchison Ports'
+// own sea blue and sky blue. A stepped ladder of a single hue is how every
+// reference site escapes a monotone page; a second brand colour is not.
+// shade 0 is the mid-tint register, shade 8 the primary, shade 9 the dark.
+const brand: MantineColorsTuple = [
+  '#f0f5fa',
+  '#dfeaf4',
+  '#9acaeb',
+  '#4fb4e2',
+  '#009bde',
+  '#0693ca',
+  '#077ab7',
+  '#0a4691',
+  '#002e6d',
+  '#001b3f',
 ];
 
 export const theme = createTheme({
-  primaryColor: 'indigo',
-  colors: { indigo },
+  primaryColor: 'brand',
+  primaryShade: { light: 8, dark: 3 },
+  // Square corners everywhere: the page is built out of hairlines and rules, and
+  // a rounded control beside a square frame is the one mismatch the eye catches.
+  defaultRadius: 0,
+  // Pure black is the one tone the ladder has no step for. Mantine derives both
+  // the body text colour and every `light-dark(black, white)` rule from these
+  // two, so pointing black at the ladder's darkest step puts display type,
+  // body text and the dark sections in the same family of ink. Pure white stays
+  // white: it is the paper the page is printed on.
+  black: '#001b3f',
+  // Other components still ask for `indigo`; point it at the same ramp so the
+  // palette stays navy everywhere without editing them.
+  colors: { brand, indigo: brand },
 
   fontFamily: 'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  fontFamilyMonospace: 'JetBrains Mono, Menlo, Monaco, Consolas, monospace',
+  // System monospace stack: JetBrains Mono is named but never loaded by
+  // `next/font`, so every machine fell back to its own console face.
+  fontFamilyMonospace: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
 
   headings: {
-    fontFamily: 'var(--font-inter), sans-serif',
-    fontWeight: '800',
+    // Outfit is already loaded for the timeline titles; making it the display
+    // face is what separates headings from body text at a glance. The weight is
+    // 500, not 600: Outfit at display size carries itself, and a heavier cut
+    // pulls the page back toward the black-and-bold register it left behind.
+    fontFamily: 'var(--font-outfit), var(--font-inter), sans-serif',
+    fontWeight: '500',
     sizes: {
-      h1: { fontSize: rem(48), lineHeight: '1.1' },
-      h2: { fontSize: rem(36), lineHeight: '1.2' },
+      h1: { fontSize: 'clamp(2.75rem, 5.4vw, 4.5rem)', lineHeight: '1.02' },
+      h2: { fontSize: 'clamp(2rem, 3.4vw, 2.75rem)', lineHeight: '1.1' },
+      h3: { fontSize: rem(22), lineHeight: '1.25' },
     },
   },
 
@@ -37,18 +60,17 @@ export const theme = createTheme({
     },
 
     Card: {
-      defaultProps: { radius: 'lg', withBorder: true },
-      styles: (_theme: Record<string, any>) => ({
+      defaultProps: { radius: 0, withBorder: true },
+      styles: {
         root: {
-          'transition': 'transform 200ms ease, box-shadow 200ms ease',
+          'transition': 'border-color 160ms ease',
           'backgroundColor': 'var(--mantine-color-body)',
           '&:hover': {
-            transform: 'translateY(-5px)',
-            boxShadow: 'var(--mantine-shadow-md)',
-            borderColor: 'var(--mantine-color-indigo-light-hover)',
+            borderColor: 'light-dark(var(--mantine-color-brand-5), var(--mantine-color-brand-4))',
           },
+          '@media (prefers-reduced-motion: reduce)': { transition: 'none' },
         },
-      }),
+      },
     },
 
     Timeline: {
@@ -59,7 +81,7 @@ export const theme = createTheme({
     },
 
     Badge: {
-      defaultProps: { variant: 'light', radius: 'sm' },
+      defaultProps: { variant: 'light', radius: 0 },
       styles: {
         root: {
           textTransform: 'none',
@@ -70,18 +92,14 @@ export const theme = createTheme({
     },
 
     Button: {
-      defaultProps: { radius: 'md', fw: 600 },
-      vars: (_theme: Record<string, any>, props: Record<string, any>) => {
-        if (props.variant === 'filled') {
-          return { root: { '--button-bg': 'var(--mantine-color-indigo-filled)' } };
-        }
-        return { root: {} };
-      },
+      defaultProps: { radius: 0, fw: 600 },
     },
 
     Title: {
       styles: {
-        root: { letterSpacing: '-0.02em' },
+        root: {
+          letterSpacing: '-0.025em',
+        },
       },
     },
 
@@ -93,9 +111,11 @@ export const theme = createTheme({
           '&:hover': { opacity: 1 },
         },
         indicator: {
-          'width': rem(12),
+          'width': rem(10),
+          'borderRadius': 0,
           'transition': 'width 250ms ease',
-          '&[data-active]': { width: rem(40) },
+          '&[data-active]': { width: rem(32) },
+          '@media (prefers-reduced-motion: reduce)': { transition: 'none' },
         },
       },
     },
