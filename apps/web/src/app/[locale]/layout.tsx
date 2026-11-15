@@ -5,7 +5,6 @@ import '@/styles/global.css';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React from 'react';
@@ -13,15 +12,16 @@ import React from 'react';
 import { GlobalClickTracker } from '@/components/atoms/GlobalClickTracker';
 import { theme } from '@/styles/theme';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-});
+// Vendored rather than fetched: `next/font/google` downloads the files at build
+// time, so a build machine without reachability to fonts.googleapis.com cannot
+// produce an image at all, and Turbopack 16 mis-resolves `next/font/local`.
+// Declaring the faces and their variables by hand keeps both builds offline.
+// Both files are variable woff2 (SIL OFL) served from `public/fonts`.
+const fontFaceCss = `
+@font-face{font-family:Inter;src:url('${process.env.BASE_PATH ?? ''}/fonts/Inter-Variable.260c81a4.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:Outfit;src:url('${process.env.BASE_PATH ?? ''}/fonts/Outfit-Variable.fdf9c509.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+:root{--font-inter:Inter;--font-outfit:Outfit}
+`;
 
 export async function generateMetadata({
   params,
@@ -91,7 +91,7 @@ export default function RootLayout(props: {
   // The `suppressHydrationWarning` attribute in <body> is used to prevent hydration errors caused by Sentry Overlay,
   // which dynamically adds a `style` attribute to the body tag.
   return (
-    <html lang={locale} {...mantineHtmlProps} className={`${inter.variable} ${outfit.variable}`}>
+    <html lang={locale} {...mantineHtmlProps}>
       {process.env.NEXT_PUBLIC_GTM_ID && (
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ''} />
       )}
@@ -100,6 +100,7 @@ export default function RootLayout(props: {
       )}
       <head>
         <ColorSchemeScript suppressHydrationWarning defaultColorScheme="light" />
+        <style>{fontFaceCss}</style>
       </head>
       <body suppressHydrationWarning>
         {/* PRO: Dark mode support for Shadcn UI */}

@@ -16,7 +16,11 @@
     "contact": "Contact",
     "name": "Kaius Mak",
     "avatar": "https://portfolio-cms.mak-cloud.com/assets/acab51b6-35d1-4872-943b-c30c84c50e1a.png",
-    "profile_link": "/"
+    "profile_link": "/",
+    "avatar_alt": "Profile portrait",
+    "menu_label": "Toggle navigation",
+    "color_scheme_label": "Toggle color scheme",
+    "language_label": "Language"
   },
   "PortfolioHero": {
     "badge": "Lead of Leads | Frontend Engineering Lead",
@@ -565,7 +569,8 @@
       "whatsapp": "https://api.whatsapp.com/send/?phone=90562065&text&type=phone_number&app_absent=0",
       "linkedin": "https://www.linkedin.com/in/kaius-mak-957b44148/",
       "github": "https://github.com/kaicmak6"
-    }
+    },
+    "credit": "Photography: Trougnouf (CC BY 4.0) — via Wikimedia Commons"
   },
   "BadgeCard": {
     "technologies_skills": "System Specs",
@@ -592,5 +597,19 @@
     "url": "https://portfolio-cms.mak-cloud.com/assets/8d2d9891-c186-4ab5-a766-e1c4bcb72faa.png",
     "sizes": "any",
     "type": "image/x-icon"
+  },
+  "PlateBand": {
+    "fig1_label": "Fig. 01 · Ship-to-shore",
+    "fig1_caption": "Ship-to-shore cranes standing over the stack yard at dusk.",
+    "fig2_label": "Fig. 02 · Runway axis",
+    "fig2_caption": "Runway seen along its axis, threshold markings running out to the far end."
+  },
+  "OperationsBand": {
+    "terminal_label": "Terminal Operations",
+    "terminal_loop": "20 s cycle",
+    "terminal_caption": "Ship-to-shore gantry over a stacked yard; a completed move strokes to full accent.",
+    "approach_label": "Approach Sequence",
+    "approach_loop": "6 s run · 3 s hold",
+    "approach_caption": "Sequenced touchdown-zone lights running to the threshold, then holding."
   }
 }

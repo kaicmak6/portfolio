@@ -11,6 +11,34 @@ const intlMiddleware = createMiddleware({
   defaultLocale: AppConfig.defaultLocale,
 });
 
+// The URL carries no locale, so the rendered HTML depends on the visitor's
+// cookie or Accept-Language. A shared cache keys on the URL alone, so this HTML
+// must not be stored by one: `Vary` cannot be relied on here, because Next sets
+// it for its own RSC variants after this middleware returns. Content-addressed
+// assets stay immutable; only the document is private.
+function prefersDefaultLocale(request: NextRequest) {
+  const cookie = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookie) {
+    return cookie === AppConfig.defaultLocale;
+  }
+
+  const base = (tag: string) => tag.split('-')[0] ?? tag;
+  const tags = (request.headers.get('accept-language') ?? '')
+    .split(',')
+    .map(part => (part.split(';')[0] ?? '').trim().toLowerCase())
+    .filter(Boolean);
+
+  for (const tag of tags) {
+    const match = AppConfig.locales.find(locale => locale.id.toLowerCase() === tag
+      || base(locale.id.toLowerCase()) === base(tag));
+    if (match) {
+      return match.id === AppConfig.defaultLocale;
+    }
+  }
+
+  return true;
+}
+
 export default function middleware(
   request: NextRequest,
 ) {
@@ -20,7 +48,12 @@ export default function middleware(
 
   response.headers.set('Content-Security-Policy', cspHeader);
   response.headers.set('Permissions-Policy', `xr-spatial-tracking=(self "https://challenges.cloudflare.com")`);
-  response.headers.set('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400, stale-if-error=86400');
+  response.headers.set(
+    'Cache-Control',
+    prefersDefaultLocale(request)
+      ? 'private, no-cache, max-age=0, must-revalidate'
+      : 'private, no-store',
+  );
 
   return response;
 }

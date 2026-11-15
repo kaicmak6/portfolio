@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import { PlateBand } from '../molecules/PlateBand/PlateBand';
 import { CertificationsSection, ChatBot, ContactInfo, ExperienceSection, HeroBullets, PortfolioHeroSection, SkillsSection } from '../organisms/';
 import { OperationsBand } from '../organisms/OperationsBand/OperationsBand';
@@ -8,7 +10,9 @@ import { OperationsBand } from '../organisms/OperationsBand/OperationsBand';
 // photograph must arrive as a new name or browsers keep the old bytes.
 const opsPlate = (name: string) => `${process.env.BASE_PATH ?? ''}/ops/${name}`;
 
-export const HomePage = () => {
+export const HomePage = async () => {
+  const t = await getTranslations('PlateBand');
+
   return (
     <>
       <HeroBullets plateSrc={opsPlate('terminal-fog.af04348a.webp')} />
@@ -18,8 +22,8 @@ export const HomePage = () => {
         src={opsPlate('gantry-low.5e26eb6a.webp')}
         width={2560}
         height={1440}
-        label="Fig. 01 · Ship-to-shore"
-        caption="Ship-to-shore cranes standing over the stack yard at dusk."
+        label={t('fig1_label')}
+        caption={t('fig1_caption')}
         align="start"
       />
       <PortfolioHeroSection />
@@ -30,8 +34,8 @@ export const HomePage = () => {
         src={opsPlate('approach-haze.d23679a4.webp')}
         width={2560}
         height={1440}
-        label="Fig. 02 · Runway axis"
-        caption="Runway seen along its axis, threshold markings running out to the far end."
+        label={t('fig2_label')}
+        caption={t('fig2_caption')}
         align="end"
       />
       <ContactInfo />

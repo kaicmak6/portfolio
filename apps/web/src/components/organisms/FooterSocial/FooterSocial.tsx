@@ -39,7 +39,7 @@ export function FooterSocial() {
       {/* Licence attribution, not translatable copy: the plate photographs are
           CC BY 2.0 / CC BY 4.0 and owe a visible credit. */}
       <Container className={classes.credits} pb="md">
-        Photography: Trougnouf (CC BY 4.0) — via Wikimedia Commons
+        {t('credit')}
       </Container>
     </div>
   );

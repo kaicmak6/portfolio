@@ -1,0 +1,621 @@
+{
+  "Index": {
+    "meta_title": "Kaius Mak｜企業系統工程師暨前端主管",
+    "meta_description": "現於和記港口擔任分析程式員，曾任航空訂票與會員平台 Lead of Leads。專注大規模企業級 Web 工程。"
+  },
+  "ThemeConfig": {
+    "primary": "Navy",
+    "secondary": "Steel",
+    "aesthetic": "企業級結構主義",
+    "logo_text": "KAIUS"
+  },
+  "HeaderTabs": {
+    "home": "首頁",
+    "projects": "項目",
+    "experience": "經歷",
+    "contact": "聯絡",
+    "name": "Kaius Mak",
+    "avatar": "https://portfolio-cms.mak-cloud.com/assets/acab51b6-35d1-4872-943b-c30c84c50e1a.png",
+    "profile_link": "/",
+    "avatar_alt": "個人頭像",
+    "menu_label": "切換選單",
+    "color_scheme_label": "切換明暗模式",
+    "language_label": "語言"
+  },
+  "PortfolioHero": {
+    "badge": "和記港口分析程式員｜前前端主管",
+    "title": "撐得起規模的企業系統",
+    "subtitle": "現於和記港口任職工程師。此前將國泰訂票核心由 4 人擴展至 20 人、橫跨 4 條工作流。",
+    "cards": [
+      {
+        "id": "cathay-booking",
+        "title": "國泰：全球訂票核心",
+        "category": "全新項目 Lead of Leads",
+        "description": "主導高併發訂票引擎的 Next.js 16 單一倉庫架構，並將工程組織由 4 人擴展至 20 人、分為 4 條工作流。",
+        "badges": [
+          "Next.js 16",
+          "React.js",
+          "TypeScript",
+          "Lead of Leads",
+          "Typia 型別安全"
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/a7833018-338d-4dc2-b584-f10861d0b829.png",
+          "https://portfolio-cms.mak-cloud.com/assets/369fa4f8-597d-4a85-8ade-ccbeb30b0b5e.png",
+          "https://portfolio-cms.mak-cloud.com/assets/ede1e157-d0f1-43bb-ab42-cd15a7be1890.png",
+          "https://portfolio-cms.mak-cloud.com/assets/a10a58b8-ccff-4ec9-8c82-870cbc3e52fa.png",
+          "https://portfolio-cms.mak-cloud.com/assets/7f7a08c3-3218-49c6-b0ca-04f676df9a87.png",
+          "https://portfolio-cms.mak-cloud.com/assets/e4cea5cf-bbfa-42e6-a324-ee572c92c1a2.png",
+          "https://portfolio-cms.mak-cloud.com/assets/22c951a0-a6f5-4e06-a9a5-406b7ab8d00d.png"
+        ],
+        "emoji": "✈️",
+        "year": "2025",
+        "status": "Production"
+      },
+      {
+        "id": "hkexpress-sitecore",
+        "title": "香港快運：內容現代化",
+        "category": "技術先導",
+        "description": "在 Accenture 香港主導首個 Sitecore Cloud SaaS 配 Next.js 整合，並透過 Akamai Edge Caching 達到極低延遲。",
+        "badges": [
+          "Next.js 14",
+          "React.js",
+          "TypeScript",
+          "Sitecore Cloud",
+          "Akamai Edge",
+          "Redis 快取"
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
+        ],
+        "emoji": "🚀"
+      },
+      {
+        "id": "cathay-membership",
+        "title": "國泰：會員生態",
+        "category": "前端主管",
+        "description": "以安全雙重認證現代化遺留會員系統，並管理跨境交付與質素保證。",
+        "badges": [
+          "React.js",
+          "TypeScript",
+          "Adobe AEM",
+          "離岸團隊管理",
+          "2FA 實作"
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/85efeac3-c89b-4af9-bcfa-ca259c78eeae.png",
+          "https://portfolio-cms.mak-cloud.com/assets/c0aaaad9-7437-4a79-b7fb-b50badae116a.png",
+          "https://portfolio-cms.mak-cloud.com/assets/d7e4088c-de51-47cf-9df2-8be62c8f9113.png",
+          "https://portfolio-cms.mak-cloud.com/assets/621f7d86-8286-4243-876c-aed940e26721.png"
+        ],
+        "emoji": "💳"
+      }
+    ]
+  },
+  "HeroBullets": {
+    "title": "企業級交付，營運級可靠。",
+    "description": "由港口與碼頭營運，到高併發航空訂票：以工程標準、執行期安全與 Edge 效能，支撐多線並行的團隊。",
+    "features": [
+      {
+        "title": "跨團隊交付",
+        "description": "將小隊由 4 人擴展至 20 人、分為 4 條工作流，並培育高潛質成員晉升為工作流主管。"
+      },
+      {
+        "title": "執行期安全為預設",
+        "description": "以 Typia 驗證消除執行期型別不符錯誤。落實 Atomic Design（正常／邊界／錯誤狀態）與 Vitest 測試套件，確保零回歸。"
+      },
+      {
+        "title": "Edge 效能",
+        "description": "設計 ISR／SSR 混合策略，配合多 Pod Redis 狀態管理與 Akamai Edge 快取，大幅降低伺服器負載。"
+      }
+    ],
+    "primary_button": "原始碼",
+    "secondary_button": "聯絡我",
+    "primary_button_link": "https://github.com/kaicmak6/portfolio",
+    "secondary_button_action": "scroll_to_contact",
+    "image": "https://portfolio-cms.mak-cloud.com/assets/e2cd03c2-4d50-4aa8-bb50-abff570cfdba.png",
+    "infra_title": "技術支援",
+    "infra_aws_logo": "https://portfolio-cms.mak-cloud.com/assets/1a46941b-71b5-4cf2-910e-0c133ccc5c6b.png",
+    "infra_aws": "雲端託管 — 成本效益、企業保安與彈性擴展",
+    "infra_cf_logo": "https://portfolio-cms.mak-cloud.com/assets/c94c4fc7-bdeb-4efd-b2c8-69ee73f781a0.png",
+    "infra_cf": "CDN 與 API 閘道 — 全球 Edge 網絡、WAF 防護與速率限制"
+  },
+  "Projects": {
+    "title": "系統交付",
+    "meta_title": "項目履歷｜Kaius Mak",
+    "meta_description": "以 Next.js、Typia 與分散式快取建構的大型航空及會員系統詳解。",
+    "live_demo": "線上介面",
+    "github": "原始碼",
+    "view_production": "技術簡報",
+    "items": [
+      {
+        "id": "cathay-booking",
+        "title": "國泰：全球訂票引擎",
+        "category": "Lead of Leads（全新項目）",
+        "description": "為高可靠與快速擴展而建的次世代航空訂票平台。",
+        "badges": [
+          "Next.js 16",
+          "React.js",
+          "TypeScript",
+          "NestJS BFF",
+          "Typia 安全"
+        ],
+        "desc": "<ul><li><b>團隊擴張</b> 主導將 4 人小隊擴展為 20 人組織，劃分 4 條職能工作流。</li><li><b>執行期完整性</b> 引入 <b>Typia</b> 作執行期 schema 驗證，消除來自外部 API 的執行期型別不符錯誤，鞏固系統穩定性。</li><li><b>可觀測性</b> 實作結構化日誌（IP／Trace ID／Span ID）與 NanoID，配合 ELK 追蹤生產事故。</li><li><b>工程標準</b> 落實 Atomic Design，以 Storybook 做隔離測試，並建立完整 Vitest 測試套件。</li></ul>",
+        "metrics": [
+          "團隊由 4 人擴至 20 人",
+          "高可靠執行期驗證",
+          "Lead of Leads 架構"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🛡️",
+            "label": "Typia 安全"
+          },
+          {
+            "emoji": "🐳",
+            "label": "Docker / Monorepo"
+          }
+        ],
+        "demo": "https://book.cathaypacific.com/tsp/en_HK/flight-selection?cabin=Y&origin=DEL&dest=HKG&adult=1&youngAdult=0&child=0&infant=0&departureDateBound1=2027-03-08&departureDateBound2=2027-03-24&viewport=desktop&correlationId=g57Xe9ou1QnA4_x2TO34S",
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/a7833018-338d-4dc2-b584-f10861d0b829.png",
+          "https://portfolio-cms.mak-cloud.com/assets/369fa4f8-597d-4a85-8ade-ccbeb30b0b5e.png",
+          "https://portfolio-cms.mak-cloud.com/assets/ede1e157-d0f1-43bb-ab42-cd15a7be1890.png",
+          "https://portfolio-cms.mak-cloud.com/assets/a10a58b8-ccff-4ec9-8c82-870cbc3e52fa.png",
+          "https://portfolio-cms.mak-cloud.com/assets/7f7a08c3-3218-49c6-b0ca-04f676df9a87.png",
+          "https://portfolio-cms.mak-cloud.com/assets/e4cea5cf-bbfa-42e6-a324-ee572c92c1a2.png",
+          "https://portfolio-cms.mak-cloud.com/assets/22c951a0-a6f5-4e06-a9a5-406b7ab8d00d.png"
+        ],
+        "emoji": "✈️"
+      },
+      {
+        "id": "hkexpress-sitecore",
+        "title": "香港快運：靜態與訂票現代化",
+        "category": "技術先導",
+        "description": "整合 Sitecore Cloud SaaS 的高速航空內容平台。",
+        "badges": [
+          "Next.js 14",
+          "React.js",
+          "TypeScript",
+          "Sitecore Cloud",
+          "Akamai Edge"
+        ],
+        "desc": "<ul><li><b>先導整合</b> 在 Accenture 香港主導首個 Sitecore Cloud SaaS 配 Next.js 整合。</li><li><b>Edge 效能</b> 透過 Akamai Cache Control 同時優化靜態 HTML 與 React Server Components（RSC）。</li><li><b>系統韌性</b> 以 Redis 保存多 Pod 容器狀態，並用 ISR 快取支援即時內容預覽。</li></ul>",
+        "metrics": [
+          "首個 Sitecore SaaS 先導",
+          "Edge 優先效能",
+          "全球內容分發"
+        ],
+        "tech": [
+          {
+            "emoji": "🌐",
+            "label": "Akamai CDN"
+          },
+          {
+            "emoji": "🔄",
+            "label": "ISR / SSR"
+          },
+          {
+            "emoji": "🔷",
+            "label": "Sitecore SaaS"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
+        ],
+        "demo": "https://www.hkexpress.com/en-HK",
+        "emoji": "🚀"
+      },
+      {
+        "id": "hkexpress-booking",
+        "title": "香港快運：訂票系統重建",
+        "category": "前端主管",
+        "description": "以 Next.js 14 現代化航空訂票流程與靜態頁。",
+        "badges": [
+          "Next.js 14",
+          "React.js",
+          "TypeScript",
+          "MUI",
+          "BFF 模式"
+        ],
+        "desc": "<ul><li><b>技術基礎</b> 為整個訂票生態定義 Next.js 核心結構、建置設定與資料夾規範。</li><li><b>開發體驗</b> 建立前端實務規範，令多小隊交付流程順暢。</li><li><b>混合渲染</b> 以 ISR 與 SSR 混合調配，平衡靜態效能與動態訂票會話。</li></ul>",
+        "metrics": [
+          "Next.js 14 早期採用者",
+          "建置設定最佳化",
+          "開發標準統一"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🎨",
+            "label": "MUI"
+          },
+          {
+            "emoji": "🏗️",
+            "label": "BFF 模式"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/497f7e9c-20ae-4d54-837d-8469b99dcf5c.png",
+          "https://portfolio-cms.mak-cloud.com/assets/7c2e0e9c-e327-4a51-9cb5-6cc2b9c3d2a2.png",
+          "https://portfolio-cms.mak-cloud.com/assets/ebbe45fb-aeb2-4772-b251-b61dc5cb8a0c.png",
+          "https://portfolio-cms.mak-cloud.com/assets/f5d2a548-674a-4008-aa15-7b46e2cf4273.png",
+          "https://portfolio-cms.mak-cloud.com/assets/35f13a80-6845-4e2b-8bd8-21226d28103a.png",
+          "https://portfolio-cms.mak-cloud.com/assets/9bb4ea61-7899-4e8a-ba30-54c070eecd1d.png",
+          "https://portfolio-cms.mak-cloud.com/assets/f79a73d3-c282-466e-8631-98718d243c68.png"
+        ],
+        "demo": "https://booking.hkexpress.com/en-HK",
+        "emoji": "🎫"
+      },
+      {
+        "id": "cathay-membership",
+        "title": "國泰：會員生態",
+        "category": "前端主管",
+        "description": "以安全雙重認證與 React 現代化遺留會員系統。",
+        "badges": [
+          "React.js",
+          "TypeScript",
+          "Adobe AEM",
+          "2FA 實作"
+        ],
+        "desc": "<ul><li><b>現代化</b> 主導由舊版 React 重建介面，並為全球會員實作安全雙重認證流程。</li><li><b>交付管理</b> 統籌離岸團隊交付，以嚴謹審查與標準遵循確保程式碼質素。</li><li><b>持份者協調</b> 作為客戶高層的主要技術對接人，管理期望並提出方案。</li></ul>",
+        "metrics": [
+          "2FA 保安推行",
+          "離岸質素管理",
+          "客戶策略對接"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "React.js"
+          },
+          {
+            "emoji": "🔒",
+            "label": "2FA 保安"
+          },
+          {
+            "emoji": "📊",
+            "label": "Kibana/ELK"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/85efeac3-c89b-4af9-bcfa-ca259c78eeae.png",
+          "https://portfolio-cms.mak-cloud.com/assets/c0aaaad9-7437-4a79-b7fb-b50badae116a.png",
+          "https://portfolio-cms.mak-cloud.com/assets/d7e4088c-de51-47cf-9df2-8be62c8f9113.png",
+          "https://portfolio-cms.mak-cloud.com/assets/621f7d86-8286-4243-876c-aed940e26721.png"
+        ],
+        "demo": "https://www.cathaypacific.com/cx/en_HK/membership/my-account/profile.html",
+        "emoji": "💳"
+      },
+      {
+        "id": "axa-emma",
+        "title": "AXA Emma 手機應用",
+        "category": "手機程式開發",
+        "description": "企業級保險手機應用。",
+        "badges": [
+          "React Native",
+          "TypeScript",
+          "手機應用"
+        ],
+        "desc": "<ul><li><b>功能交付</b> 參與 Emma 手機應用的跨平台開發。</li><li><b>可靠性</b> 專注穩定元件架構，確保 iOS 與 Android 功能一致。</li></ul>",
+        "metrics": [
+          "企業手機上線",
+          "跨平台一致性"
+        ],
+        "tech": [
+          {
+            "emoji": "📱",
+            "label": "React Native"
+          },
+          {
+            "emoji": "📘",
+            "label": "TypeScript"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/e9d11dac-0bb0-4966-888b-f3f58b50577c.png"
+        ],
+        "demo": "https://www.axa.com.hk/en/emma-by-axa",
+        "emoji": "🛡️"
+      }
+    ]
+  },
+  "ExperiencePage": {
+    "title": "職涯記錄",
+    "download_cv_link": "#",
+    "download_cv": "下載完整履歷（PDF）",
+    "meta_title": "經歷｜Kaius Mak",
+    "meta_description": "由軟件工程師到 Accenture Lead of Leads 的專業歷程。",
+    "work_experience_title": "工作經歷",
+    "education_section_title": "學歷",
+    "education_title": "電腦科學（榮譽）學士",
+    "education_institution": "香港城市大學",
+    "education_details": "以一級榮譽乙等（2:1）畢業，主修高效能 Web 系統。",
+    "jobs": [
+      {
+        "id": "exp-hutchison",
+        "title": "Analyst Programmer",
+        "company": "和記港口",
+        "date": "2026 – 至今",
+        "badge": "企業系統",
+        "description": "加入和記港口出任分析程式員，開發並維護港口及碼頭營運的企業應用。<br/><br/>• <b>企業交付：</b> 在港口營運技術團隊內處理業務關鍵系統。<br/>• <b>既有基礎：</b> 帶來國泰與香港快運平台的前端領導經驗。"
+      },
+      {
+        "id": "exp-accenture-specialist",
+        "title": "Specialist / Engineering Lead（Lead of Leads）",
+        "company": "Accenture 香港",
+        "date": "2025 – 2026",
+        "badge": "領導",
+        "description": "晉升為 Specialist，主導國泰訂票系統轉型。<br/><br/>• <b>團隊擴張：</b> 將小隊由 4 人擴展至 20 人、分為 4 條工作流。<br/>• <b>人才培育：</b> 培訓高潛質成員出任工作流主管；就微觀管理與技術治理提供指導。<br/>• <b>技術卓越：</b> 強制採用 <b>Typia</b> 保障任務關鍵系統的執行期安全，並建立結構化日誌以支援生產可觀測性。"
+      },
+      {
+        "id": "exp-accenture-senior",
+        "title": "Senior Analyst / Frontend Lead",
+        "company": "Accenture 香港",
+        "date": "2023 – 2024",
+        "badge": "技術先導",
+        "description": "同時主導國泰會員與香港快運現代化項目。<br/><br/>• <b>Sitecore 先導：</b> 在 Accenture 香港首個進行 Sitecore Cloud SaaS 配 Next.js 整合。<br/>• <b>效能營運：</b> 以 Akamai Edge Caching 優化 RSC 全球交付，並以 Redis 管理多 Pod 狀態。<br/>• <b>框架設計：</b> 為新重建的訂票生態定義資料夾結構與 Next.js 實務。"
+      },
+      {
+        "id": "exp-accenture-analyst",
+        "title": "Custom Software Engineering Analyst / Lead",
+        "company": "Accenture 香港",
+        "date": "2021 – 2023",
+        "badge": "前端主管",
+        "description": "帶領前端團隊完成國泰會員系統介面現代化。<br/><br/>• <b>介面現代化：</b> 管理舊版 React 遷移與 2FA 會員功能。<br/>• <b>客戶方案：</b> 就技術可行性向客戶提供建議，並管理交付期望。<br/>• <b>全球交付：</b> 與離岸團隊協調以確保交付質素；以 Kibana 處理生產事故。"
+      },
+      {
+        "id": "exp-accenture-associate",
+        "title": "Software Engineering Analyst",
+        "company": "Accenture 香港",
+        "date": "2020 – 2021",
+        "badge": "開發",
+        "description": "以分析程式員身分加入，專注以 React Native 開發 AXA Emma 手機應用。"
+      },
+      {
+        "id": "exp-dor",
+        "title": "Placement Developer",
+        "company": "Document On Ready Ltd",
+        "date": "2019 – 2020",
+        "badge": "精品網站",
+        "description": "為 <b>IPSA、GU 與 Chanel</b> 建構像素精準的 React 系統。"
+      },
+      {
+        "id": "exp-internships",
+        "title": "Web Engineering Intern",
+        "company": "Passber",
+        "date": "2017 – 2018",
+        "badge": "起步",
+        "description": "早期職涯集中於建立 Web 會員與訂閱系統。"
+      }
+    ]
+  },
+  "Experience": {
+    "title": "專業歷程",
+    "subtitle": "5.5 年工程實踐",
+    "view_details": "查閱詳細記錄 →",
+    "jobs": [
+      {
+        "id": "exp-hutchison",
+        "title": "Analyst Programmer",
+        "company": "和記港口",
+        "date": "2026 – 至今",
+        "description": "為港口及碼頭營運開發企業應用。",
+        "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-specialist",
+        "title": "Engineering Lead（Lead of Leads）",
+        "company": "Accenture 香港",
+        "date": "2025 – 2026",
+        "description": "將訂票引擎團隊由 4 人擴至 20 人、分 4 條工作流。建立 Typia 執行期驗證標準與結構化日誌實務。",
+        "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-senior",
+        "title": "Senior Analyst / Sitecore 先導",
+        "company": "Accenture 香港",
+        "date": "2023 – 2024",
+        "description": "首個 Sitecore Cloud SaaS 配 Next.js 整合；以 Akamai 與 Redis 優化全球交付。",
+        "icon": "code",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-analyst",
+        "title": "Software Engineering Analyst / 前端主管",
+        "company": "Accenture 香港",
+        "date": "2021 – 2023",
+        "description": "主導國泰會員介面現代化、2FA 推行與離岸質素治理。",
+        "icon": "briefcase",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-accenture-associate",
+        "title": "Software Engineering Analyst",
+        "company": "Accenture 香港",
+        "date": "2020 – 2021",
+        "description": "以 React Native 開發 AXA Emma 手機應用。",
+        "icon": "code",
+        "badge_color": "blue"
+      },
+      {
+        "id": "exp-dor",
+        "title": "Placement Developer",
+        "company": "Document On Ready",
+        "date": "2019 – 2020",
+        "description": "為 Chanel、GU 與 IPSA 交付高效能 Web 系統。",
+        "icon": "code",
+        "badge_color": "blue"
+      }
+    ]
+  },
+  "Skills": {
+    "title": "技術矩陣",
+    "subtitle": "專攻高韌性系統",
+    "categories": [
+      {
+        "title": "前端工程",
+        "skills": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🛡️",
+            "label": "Typia（執行期安全）"
+          },
+          {
+            "emoji": "📘",
+            "label": "TypeScript"
+          },
+          {
+            "emoji": "🎨",
+            "label": "Mantine V8 / Atomic Design"
+          }
+        ]
+      },
+      {
+        "title": "基建與 BFF",
+        "skills": [
+          {
+            "emoji": "🦁",
+            "label": "NestJS / Java BFF"
+          },
+          {
+            "emoji": "🌐",
+            "label": "Akamai / Edge 快取"
+          },
+          {
+            "emoji": "🔴",
+            "label": "Redis（多 Pod 狀態）"
+          },
+          {
+            "emoji": "🐳",
+            "label": "Docker / Monorepo"
+          }
+        ]
+      },
+      {
+        "title": "管理與治理",
+        "skills": [
+          {
+            "emoji": "👥",
+            "label": "Lead of Leads（4–20 人規模）"
+          },
+          {
+            "emoji": "📈",
+            "label": "技術指導"
+          },
+          {
+            "emoji": "📊",
+            "label": "ELK Stack / 可觀測性"
+          },
+          {
+            "emoji": "🧪",
+            "label": "Vitest / 效能營運"
+          }
+        ]
+      }
+    ]
+  },
+  "Certifications": {
+    "title": "專業認證",
+    "badges": [
+      {
+        "title": "AWS Cloud Practitioner",
+        "issuer": "Amazon Web Services",
+        "image": "https://portfolio-cms.mak-cloud.com/assets/ec6f5ed4-866d-4546-ac87-6b10fab8ec5e.png",
+        "link": "https://www.credly.com/earner/earned/badge/c7a6e2bd-9c2c-4d57-b269-d07fe8afa8e5"
+      },
+      {
+        "title": "AWS Solutions Architect Associate",
+        "issuer": "Amazon Web Services",
+        "image": "https://portfolio-cms.mak-cloud.com/assets/ba8fa940-c385-4129-b934-41db9aa30d22.png",
+        "link": "https://www.credly.com/earner/earned/badge/aa4e9de1-3fc1-4c35-9df6-eb6ff005c00a"
+      }
+    ]
+  },
+  "ContactInfo": {
+    "title": "建立聯繫",
+    "subtitle": "歡迎技術交流",
+    "email": "kaicmak@mak-cloud.com",
+    "phone": "+852 9056 2065",
+    "linkedin": "https://www.linkedin.com/in/kaius-mak-957b44148/",
+    "copied": "已複製連結！",
+    "icons": {
+      "email": "電郵",
+      "phone": "電話",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "FooterSocial": {
+    "logo": "https://portfolio-cms.mak-cloud.com/assets/8d2d9891-c186-4ab5-a766-e1c4bcb72faa.png",
+    "alt_text": "Kaius 標誌",
+    "aria_labels": {
+      "email": "電郵",
+      "whatsapp": "WhatsApp",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "links": {
+      "email": "mailto:kaicmak@mak-cloud.com",
+      "whatsapp": "https://api.whatsapp.com/send/?phone=90562065&text&type=phone_number&app_absent=0",
+      "linkedin": "https://www.linkedin.com/in/kaius-mak-957b44148/",
+      "github": "https://github.com/kaicmak6"
+    },
+    "credit": "攝影：Trougnouf（CC BY 4.0）— 取自 Wikimedia Commons"
+  },
+  "BadgeCard": {
+    "technologies_skills": "系統規格",
+    "view_project": "查看項目"
+  },
+  "ChatBot": {
+    "title": "KAIUS AI",
+    "subtitle": "數碼分身 AI 代理",
+    "welcomeMessage": "你好。我是 Kaius 系統聯絡員。你可以問我關於 20 人工程團隊的擴張、任務關鍵航空系統，或執行期 schema 驗證策略。",
+    "suggestedQueries": [
+      "你如何管理 20 人團隊？",
+      "為何用 Typia 做執行期驗證？",
+      "解釋 Akamai Edge 快取策略。",
+      "講講你的 Lead of Leads 經驗。"
+    ],
+    "inputPlaceholder": "輸入問題…",
+    "error": "通訊中斷，請重試。",
+    "suggestedQuestionsTitle": "建議問題",
+    "devModeCaptchaDisabled": "模擬器：已略過驗證",
+    "poweredBy": "由 DeepSeek V4.1 Flash 驅動",
+    "gatewayInfo": "數據經 Cloudflare AI Gateway 處理，用於回應快取及 Edge 層保安。"
+  },
+  "favicon": {
+    "url": "https://portfolio-cms.mak-cloud.com/assets/8d2d9891-c186-4ab5-a766-e1c4bcb72faa.png",
+    "sizes": "any",
+    "type": "image/x-icon"
+  },
+  "PlateBand": {
+    "fig1_label": "圖 01 · 岸橋作業",
+    "fig1_caption": "黃昏時分，岸橋立於堆場之上。",
+    "fig2_label": "圖 02 · 跑道軸線",
+    "fig2_caption": "沿跑道軸線拍攝，入口標記一路延伸至跑道盡頭。"
+  },
+  "OperationsBand": {
+    "terminal_label": "碼頭作業",
+    "terminal_loop": "20 秒循環",
+    "terminal_caption": "岸橋立於堆場之上；一次吊運完成時會掃過全強調色。",
+    "approach_label": "進場程序",
+    "approach_loop": "亮 6 秒 · 停 3 秒",
+    "approach_caption": "著陸區燈號依次亮向跑道入口，然後保持。"
+  }
+}

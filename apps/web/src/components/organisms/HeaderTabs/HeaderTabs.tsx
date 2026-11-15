@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl';
 
 import { ColorSchemeToggle } from './ColorSchemeToggle';
 import classes from './HeaderTabs.module.scss';
+import { LocaleToggle } from './LocaleToggle';
 
 export function HeaderTabs() {
   const t = useTranslations('HeaderTabs');
@@ -86,7 +87,7 @@ export function HeaderTabs() {
             <Group gap="xs">
               <Image
                 src={t('avatar')}
-                alt="Profile"
+                alt={t('avatar_alt')}
                 width={40}
                 height={40}
                 className={classes.avatarImage}
@@ -114,6 +115,7 @@ export function HeaderTabs() {
           </Tabs>
 
           <Group visibleFrom="lg">
+            <LocaleToggle />
             <ColorSchemeToggle />
           </Group>
 
@@ -123,7 +125,7 @@ export function HeaderTabs() {
             onClick={toggle}
             hiddenFrom="lg"
             size="sm"
-            aria-label="Toggle navigation"
+            aria-label={t('menu_label')}
           />
         </Group>
       </Container>
@@ -146,7 +148,10 @@ export function HeaderTabs() {
                 <Text fw={500}>{tab.label}</Text>
               </Link>
             ))}
-            <ColorSchemeToggle />
+            <Group gap="sm">
+              <LocaleToggle />
+              <ColorSchemeToggle />
+            </Group>
           </Stack>
         </Container>
       </Collapse>

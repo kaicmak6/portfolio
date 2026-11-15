@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef } from 'react';
 
 import classes from './OperationsBand.module.scss';
@@ -789,6 +790,7 @@ const Pane = ({ variant, label, loop, caption, clock, register }: PaneProps) => 
 /* ---------------------------------------------------------------------- band */
 
 export const OperationsBand = () => {
+  const t = useTranslations('OperationsBand');
   /* One clock for both panes: they are one display, so a drag moves both
      timelines together and autoplay resumes from the scrubbed time. */
   const clock = useRef<Clock>({ manual: false, value: 0 });
@@ -882,18 +884,18 @@ export const OperationsBand = () => {
         <div className={classes.frame}>
           <Pane
             variant="terminal"
-            label="Terminal Operations"
-            loop="20 s cycle"
-            caption="Ship-to-shore gantry over a stacked yard; a completed move strokes to full accent."
+            label={t('terminal_label')}
+            loop={t('terminal_loop')}
+            caption={t('terminal_caption')}
             clock={clock}
             register={register}
           />
           <div className={classes.divider} />
           <Pane
             variant="approach"
-            label="Approach Sequence"
-            loop="6 s run · 3 s hold"
-            caption="Sequenced touchdown-zone lights running to the threshold, then holding."
+            label={t('approach_label')}
+            loop={t('approach_loop')}
+            caption={t('approach_caption')}
             clock={clock}
             register={register}
           />

@@ -47,12 +47,16 @@ export default withSentryConfig(
       poweredByHeader: false,
       reactStrictMode: true,
 
-      // The `/ops` plate filenames carry a content hash, so they can be cached
-      // for a year: a new photograph arrives as a new URL.
+      // The `/ops` plate filenames and the `/fonts` faces carry a content hash,
+      // so they can be cached for a year: a new file arrives as a new URL.
       async headers() {
         return [
           {
             source: '/ops/:path*',
+            headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+          },
+          {
+            source: '/fonts/:path*',
             headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
           },
         ];
