@@ -1,190 +1,315 @@
 {
   "Index": {
-    "meta_title": "Project Nova | Senior Engineering Specialist Portfolio",
-    "meta_description": "A showcase of resilient, container-aligned frontend architectures. Specializing in high-concurrency ecosystems and distributed state management."
+    "meta_title": "Kaius Mak | Frontend Web Lead & Engineering Manager",
+    "meta_description": "Engineering Lead specialized in scaling high-resiliency web architectures and multi-workstream teams for global aviation and membership systems."
   },
   "ThemeConfig": {
     "primary": "Slate",
     "secondary": "Cyan",
     "aesthetic": "Cyber-Minimalist / Line Art",
-    "logo_text": "NOVA"
+    "logo_text": "KAIUS"
   },
   "HeaderTabs": {
-    "home": "Dashboard",
-    "projects": "System Architecture",
-    "experience": "Career Logs",
-    "contact": "Comm Link",
-    "name": "Kaius M.",
-    "avatar": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
+    "home": "Home",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact",
+    "name": "Kaius Mak",
+    "avatar": "https://portfolio-cms.mak-cloud.com/assets/acab51b6-35d1-4872-943b-c30c84c50e1a.png",
     "profile_link": "/"
   },
   "PortfolioHero": {
-    "badge": "Engineering Lead of Leads",
-    "title": "Scaling The Digital Frontier",
-    "subtitle": "Engineering high-resiliency cores for ultra-scale global infrastructures.",
+    "badge": "Frontend Web Lead | Engineering Manager",
+    "title": "Scaling Enterprise Resilience",
+    "subtitle": "Lead of Leads for mission-critical booking engines and global membership ecosystems.",
     "cards": [
       {
-        "id": "project-starlight",
-        "title": "Starlight: Logistics Orchestration Core",
+        "id": "cathay-booking",
+        "title": "Cathay: Global Booking Core",
         "category": "Greenfield Lead of Leads",
-        "description": "Architected a ground-up rebuild of a planetary-scale logistics hub. Synchronized 20+ engineers via strict Docker-containerized dev-flows.",
+        "description": "Spearheaded a Next.js 16 monorepo for a high-concurrency booking engine. Scaled the engineering organization from 4 to 20 members.",
         "badges": [
-          "Next.js 15",
-          "Docker Parity",
+          "Next.js 16",
+          "React.js",
+          "TypeScript",
           "Lead of Leads",
-          "Redis Resilience"
+          "Typia Type-Safety"
         ],
         "images": [
-          "https://picsum.photos/seed/space_1/800/600"
+          "https://portfolio-cms.mak-cloud.com/assets/a7833018-338d-4dc2-b584-f10861d0b829.png",
+          "https://portfolio-cms.mak-cloud.com/assets/369fa4f8-597d-4a85-8ade-ccbeb30b0b5e.png",
+          "https://portfolio-cms.mak-cloud.com/assets/ede1e157-d0f1-43bb-ab42-cd15a7be1890.png",
+          "https://portfolio-cms.mak-cloud.com/assets/a10a58b8-ccff-4ec9-8c82-870cbc3e52fa.png",
+          "https://portfolio-cms.mak-cloud.com/assets/7f7a08c3-3218-49c6-b0ca-04f676df9a87.png",
+          "https://portfolio-cms.mak-cloud.com/assets/e4cea5cf-bbfa-42e6-a324-ee572c92c1a2.png",
+          "https://portfolio-cms.mak-cloud.com/assets/22c951a0-a6f5-4e06-a9a5-406b7ab8d00d.png"
         ],
-        "emoji": "🌌",
-        "year": "2024",
+        "emoji": "✈️",
+        "year": "2025",
         "status": "Production"
       },
       {
-        "id": "content-mesh",
-        "title": "Quantum Mesh: Edge Content Delivery",
-        "category": "Architecture Lead",
-        "description": "Zero-latency static hub leveraging Triple-Layer Edge Caching and Headless CMS to serve 1M+ nodes globally.",
+        "id": "hkexpress-sitecore",
+        "title": "HK Express: Content Modernization",
+        "category": "Technical Pioneer",
+        "description": "Led the first Sitecore Cloud SaaS + Next.js integration in Accenture HK, achieving ultra-low latency via Edge Caching.",
         "badges": [
-          "Headless Core",
-          "ISR",
-          "Edge Caching",
-          "Lighthouse 100"
+          "Sitecore Cloud",
+          "Akamai Edge",
+          "Redis Caching",
+          "ISR"
         ],
         "images": [
-          "https://picsum.photos/seed/nebula_2/800/600"
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
         ],
-        "emoji": "🕸️"
+        "emoji": "🚀"
       },
       {
-        "id": "energy-grid-ui",
-        "title": "Apex: High-Concurrency Grid Control",
-        "category": "Technical Lead",
-        "description": "Engineered a Next.js infrastructure capable of 15x peak surge handling. Eliminated cache drift in multi-pod clusters.",
+        "id": "cathay-membership",
+        "title": "Cathay: Membership Ecosystem",
+        "category": "Frontend Lead",
+        "description": "Modernized legacy loyalty infrastructure with Secure 2FA, managing cross-border delivery and quality assurance.",
         "badges": [
-          "K8s Resilient",
-          "Redis Cluster",
-          "High-Concurrency"
+          "React.js",
+          "Adobe AEM",
+          "Offshore Mgmt",
+          "2FA Implementation"
         ],
         "images": [
-          "https://picsum.photos/seed/energy_3/800/600"
+          "https://portfolio-cms.mak-cloud.com/assets/85efeac3-c89b-4af9-bcfa-ca259c78eeae.png",
+          "https://portfolio-cms.mak-cloud.com/assets/c0aaaad9-7437-4a79-b7fb-b50badae116a.png",
+          "https://portfolio-cms.mak-cloud.com/assets/d7e4088c-de51-47cf-9df2-8be62c8f9113.png",
+          "https://portfolio-cms.mak-cloud.com/assets/621f7d86-8286-4243-876c-aed940e26721.png"
         ],
-        "emoji": "⚡"
+        "emoji": "💳"
       }
     ]
   },
   "HeroBullets": {
-    "title": "Precision Architecture. Extreme Scale.",
-    "description": "Specializing in Greenfield Next.js transformations and engineering governance. I bridge the gap between complex infrastructure and seamless user experiences.",
+    "title": "Engineering Governance. Global Scale.",
+    "description": "Expertise in transforming legacy monoliths into distributed Next.js architectures while enforcing high-end engineering standards across multi-workstream teams.",
     "features": [
       {
-        "title": "Environment Homogeneity",
-        "description": "Enforcing 100% development parity via Docker-native workflows, ensuring 'works on my machine' is a relic of the past."
+        "title": "Lead of Leads Capacity",
+        "description": "Proven track record in scaling squads from 4 to 20 members across 4 streams. Established mentorship for high-potential talent to transition into Stream Lead roles."
       },
       {
-        "title": "Engineering Governance",
-        "description": "Scaling teams from 4 to 20+ by implementing standardized hiring rubrics, code telemetry, and observability standards."
+        "title": "Mission-Critical Stability",
+        "description": "Eliminated runtime type-mismatch errors using Typia validation. Enforced Atomic Design (Happy/Edge/Error states) and Vitest suites to ensure zero-regression."
       },
       {
-        "title": "Distributed State Stability",
-        "description": "Mastering cross-region session persistence and data consistency using centralized Redis-backed state orchestration."
+        "title": "High-Concurrency Performance",
+        "description": "Engineered hybrid ISR/SSR strategies with multi-pod Redis state management and Akamai Edge caching, drastically reducing server load."
       }
     ],
-    "primary_button": "Access Repository",
-    "secondary_button": "Request Briefing",
-    "primary_button_link": "https://github.com/kaicmak6",
+    "primary_button": "Portfolio Sourcecode",
+    "secondary_button": "Get In Touch",
+    "primary_button_link": "https://github.com/kaicmak6/portfolio",
     "secondary_button_action": "scroll_to_contact",
-    "image": "https://picsum.photos/seed/blueprint/800/600",
+    "image": "https://portfolio-cms.mak-cloud.com/assets/e2cd03c2-4d50-4aa8-bb50-abff570cfdba.png",
     "infra_title": "Powered by",
-    "infra_aws_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+    "infra_aws_logo": "https://portfolio-cms.mak-cloud.com/assets/1a46941b-71b5-4cf2-910e-0c133ccc5c6b.png",
     "infra_aws": "Cloud Hosting — Cost Efficiency & Enterprise Security & Elasticity",
-    "infra_cf_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cloudflare_Logo.svg/2560px-Cloudflare_Logo.svg.png",
+    "infra_cf_logo": "https://portfolio-cms.mak-cloud.com/assets/c94c4fc7-bdeb-4efd-b2c8-69ee73f781a0.png",
     "infra_cf": "CDN & API Gateway — Global Edge Network & WAF Protection & Rate Limiting"
   },
-
   "Projects": {
     "title": "System Deployments",
-    "meta_title": "Project Portfolio | Kaius M.",
-    "meta_description": "Exploring distributed architectures, container-aligned dev-flows, and enterprise Next.js patterns.",
+    "meta_title": "Project Portfolio | Kaius Mak",
+    "meta_description": "Detailed review of large-scale aviation and loyalty systems engineered with Next.js, Typia, and distributed caching.",
     "live_demo": "Live Interface",
     "github": "Source Code",
     "view_production": "Technical Brief",
     "items": [
       {
-        "id": "project-starlight",
-        "title": "Project Starlight: Planetary Logistics Core",
+        "id": "cathay-booking",
+        "title": "Cathay: Global Booking Engine",
         "category": "Lead of Leads (Greenfield)",
-        "description": "Ground-up modernization of a distributed booking and tracking engine.",
+        "description": "Next-gen airline booking platform built for high reliability and rapid scaling.",
         "badges": [
-          "Next.js",
-          "Docker alignment",
-          "Distributed Redis"
+          "Next.js 16",
+          "React.js",
+          "NestJS BFF",
+          "Typia Safety"
         ],
-        "desc": "<p><b>Technical Directive:</b> Rebuilding a mission-critical core from legacy monolith to distributed Next.js. <b>I led the cross-functional squad</b> (20+ devs) across 3 workstreams.</p><ul><li><b>Lead of Leads:</b> Defined the governance for tech selection and environment standardization.</li><li><b>Observability:</b> Implemented <b>Trace-ID Context Propagation</b> across the ELK stack for sub-second incident root-cause analysis.</li><li><b>Resiliency:</b> Solved <b>Cache Pollution</b> issues via centralized Redis state management.</li></ul>",
+        "desc": "<ul><li><b>Organizational Scaling:</b> Orchestrated the scaling of a 4-man squad into a 20-man organization across 4 functional workstreams.</li><li><b>Runtime Integrity:</b> Integrated <b>Typia</b> for runtime schema validation, ensuring 99.9% system stability against external API inconsistencies.</li><li><b>Observability:</b> Implemented structural logging (IP/Trace ID/Span ID) and NanoID for production incident tracing via ELK.</li><li><b>Engineering Standard:</b> Enforced Atomic Design with isolation testing via Storybook and comprehensive Vitest suites.</li></ul>",
         "metrics": [
-          "20+ Devs Orchestrated",
-          "100% Env Alignment",
-          "Zero Drift Deployment"
+          "Scaled 4 to 20 Engineers",
+          "99.9% Uptime Focus",
+          "Lead of Leads structure"
         ],
         "tech": [
           {
             "emoji": "⚛️",
-            "label": "Next.js"
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🛡️",
+            "label": "Typia Safety"
           },
           {
             "emoji": "🐳",
-            "label": "Docker"
-          },
-          {
-            "emoji": "🔴",
-            "label": "Redis"
-          },
-          {
-            "emoji": "📊",
-            "label": "ELK Stack"
+            "label": "Docker / Monorepo"
           }
         ],
-        "demo": "#",
+        "demo": "https://book.cathaypacific.com/tsp/en_HK/flight-selection?cabin=Y&origin=DEL&dest=HKG&adult=1&youngAdult=0&child=0&infant=0&departureDateBound1=2027-03-08&departureDateBound2=2027-03-24&viewport=desktop&correlationId=g57Xe9ou1QnA4_x2TO34S",
         "images": [
-          "https://picsum.photos/seed/space_1/800/600"
+          "https://portfolio-cms.mak-cloud.com/assets/a7833018-338d-4dc2-b584-f10861d0b829.png",
+          "https://portfolio-cms.mak-cloud.com/assets/369fa4f8-597d-4a85-8ade-ccbeb30b0b5e.png",
+          "https://portfolio-cms.mak-cloud.com/assets/ede1e157-d0f1-43bb-ab42-cd15a7be1890.png",
+          "https://portfolio-cms.mak-cloud.com/assets/a10a58b8-ccff-4ec9-8c82-870cbc3e52fa.png",
+          "https://portfolio-cms.mak-cloud.com/assets/7f7a08c3-3218-49c6-b0ca-04f676df9a87.png",
+          "https://portfolio-cms.mak-cloud.com/assets/e4cea5cf-bbfa-42e6-a324-ee572c92c1a2.png",
+          "https://portfolio-cms.mak-cloud.com/assets/22c951a0-a6f5-4e06-a9a5-406b7ab8d00d.png"
         ],
-        "emoji": "🌌"
+        "emoji": "✈️"
       },
       {
-        "id": "content-mesh",
-        "title": "Quantum Mesh: Edge Content Delivery",
-        "category": "Architecture Lead",
-        "description": "High-velocity content hub for global data distribution.",
+        "id": "hkexpress-sitecore",
+        "title": "HK Express: Static & Booking Modernization",
+        "category": "Technical Pioneer",
+        "description": "High-velocity airline content hub with Sitecore Cloud SaaS integration.",
         "badges": [
-          "Edge Mesh",
-          "Triple-Cache",
-          "Headless"
+          "Next.js 14",
+          "Sitecore Cloud",
+          "Akamai Edge"
         ],
-        "desc": "<p><b>Objective:</b> Deliver content to millions of edge nodes with near-zero latency.</p><ul><li><b>Caching Strategy:</b> Combined Next.js ISR with global CDN layers and localized browser persistence.</li><li><b>System decoupling:</b> Used a Headless approach to allow real-time updates without infrastructure redeployment.</li></ul>",
+        "desc": "<ul><li><b>Pioneer Integration:</b> Led the first Sitecore Cloud SaaS + Next.js integration at Accenture HK.</li><li><b>Edge Performance:</b> Optimized performance via Akamai Cache Control for both static HTML and React Server Components (RSC).</li><li><b>System Resilience:</b> Utilized Redis for multi-pod container state persistence and ISR caching to support real-time content previews.</li></ul>",
         "metrics": [
-          "Lighthouse 100",
-          "TTFB < 15ms",
-          "Zero-Latency Sync"
+          "1st Sitecore SaaS Pioneer",
+          "Edge-First Architecture",
+          "Global Content Delivery"
         ],
         "tech": [
           {
             "emoji": "🌐",
-            "label": "Edge Computing"
+            "label": "Akamai CDN"
           },
           {
             "emoji": "🔄",
-            "label": "ISR"
+            "label": "ISR / SSR"
           },
           {
             "emoji": "🔷",
-            "label": "Headless CMS"
+            "label": "Sitecore SaaS"
           }
         ],
         "images": [
-          "https://picsum.photos/seed/nebula_2/800/600"
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
         ],
-        "emoji": "🕸️"
+        "emoji": "🚀"
+      },
+      {
+        "id": "hkexpress-booking",
+        "title": "HK Express: Booking System Rebuild",
+        "category": "Frontend Lead",
+        "description": "Modernizing airline booking flow and static pages with Next.js 14.",
+        "badges": [
+          "Next.js 14",
+          "React.js",
+          "MUI",
+          "BFF Architecture"
+        ],
+        "desc": "<ul><li><b>Architectural Foundation:</b> Defined the core Next.js structure, build configurations, and folder standards for the entire booking ecosystem.</li><li><b>Developer Experience:</b> Established frontend practices that streamlined development for multi-squad delivery.</li><li><b>Hybrid Rendering:</b> Implemented optimized mix of ISR and SSR to balance static performance with dynamic booking sessions.</li></ul>",
+        "metrics": [
+          "Next.js 14 Early Adopter",
+          "Optimized Build Config",
+          "Standardized Architecture"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🎨",
+            "label": "MUI"
+          },
+          {
+            "emoji": "🏗️",
+            "label": "BFF Pattern"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
+        ],
+        "emoji": "🎫"
+      },
+      {
+        "id": "cathay-membership",
+        "title": "Cathay: Membership Ecosystem",
+        "category": "Frontend Lead",
+        "description": "Modernizing legacy loyalty infrastructure with Secure 2FA and React.",
+        "badges": [
+          "React.js",
+          "Adobe AEM",
+          "2FA Implementation"
+        ],
+        "desc": "<ul><li><b>Modernization:</b> Led the UI rebuild from legacy React versions and implemented secure 2FA flows for global loyalty members.</li><li><b>Delivery Mgmt:</b> Directed delivery for offshore teams, ensuring code quality through rigorous reviews and adherence to standards.</li><li><b>Stakeholder Alignment:</b> Acted as the primary technical interface for C-suite clients to manage expectations and provide architectural solutions.</li></ul>",
+        "metrics": [
+          "2FA Security Rollout",
+          "Managed Offshore QA",
+          "Client Strategy Liaison"
+        ],
+        "tech": [
+          {
+            "emoji": "⚛️",
+            "label": "React.js"
+          },
+          {
+            "emoji": "🔒",
+            "label": "2FA Security"
+          },
+          {
+            "emoji": "📊",
+            "label": "Kibana/ELK"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/85efeac3-c89b-4af9-bcfa-ca259c78eeae.png",
+          "https://portfolio-cms.mak-cloud.com/assets/c0aaaad9-7437-4a79-b7fb-b50badae116a.png",
+          "https://portfolio-cms.mak-cloud.com/assets/d7e4088c-de51-47cf-9df2-8be62c8f9113.png",
+          "https://portfolio-cms.mak-cloud.com/assets/621f7d86-8286-4243-876c-aed940e26721.png"
+        ],
+        "emoji": "💳"
+      },
+      {
+        "id": "axa-emma",
+        "title": "AXA Emma Mobile",
+        "category": "Mobile Developer",
+        "description": "Enterprise insurance mobile application.",
+        "badges": [
+          "React Native",
+          "TypeScript",
+          "Mobile App"
+        ],
+        "desc": "<ul><li><b>Feature Delivery:</b> Contributed to the cross-platform development of the Emma mobile application.</li><li><b>Reliability:</b> Focused on stable component architecture and feature parity across iOS and Android environments.</li></ul>",
+        "metrics": [
+          "Enterprise Mobile Deployment",
+          "Cross-platform Consistency"
+        ],
+        "tech": [
+          {
+            "emoji": "📱",
+            "label": "React Native"
+          },
+          {
+            "emoji": "📘",
+            "label": "TypeScript"
+          }
+        ],
+        "images": [
+          "https://portfolio-cms.mak-cloud.com/assets/04df8d56-3a67-4a67-be00-72cc1be79a76.png",
+          "https://portfolio-cms.mak-cloud.com/assets/aeb6887f-96a8-485b-ab0a-24c8f09c02f5.png",
+          "https://portfolio-cms.mak-cloud.com/assets/0872cc02-95c0-4741-b7dd-71450548a73b.png"
+        ],
+        "emoji": "🛡️"
       }
     ]
   },
@@ -192,69 +317,101 @@
     "title": "Career Logs",
     "download_cv_link": "#",
     "download_cv": "Download Full CV (PDF)",
-    "meta_title": "Experience | Engineering Specialist",
-    "meta_description": "Technical career progression log from Specialist to Lead of Leads.",
+    "meta_title": "Experience | Kaius Mak",
+    "meta_description": "Professional journey from Frontend Specialist to Engineering Manager at Accenture.",
     "work_experience_title": "Professional Assignments",
     "education_section_title": "Academy",
     "education_title": "BSc (Hons) Computer Science",
-    "education_institution": "City University of Technology",
-    "education_details": "Specialized in Distributed Systems and Software Architecture.",
+    "education_institution": "City University of Hong Kong",
+    "education_details": "Graduated with Upper Second Class Honors (2:1). Specialized in high-performance web architectures.",
     "jobs": [
       {
-        "id": "exp-lead",
-        "title": "Senior Engineering Specialist (Lead of Leads)",
-        "company": "Global Technology Syndicate",
-        "date": "2024 – 2025",
-        "badge": "Core Strategy",
-        "description": "Led digital transformation for high-scale enterprise logistics hubs.<br/><br/>• <b>Team Orchestration:</b> Scaled engineering capacity from 4 to 20+ members across multiple workstreams.<br/>• <b>Infrastructure Alignment:</b> Enforced Docker-native development to eliminate local-to-production variance.<br/>• <b>State Resilience:</b> Architected Redis-backed persistence for high-concurrency multi-pod K8s clusters."
+        "id": "exp-accenture-specialist",
+        "title": "Specialist / Engineering Lead (Lead of Leads)",
+        "company": "Accenture Hong Kong",
+        "date": "2025 – 2026",
+        "badge": "Leadership",
+        "description": "Promoted to Specialist to lead the Cathay Booking System transformation.<br/><br/>• <b>Org Scaling:</b> Scaled the squad from 4 to 20 engineers across 4 workstreams.<br/>• <b>Mentorship:</b> Trained high-potential talent into Stream Lead roles; mentored on micromanagement and technical governance.<br/>• <b>Technical Excellence:</b> Mandated <b>Typia</b> for mission-critical runtime safety and implemented structural logging for production observability."
       },
       {
-        "id": "exp-senior",
-        "title": "Technical Lead",
-        "company": "Global Technology Syndicate",
-        "date": "2022 – 2023",
-        "badge": "Infra Systems",
-        "description": "Architected foundational cores for high-traffic promotional engines.<br/><br/>• <b>Next.js Core:</b> Built resilient frontend foundations handling 15x traffic surges.<br/>• <b>Edge Caching:</b> Implemented triple-layer caching strategies for instant content delivery."
+        "id": "exp-accenture-senior",
+        "title": "Senior Analyst / Frontend Lead",
+        "company": "Accenture Hong Kong",
+        "date": "2023 – 2024",
+        "badge": "Technical Pioneer",
+        "description": "Simultaneously led Cathay Membership and HK Express modernization projects.<br/><br/>• <b>Sitecore Pioneer:</b> Acted as the first pioneer for Sitecore Cloud SaaS + Next.js integration in Accenture HK.<br/>• <b>Performance Ops:</b> Optimized global delivery using Akamai Edge Caching for RSC and multi-pod Redis state management.<br/>• <b>Framework Design:</b> Defined folder structures and Next.js practices for a newly rebuilt booking ecosystem."
+      },
+      {
+        "id": "exp-accenture-analyst",
+        "title": "Custom Software Engineering Analyst / Lead",
+        "company": "Accenture Hong Kong",
+        "date": "2021 – 2023",
+        "badge": "Frontend Lead",
+        "description": "Led the frontend team for the Cathay Membership System UI modernization.<br/><br/>• <b>UI/UX Modernization:</b> Managed legacy React migration and 2FA loyalty features.<br/>• <b>Global Delivery:</b> Coordinated with offshore teams to ensure delivery quality; utilized Kibana for production incident resolution."
+      },
+      {
+        "id": "exp-accenture-associate",
+        "title": "Software Engineering Analyst",
+        "company": "Accenture Hong Kong",
+        "date": "2020 – 2021",
+        "badge": "Developer",
+        "description": "Joined as an Analyst Developer focusing on AXA Emma mobile application using React Native."
+      },
+      {
+        "id": "exp-dor",
+        "title": "Placement Developer",
+        "company": "Document On Ready Ltd",
+        "date": "2019 – 2020",
+        "badge": "Luxury Web",
+        "description": "Engineered pixel-perfect React systems for <b>IPSA, GU, and Chanel</b>."
+      },
+      {
+        "id": "exp-internships",
+        "title": "Web Engineering Intern",
+        "company": "Passber",
+        "date": "2017 – 2018",
+        "badge": "Foundation",
+        "description": "Early-career focus on building web membership and subscription systems."
       },
       {
         "id": "exp-sabbatical",
-        "title": "Strategic Research Sabbatical",
-        "company": "Independent R&D",
+        "title": "Strategic Technical Sabbatical",
+        "company": "Personal Knowledge Expansion",
         "date": "2026 – Present",
-        "badge": "Modernization",
-        "description": "Current focus on Next-Gen DX and Edge Infrastructure.<br/><br/>• <b>Self-Hosting:</b> Deploying resilient micro-services via <b>Docker</b> and <b>Caddy</b>.<br/>• <b>Backend:</b> Deep-diving into <b>NestJS</b> architectural patterns and Cloudflare AI integration."
+        "badge": "R&D",
+        "description": "Mastering edge infrastructure (Cloudflare, Caddy)."
       }
     ]
   },
   "Experience": {
     "title": "Professional Progression",
-    "subtitle": "Engineering Impact over 5.8+ Years",
+    "subtitle": "6 Years of Engineering Excellence",
     "view_details": "Review Detailed Logs →",
     "jobs": [
       {
-        "id": "exp-lead",
-        "title": "Lead of Leads",
-        "company": "Global Syndicate",
-        "date": "2024 – 2025",
-        "description": "Scaled team to 20+ pax. Led Docker-aligned governance and Redis state strategy.",
+        "id": "exp-accenture-lead",
+        "title": "Engineering Lead (Lead of Leads)",
+        "company": "Accenture HK",
+        "date": "2020 – 2026",
+        "description": "Led 20 engineers for Cathay Booking Core. Enforced Monorepo and Typia validation standards.",
         "icon": "briefcase",
         "badge_color": "blue"
       },
       {
-        "id": "exp-senior",
-        "title": "Technical Lead",
-        "company": "Global Syndicate",
-        "date": "2022 – 2023",
-        "description": "Optimized high-traffic cores via ISR and Triple-Layer Caching.",
+        "id": "exp-dor",
+        "title": "Placement Developer",
+        "company": "Document On Ready",
+        "date": "2019 – 2020",
+        "description": "Delivered high-performance web systems for Chanel, GU, and IPSA.",
         "icon": "code",
         "badge_color": "blue"
       },
       {
         "id": "exp-sabbatical",
-        "title": "R&D Lead",
+        "title": "R&D Specialist",
         "company": "Sabbatical",
         "date": "2026 – Present",
-        "description": "Modernizing DX with Docker, Caddy, and NestJS.",
+        "description": "Modernizing DX with Cloudflare, Docker, and AI-assisted development (Gemini).",
         "icon": "cpu",
         "badge_color": "orange"
       }
@@ -262,15 +419,18 @@
   },
   "Skills": {
     "title": "Tech Matrix",
-    "subtitle": "Synthesized expertise in enterprise ecosystems",
+    "subtitle": "Specialized in High-Resiliency Ecosystems",
     "categories": [
       {
         "title": "Frontend Leadership",
-        "icon": "code",
         "skills": [
           {
             "emoji": "⚛️",
-            "label": "Next.js 15"
+            "label": "Next.js / React.js"
+          },
+          {
+            "emoji": "🛡️",
+            "label": "Typia (Runtime Safety)"
           },
           {
             "emoji": "📘",
@@ -278,51 +438,49 @@
           },
           {
             "emoji": "🎨",
-            "label": "Mantine UI"
-          },
-          {
-            "emoji": "💨",
-            "label": "Tailwind"
+            "label": "Mantine V8 / Atomic Design"
           }
         ]
       },
       {
-        "title": "System Engineering",
-        "icon": "server",
+        "title": "Infrastructure & BFF",
         "skills": [
           {
-            "emoji": "🐳",
-            "label": "Docker Alignment"
+            "emoji": "🦁",
+            "label": "NestJS / Java BFF"
+          },
+          {
+            "emoji": "🌐",
+            "label": "Akamai / Edge Caching"
           },
           {
             "emoji": "🔴",
-            "label": "Redis State"
+            "label": "Redis (Multi-pod State)"
           },
           {
-            "emoji": "☸️",
-            "label": "Kubernetes"
-          },
-          {
-            "emoji": "🦁",
-            "label": "NestJS"
+            "emoji": "🐳",
+            "label": "Docker / Monorepo"
           }
         ]
       },
       {
-        "title": "Leadership & Ops",
-        "icon": "users",
+        "title": "Management & Governance",
         "skills": [
           {
             "emoji": "👥",
-            "label": "Team Scaling"
+            "label": "Lead of Leads (Scale 4-20)"
           },
           {
-            "emoji": "📋",
-            "label": "SDLC Governance"
+            "emoji": "📈",
+            "label": "Technical Mentorship"
           },
           {
             "emoji": "📊",
-            "label": "Observability"
+            "label": "ELK Stack / Observability"
+          },
+          {
+            "emoji": "🧪",
+            "label": "Vitest / Performance Ops"
           }
         ]
       }
@@ -334,33 +492,33 @@
       {
         "title": "AWS Cloud Practitioner",
         "issuer": "Amazon Web Services",
-        "image": "https://images.credly.com/size/110x110/images/00634f82-b07f-4bbd-a6bb-53de397fc3af/image.png",
-        "link": "https://www.credly.com/badges/your-cloud-practitioner-badge"
+        "image": "https://portfolio-cms.mak-cloud.com/assets/ec6f5ed4-866d-4546-ac87-6b10fab8ec5e.png",
+        "link": "https://www.credly.com/earner/earned/badge/c7a6e2bd-9c2c-4d57-b269-d07fe8afa8e5"
       },
       {
         "title": "AWS Solutions Architect Associate",
         "issuer": "Amazon Web Services",
-        "image": "https://images.credly.com/size/110x110/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
-        "link": "https://www.credly.com/badges/your-saa-badge"
+        "image": "https://portfolio-cms.mak-cloud.com/assets/ba8fa940-c385-4129-b934-41db9aa30d22.png",
+        "link": "https://www.credly.com/earner/earned/badge/aa4e9de1-3fc1-4c35-9df6-eb6ff005c00a"
       }
     ]
   },
   "ContactInfo": {
     "title": "Establish Connection",
-    "subtitle": "Open for Technical Leadership & Architectural Specialist Roles",
-    "email": "contact@your-domain.com",
-    "phone": "+852 XXXX XXXX",
-    "linkedin": "https://linkedin.com/in/redacted",
-    "copied": "Log Copied!",
+    "subtitle": "Open for Advisory / Lead role",
+    "email": "kaicmak@mak-cloud.com",
+    "phone": "+852 9056 2065",
+    "linkedin": "https://www.linkedin.com/in/kaius-mak-957b44148/",
+    "copied": "Link Copied!",
     "icons": {
-      "email": "mail",
-      "phone": "phone",
-      "linkedin": "linkedin"
+      "email": "Mail",
+      "phone": "Phone",
+      "linkedin": "Linkedin"
     }
   },
   "FooterSocial": {
-    "logo": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
-    "alt_text": "Nova Logo",
+    "logo": "https://portfolio-cms.mak-cloud.com/assets/8d2d9891-c186-4ab5-a766-e1c4bcb72faa.png",
+    "alt_text": "Kaius Logo",
     "aria_labels": {
       "email": "Email",
       "whatsapp": "WhatsApp",
@@ -368,9 +526,9 @@
       "github": "GitHub"
     },
     "links": {
-      "email": "mailto:contact@your-domain.com",
-      "whatsapp": "#",
-      "linkedin": "#",
+      "email": "mailto:kaicmak@mak-cloud.com",
+      "whatsapp": "https://api.whatsapp.com/send/?phone=90562065&text&type=phone_number&app_absent=0",
+      "linkedin": "https://www.linkedin.com/in/kaius-mak-957b44148/",
       "github": "https://github.com/kaicmak6"
     }
   },
@@ -379,24 +537,24 @@
     "view_project": "Decrypt Project"
   },
   "ChatBot": {
-    "title": "NOVA AI",
-    "subtitle": "System Liaison",
-    "welcomeMessage": "Greeting. I am the Nova System Liaison. You can ask me about scaling 20-man squads, Docker-aligned architectures, or distributed state management.",
+    "title": "KAIUS AI",
+    "subtitle": "Digital Twins AI Agent",
+    "welcomeMessage": "Greeting. I am the Kaius System Liaison. You can ask me about scaling 20-man engineering squads, mission-critical aviation systems, or runtime schema validation strategies.",
     "suggestedQueries": [
-      "How do you scale teams to 20+ members?",
-      "Explain the Docker environment alignment.",
-      "Tell me about the Redis Shared State strategy.",
-      "What is your approach to Greenfield Next.js?"
+      "How do you manage a 20-member team?",
+      "Why use Typia for runtime validation?",
+      "Explain the Akamai Edge Caching strategy.",
+      "Tell me about your Lead of Leads experience."
     ],
     "inputPlaceholder": "Enter query...",
     "error": "Comm-link interrupted. Please retry.",
     "suggestedQuestionsTitle": "Recommended Queries",
     "devModeCaptchaDisabled": "Simulator: Captcha Bypassed",
-    "poweredBy": "Powered by AI Core",
-    "gatewayInfo": "Data processed through Secure AI Gateway for edge-level security."
+    "poweredBy": "Powered by Groq & llama 3 70B",
+    "gatewayInfo": "Data processed through Cloudflare AI Gateway for response caching & edge-level security."
   },
   "favicon": {
-    "url": "https://api.dicebear.com/7.x/identicon/svg?seed=NovaAdmin",
+    "url": "https://portfolio-cms.mak-cloud.com/assets/8d2d9891-c186-4ab5-a766-e1c4bcb72faa.png",
     "sizes": "any",
     "type": "image/x-icon"
   }
