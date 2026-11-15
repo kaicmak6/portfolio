@@ -102,7 +102,9 @@ export function ChatBot() {
   }, []);
 
   const handleSendMessage = async (content: string) => {
-    if (!content.trim() || isMutating) {
+    // The prompt rows bypass the send button, so the gate has to be checked here
+    // too: without a token the server answers 400 and the panel says it failed.
+    if (!content.trim() || isMutating || (captchaMode === 'mount' && !turnstileToken)) {
       return;
     }
 
@@ -111,7 +113,6 @@ export function ChatBot() {
     setMessages(newMessages);
     setInput('');
     setStreamingMessage('');
-    console.log('Sending message:', turnstileToken);
 
     try {
       const response = await trigger({
@@ -283,7 +284,7 @@ export function ChatBot() {
                     type="button"
                     className={classes.prompt}
                     onClick={() => handleSendMessage(query)}
-                    disabled={turnstileError}
+                    disabled={turnstileError || (captchaMode === 'mount' && !turnstileToken)}
                   >
                     <span className={classes.promptIndex}>{String(i + 1).padStart(2, '0')}</span>
                     <span className={classes.promptText}>{query}</span>
