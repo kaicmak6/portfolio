@@ -20,11 +20,18 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 // Get IMAGE_DOMAINS for image configuration
 const imageDomains = process.env.IMAGE_DOMAINS ? process.env.IMAGE_DOMAINS.split(',') : [];
-const imageRemotePatterns = imageDomains.map(domain => ({
-  protocol: 'https',
-  hostname: domain.trim(),
-  pathname: '/**',
-}));
+const imageRemotePatterns = imageDomains.map((entry) => {
+  const raw = entry.trim();
+  const parsed = /^(https?):\/\/([^/:]+)(?::(\d+))?$/.exec(raw);
+  if (parsed) {
+    return { protocol: parsed[1], hostname: parsed[2], port: parsed[3] ?? '', pathname: '/**' };
+  }
+  const withPort = /^([^/:]+):(\d+)$/.exec(raw);
+  if (withPort) {
+    return { protocol: 'https', hostname: withPort[1], port: withPort[2], pathname: '/**' };
+  }
+  return { protocol: 'https', hostname: raw, pathname: '/**' };
+});
 
 /** @type {import('next').NextConfig} */
 export default withSentryConfig(
@@ -39,6 +46,18 @@ export default withSentryConfig(
       // creates a separate server.js that cannot be integrated into a custom server.
       poweredByHeader: false,
       reactStrictMode: true,
+
+      // The `/ops` plate filenames carry a content hash, so they can be cached
+      // for a year: a new photograph arrives as a new URL.
+      async headers() {
+        return [
+          {
+            source: '/ops/:path*',
+            headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+          },
+        ];
+      },
+
       serverExternalPackages: ['@electric-sql/pglite'],
       sassOptions: {
         implementation: 'sass-embedded',
@@ -49,6 +68,9 @@ export default withSentryConfig(
       images: {
         // @ts-expect-error - Next.js type inference issue with remotePatterns
         remotePatterns: imageRemotePatterns,
+        // Directus runs on a LAN address when self-hosted; Next refuses private-IP
+        // upstreams unless allowed. Opt in per environment, never by default.
+        dangerouslyAllowLocalIP: process.env.IMAGE_ALLOW_LOCAL_IP === 'true',
         formats: ['image/avif', 'image/webp'],
 
         deviceSizes: [576, 768, 992, 1200, 1408, 1920],
