@@ -90,9 +90,11 @@ COPY --from=builder /app/apps/server/node_modules ./apps/server/node_modules
 
 EXPOSE 3000
 
-# Health check endpoint
+# Health check endpoint. 127.0.0.1, not localhost: inside the container
+# localhost resolves to ::1 first and the server only listens on IPv4, so the
+# probe reported every healthy container as unhealthy.
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
+  CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/health || exit 1
 
 # Start the unified server
 CMD ["pnpm", "start"]
