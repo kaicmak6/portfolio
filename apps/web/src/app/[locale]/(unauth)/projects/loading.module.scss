@@ -5,13 +5,10 @@
 .case {
   display: grid;
   gap: var(--mantine-spacing-lg);
-  padding: calc(var(--mantine-spacing-xl) * 1.5) 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
+  padding-bottom: calc(var(--mantine-spacing-xl) * 1.5);
 
   & + & {
+    padding-top: calc(var(--mantine-spacing-xl) * 1.5);
     border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
   }
 }

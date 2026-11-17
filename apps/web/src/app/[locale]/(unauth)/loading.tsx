@@ -47,10 +47,10 @@ function HomeFirstScreen() {
           <Skeleton className={classes.onInk} height="clamp(2.75rem, 6vw, 5rem)" width="58%" />
           <Skeleton className={classes.onInk} height="clamp(2.75rem, 6vw, 5rem)" width="34%" />
 
-          <Box maw={606} mt="lg">
-            <Skeleton className={classes.onInk} height={26} />
-            <Skeleton className={classes.onInk} height={26} width="94%" mt={2} />
-            <Skeleton className={classes.onInk} height={26} width="61%" mt={2} />
+          <Box maw={606}>
+            <Skeleton className={classes.onInk} height={25} />
+            <Skeleton className={classes.onInk} height={25} width="94%" mt={2} />
+            <Skeleton className={classes.onInk} height={25} width="61%" mt={2} />
           </Box>
         </div>
 
