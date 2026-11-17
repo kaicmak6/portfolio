@@ -4,7 +4,7 @@ import '@/styles/global.css';
 
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React from 'react';
@@ -22,6 +22,8 @@ const fontFaceCss = `
 @font-face{font-family:Outfit;src:url('${process.env.BASE_PATH ?? ''}/fonts/Outfit-Variable.fdf9c509.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 :root{--font-inter:Inter;--font-outfit:Outfit}
 `;
+
+const BASE_PATH = process.env.BASE_PATH ?? '';
 
 export async function generateMetadata({
   params,
@@ -62,7 +64,26 @@ export async function generateMetadata({
         sizes: isInsecureRemote ? '96x96' : String(tFavicon('sizes')),
         type: isInsecureRemote ? 'image/png' : String(tFavicon('type')),
       },
+      {
+        rel: 'apple-touch-icon',
+        url: `${BASE_PATH}/apple-touch-icon.png`,
+        sizes: '180x180',
+        type: 'image/png',
+      },
     ],
+    manifest: `${BASE_PATH}/manifest.webmanifest`,
+    // Home-screen install on iOS reads these, not the manifest.
+    appleWebApp: {
+      capable: true,
+      title: 'Kaius Mak',
+      statusBarStyle: 'default',
+    },
+    // Next 15+ emits only the modern `mobile-web-app-capable` for
+    // `appleWebApp.capable`; older iOS looks for the Apple-prefixed name, so
+    // declare it here as well.
+    other: {
+      'apple-mobile-web-app-capable': 'yes',
+    },
     openGraph: {
       title: tIndex('meta_title'),
       description: tIndex('meta_description'),
@@ -74,6 +95,12 @@ export async function generateMetadata({
 
 export const revalidate = 600; // Revalidate every 10 minutes to update metadata and content
 export const dynamic = 'force-dynamic'; // Do not pre-render at build time
+
+// The browser tint of an installed window, and the only place Next 16 still
+// emits `<meta name="theme-color">`.
+export const viewport: Viewport = {
+  themeColor: '#001b3f',
+};
 
 export default function RootLayout(props: {
   children: React.ReactNode;
