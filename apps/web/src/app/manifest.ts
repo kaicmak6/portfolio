@@ -14,8 +14,11 @@ export default function manifest(): MetadataRoute.Manifest {
     id: ROOT,
     name: 'Kaius Mak · Enterprise Systems Portfolio',
     short_name: 'Kaius Mak',
+    // Plain and factual: an installed app's description is read by someone
+    // deciding what the icon is, so it carries no idiom that only parses in
+    // English — a zh-HK reader still sees this one string.
     description:
-      'Port and terminal operations, high-concurrency booking platforms, and the engineering structure that holds them at scale.',
+      'Portfolio of Kaius Mak, an enterprise web engineer in Hong Kong. Port and terminal systems, airline booking platforms, and the engineering teams behind them.',
     lang: 'en',
     dir: 'ltr',
     start_url: ROOT,
