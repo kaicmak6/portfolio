@@ -117,7 +117,7 @@ function offlineDocument() {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${APP_NAME}</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-content:center;gap:12px;padding:24px;background:#f0f5fa;color:#001b3f;font:16px/1.5 system-ui,sans-serif}button{font:inherit;padding:8px 16px;color:#f0f5fa;background:#001b3f;border:0;border-radius:6px;cursor:pointer}</style>
+<style>body{margin:0;min-height:100vh;display:grid;place-content:center;gap:12px;padding:24px;background:#f0f5fa;color:#0f1d2e;font:16px/1.5 system-ui,sans-serif}button{font:inherit;padding:8px 16px;color:#f0f5fa;background:#0f1d2e;border:0;border-radius:6px;cursor:pointer}</style>
 </head>
 <body>
 <h1>${APP_NAME}</h1>

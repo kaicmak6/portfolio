@@ -13,7 +13,7 @@ import { deflateSync } from 'node:zlib';
 
 // Two steps of the portfolio's own brand ramp (apps/web/src/styles/theme.ts):
 // shade 9 is the ink, shade 0 the lightest step.
-export const FIELD = [0x00, 0x1B, 0x3F];
+export const FIELD = [0x0F, 0x1D, 0x2E];
 export const MARK = [0xF0, 0xF5, 0xFA];
 
 export const SS = 8; // supersamples per axis, so an edge has 64 blend steps

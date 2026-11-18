@@ -617,8 +617,8 @@ const readInk = (host: HTMLElement) => {
   const style = getComputedStyle(host);
   const value = (name: string, fallback: string) => style.getPropertyValue(name).trim() || fallback;
   const ramp: Ramp = [
-    value('--ops-ink-0', '#9acaeb40'),
-    value('--ops-ink-1', '#9acaeb73'),
+    value('--ops-ink-0', '#a7c8e040'),
+    value('--ops-ink-1', '#a7c8e073'),
     value('--ops-ink-2', '#b7d9eea6'),
     value('--ops-ink-3', '#eef4fa'),
   ];

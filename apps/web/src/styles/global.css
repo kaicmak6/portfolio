@@ -98,3 +98,21 @@
     @apply border-border;
   }
 }
+
+/* The site-wide `/__theme/theme.css` sets `a[href] { color: var(--brand-3) }` at
+   specificity 0,1,1, which outranks Mantine's class-level colours (0,1,0) and
+   drops every link to 2.34:1 on paper — measured on the nav, the cert titles and
+   the footer. That sheet's comment assumes an app using a class always wins;
+   with Mantine it does not. These two rules re-state Mantine's own components at
+   a specificity that does, so the app's design wins back its own anchors. */
+a.mantine-Anchor-root[href] {
+  color: var(--mantine-color-anchor);
+}
+
+a.mantine-Tabs-tab[href] {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+}
+
+a.mantine-Tabs-tab[data-active][href] {
+  color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+}

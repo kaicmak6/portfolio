@@ -98,7 +98,8 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-2));
+  /* dark-2 measured 4.04:1 on the dark ground at 10px; dark-1 clears it. */
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
 }
 
 .eyebrowItem + .eyebrowItem {

@@ -78,11 +78,17 @@
 
 .profileLink {
   text-decoration: none;
-  color: inherit;
   display: inline-flex;
   align-items: center;
   padding: var(--mantine-spacing-xs) 0;
   border-radius: 2px;
+
+  /* The site-wide `/__theme/theme.css` colours `a[href]` at 0,1,1, which
+     outranks `.profileLink` and turned the name brand-3 on paper (2.34:1).
+     The attribute bumps this to 0,2,0 so the header keeps the page ink. */
+  &[href] {
+    color: inherit;
+  }
 
   &:hover .name {
     color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
@@ -103,9 +109,15 @@
 
 .mobileLink {
   text-decoration: none;
-  color: inherit;
   padding: 10px 12px;
   border-left: 2px solid transparent;
+
+  /* Same reason as .profileLink: the site-wide `a[href]` rule is 0,1,1, so the
+     mobile menu's links went brand-3 on paper (2.34:1) until the attribute
+     lifted this selector to 0,2,0. */
+  &[href] {
+    color: inherit;
+  }
 
   &.active {
     background-color: transparent;

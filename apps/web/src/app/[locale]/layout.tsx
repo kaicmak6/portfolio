@@ -11,7 +11,7 @@ import React from 'react';
 
 import { GlobalClickTracker } from '@/components/atoms/GlobalClickTracker';
 import { ServiceWorkerRegistrar } from '@/components/atoms/ServiceWorkerRegistrar';
-import { theme } from '@/styles/theme';
+import { cssVariablesResolver, theme } from '@/styles/theme';
 
 // Vendored rather than fetched: `next/font/google` downloads the files at build
 // time, so a build machine without reachability to fonts.googleapis.com cannot
@@ -100,7 +100,7 @@ export const dynamic = 'force-dynamic'; // Do not pre-render at build time
 // The browser tint of an installed window, and the only place Next 16 still
 // emits `<meta name="theme-color">`.
 export const viewport: Viewport = {
-  themeColor: '#001b3f',
+  themeColor: '#0f1d2e',
 };
 
 export default function RootLayout(props: {
@@ -136,7 +136,11 @@ export default function RootLayout(props: {
           locale={locale}
           messages={messages}
         >
-          <MantineProvider defaultColorScheme="light" theme={theme}>
+          <MantineProvider
+            defaultColorScheme="light"
+            theme={theme}
+            cssVariablesResolver={cssVariablesResolver}
+          >
             {props.children}
           </MantineProvider>
         </NextIntlClientProvider>

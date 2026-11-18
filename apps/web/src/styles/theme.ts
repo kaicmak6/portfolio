@@ -9,15 +9,31 @@ import { createTheme, rem } from '@mantine/core';
 const brand: MantineColorsTuple = [
   '#f0f5fa',
   '#dfeaf4',
-  '#9acaeb',
+  '#a7c8e0',
   '#4fb4e2',
   '#009bde',
   '#0693ca',
   '#077ab7',
-  '#0a4691',
+  '#2f4a70',
   '#002e6d',
-  '#001b3f',
+  '#0f1d2e',
 ];
+
+// Mantine derives --mantine-color-anchor from its own blue ramp and
+// --mantine-color-dimmed from gray-6, and the brand ladder replaces neither:
+// anchors rendered at brand-3 (2.3:1 on paper) and every c="dimmed" line at
+// gray-6 (3.3:1). Both are pinned here instead of at each call site.
+export const cssVariablesResolver = () => ({
+  variables: {},
+  light: {
+    '--mantine-color-anchor': 'var(--mantine-color-brand-8)',
+    '--mantine-color-dimmed': 'var(--mantine-color-gray-7)',
+  },
+  dark: {
+    '--mantine-color-anchor': 'var(--mantine-color-brand-3)',
+    '--mantine-color-dimmed': 'var(--mantine-color-gray-4)',
+  },
+});
 
 export const theme = createTheme({
   primaryColor: 'brand',
@@ -30,7 +46,7 @@ export const theme = createTheme({
   // two, so pointing black at the ladder's darkest step puts display type,
   // body text and the dark sections in the same family of ink. Pure white stays
   // white: it is the paper the page is printed on.
-  black: '#001b3f',
+  black: '#0f1d2e',
   // Other components still ask for `indigo`; point it at the same ramp so the
   // palette stays navy everywhere without editing them.
   colors: { brand, indigo: brand },

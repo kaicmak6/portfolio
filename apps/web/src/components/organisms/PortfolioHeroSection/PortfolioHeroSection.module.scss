@@ -30,7 +30,8 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  /* The band behind this is brand-0 in both schemes, so the ink is pinned. */
+  color: var(--mantine-color-brand-8);
 
   &::before {
     content: '';
@@ -53,7 +54,8 @@
   max-width: 62ch;
   font-size: var(--mantine-font-size-md);
   line-height: 1.65;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+  /* Same reason: a fixed light ground cannot take the dark half of a pair. */
+  color: var(--mantine-color-gray-7);
 }
 
 .grid {
@@ -68,7 +70,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+    background-color: var(--mantine-color-brand-8);
     transform: scaleX(0);
     transform-origin: left center;
     pointer-events: none;
