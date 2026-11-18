@@ -59,6 +59,17 @@ export default withSentryConfig(
             source: '/fonts/:path*',
             headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
           },
+          // A service worker script is cached harder than any other file, and a
+          // stale one outlives the deploy that replaced it.
+          // The wider scope is needed because the canonical root is `/portfolio`
+          // with no trailing slash, one character outside the default `/portfolio/`.
+          {
+            source: '/sw.js',
+            headers: [
+              { key: 'Cache-Control', value: 'no-cache' },
+              { key: 'Service-Worker-Allowed', value: process.env.BASE_PATH ?? '/' },
+            ],
+          },
         ];
       },
 

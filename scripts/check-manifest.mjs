@@ -49,7 +49,7 @@ const check = (ok, message) => {
 async function get(url) {
   const res = await fetch(url, { redirect: 'manual' });
   const body = Buffer.from(await res.arrayBuffer());
-  return { status: res.status, type: res.headers.get('content-type') ?? '', body };
+  return { status: res.status, type: res.headers.get('content-type') ?? '', body, headers: res.headers };
 }
 
 function png(buf, label) {
@@ -247,6 +247,19 @@ const appTitle = meta('apple-mobile-web-app-title');
 check(appTitle !== null, 'head: no apple-mobile-web-app-title');
 check(appTitle === manifest.short_name, `head: apple-mobile-web-app-title "${appTitle}" != short_name "${manifest.short_name}"`);
 check(/<meta name="theme-color" content="#[0-9a-f]{6}"/i.test(html), 'head: no theme-color');
+
+// --- the service worker, without which Chrome will not offer to install ------
+const swRes = await get(url(`${ROOT === '/' ? '' : ROOT}/sw.js`));
+check(swRes.status === 200, `sw.js: HTTP ${swRes.status}`);
+check(/javascript/.test(swRes.type), `sw.js: content-type ${swRes.type}`);
+
+const sw = swRes.body.toString('utf8');
+check(sw.includes('addEventListener(\'fetch\''), 'sw.js: no fetch handler');
+check(sw.includes('registration.scope'), 'sw.js: base path is not derived from its own scope');
+const swCacheControl = swRes.headers.get('cache-control') ?? '';
+check(swCacheControl.includes('no-cache'), `sw.js: Cache-Control "${swCacheControl}"`);
+const swAllowed = swRes.headers.get('service-worker-allowed') ?? '';
+check(swAllowed === (PREFIX || '/'), `sw.js: Service-Worker-Allowed "${swAllowed}" != "${PREFIX || '/'}"`);
 
 if (problems.length) {
   console.error(`manifest FAIL (${problems.length})`);

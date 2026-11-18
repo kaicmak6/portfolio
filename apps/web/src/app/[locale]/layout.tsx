@@ -10,6 +10,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 import { GlobalClickTracker } from '@/components/atoms/GlobalClickTracker';
+import { ServiceWorkerRegistrar } from '@/components/atoms/ServiceWorkerRegistrar';
 import { theme } from '@/styles/theme';
 
 // Vendored rather than fetched: `next/font/google` downloads the files at build
@@ -140,6 +141,7 @@ export default function RootLayout(props: {
           </MantineProvider>
         </NextIntlClientProvider>
         <GlobalClickTracker />
+        <ServiceWorkerRegistrar basePath={BASE_PATH} />
       </body>
     </html>
   );
