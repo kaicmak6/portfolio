@@ -1,121 +1,345 @@
-.inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: calc(var(--mantine-spacing-xl) * 2);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
-  gap: calc(var(--mantine-spacing-xl) * 2);
+/* The hero is the page's first dark register: paper type over a full-width
+   photograph of the terminal itself, held by a scrim rather than by a panel.
+   Everything after it alternates back toward paper, so the page changes tone
+   four times before the contact block. */
 
-  @media (max-width: $mantine-breakpoint-lg) {
-    gap: var(--mantine-spacing-xl);
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--mantine-color-brand-9);
+  color: var(--hero-ink, #e8f1f9);
+
+  --hero-ink: #eef4fa;
+  --hero-muted: #d3e2ee;
+  --hero-rule: rgba(232, 241, 249, 0.16);
+
+  /* The theme states the display ink for headings on paper. This section is the
+     one surface that is already that ink, so the headline takes the light
+     register back — two classes here, so it wins without `!important`. */
+  .title {
+    color: var(--hero-ink);
+  }
+}
+
+/* The plate is the hero's ground and the scrim is the only thing that decides
+   where type sits, so contrast is a property of the section rather than of
+   whichever part of the photograph happens to fall behind a line. */
+.plate {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* No filter: the plate is a photograph and it is shown as one. Everything that
+   shapes its tone lives in the scrim above it, so the image keeps its own
+   colour and the type keeps a measured ground. */
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+}
+
+/* Two monotonic ramps, no interior dip. The horizontal one is what carries the
+   copy: it holds the reading column, which ends at 52% of the width, above 4.5:1
+   over even the fog's brightest pixels, then opens to near-full strength across
+   the crane band so the photograph still reads as a port. The vertical one is
+   shallow — top and foot only — so nothing inside the column is a band. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 29, 46, 0.68) 0%,
+      rgba(15, 29, 46, 0.68) 30%,
+      rgba(15, 29, 46, 0.64) 52%,
+      rgba(15, 29, 46, 0.34) 66%,
+      rgba(15, 29, 46, 0.14) 80%,
+      rgba(15, 29, 46, 0.06) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(15, 29, 46, 0.3) 0%,
+      rgba(15, 29, 46, 0.26) 20%,
+      rgba(15, 29, 46, 0.22) 46%,
+      rgba(15, 29, 46, 0.2) 68%,
+      rgba(15, 29, 46, 0.24) 86%,
+      rgba(15, 29, 46, 0.4) 100%
+    );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+  padding-top: calc(var(--mantine-spacing-xl) * 2.5);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    padding-top: var(--mantine-spacing-xl);
+  }
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.headline {
+  position: relative;
+  z-index: 1;
+  padding-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    padding-bottom: var(--mantine-spacing-xl);
+  }
+}
+
+/* Weight 600, not 700: at this size the extra 100 is what makes a headline read
+   as a poster instead of a masthead. */
+.title {
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: var(--hero-ink);
+}
+
+.lede {
+  max-width: 60ch;
+  margin-top: var(--mantine-spacing-lg);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--hero-muted);
+
+  :global(a) {
+    color: inherit;
+    text-decoration-color: var(--mantine-color-brand-3);
+  }
+}
+
+.columns {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: calc(var(--mantine-spacing-xl) * 2);
+  padding-top: calc(var(--mantine-spacing-xl) * 1.25);
+  border-top: 1px solid var(--hero-rule);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--mantine-color-brand-2);
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
   }
 
   @media (max-width: $mantine-breakpoint-md) {
-    flex-direction: column;
-    padding-top: var(--mantine-spacing-xl);
-    padding-bottom: var(--mantine-spacing-xl);
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--mantine-spacing-xl);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .columns::before {
+    animation: draw-rule linear both;
+    animation-timeline: view();
+    animation-range: entry 45% cover 30%;
+  }
+}
+
+@keyframes draw-rule {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
   }
 }
 
 .content {
-  @media (max-width: $mantine-breakpoint-lg) {
-    max-width: 520px;
-  }
+  min-width: 0;
+}
 
-  @media (max-width: $mantine-breakpoint-md) {
-    max-width: 100%;
-    margin-right: 0;
-    margin-bottom: 0;
-    text-align: center;
-    order: 2;
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 60ch;
+}
+
+.feature {
+  padding: var(--mantine-spacing-md) 0;
+  border-top: 1px solid var(--hero-rule);
+
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
   }
 }
 
-.title {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  font-family: var(--font-outfit), var(--mantine-font-family);
-  font-size: 44px;
-  line-height: 1.2;
-  font-weight: 500;
+.featureTitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* brand-2 is the accent on paper; over the plate the fog lifts the ground
+     under it to ~4.4:1, so the label steps one rung lighter to stay above 4.5. */
+  color: var(--hero-label, #aed6f2);
+}
 
-  @media (max-width: $mantine-breakpoint-lg) {
-    font-size: 36px;
-  }
-
-  @media (max-width: $mantine-breakpoint-xs) {
-    font-size: 28px;
-  }
+.featureBody {
+  margin-top: 4px;
+  font-size: var(--mantine-font-size-md);
+  line-height: 1.6;
+  color: var(--hero-muted);
 }
 
 .group {
-  @media (max-width: $mantine-breakpoint-md) {
-    justify-content: center;
-  }
-}
-
-.control {
-  /* Base styles if any, but mostly handled by Mantine */
-}
-
-.button {
-  @media (max-width: $mantine-breakpoint-md) {
-    width: 100%;
-  }
-}
-
-.image {
-  width: 376px;
-  height: 356px;
-
-  @media (max-width: $mantine-breakpoint-lg) {
-    width: 320px;
-    height: 300px;
-  }
+  margin-top: var(--mantine-spacing-lg);
 
   @media (max-width: $mantine-breakpoint-md) {
-    width: 280px;
-    height: 260px;
-  }
-
-  @media (max-width: $mantine-breakpoint-xs) {
-    width: 240px;
-    height: 220px;
+    justify-content: flex-start;
   }
 }
 
-.highlight {
+/* On a dark ground the filled navy button would disappear, so the primary CTA
+   inverts to paper and the secondary becomes an outline. Doubled selectors keep
+   these ahead of Mantine's own root rules without an !important. */
+.ctaPrimary.ctaPrimary {
+  background-color: var(--hero-ink);
+  color: var(--mantine-color-brand-9);
+
+  &:hover {
+    background-color: #ffffff;
+  }
+}
+
+.ctaGhost.ctaGhost {
+  border-color: rgba(232, 241, 249, 0.34);
+  background-color: transparent;
+  color: var(--hero-ink);
+
+  &:hover {
+    border-color: var(--mantine-color-brand-2);
+    background-color: rgba(232, 241, 249, 0.08);
+  }
+}
+
+/* Cursor-driven nudge on the primary CTA. The offsets are written as custom
+   properties by the pointer handlers, so reduced motion only has to cancel one
+   transform. */
+.magnet {
+  display: inline-flex;
+  transform: translate3d(var(--magnet-x, 0px), var(--magnet-y, 0px), 0);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* One edge, and it is a soft one: the portrait's own crop dissolves before it
+   reaches the box, so the figure has no rectangle and no frame at all — it
+   stands in the photograph rather than on it. */
+.media {
   position: relative;
-  background-color: var(--mantine-color-blue-light);
-  border-radius: var(--mantine-radius-sm);
-  padding: 4px 12px;
+  justify-self: end;
+  width: 100%;
+  max-width: 464px;
+
+  /* A soft pool of the scrim's own navy behind the figure: the berth dims back
+     so the engraved portrait reads as the subject, and its crop dissolves before
+     it reaches the box. No border, no panel — a gradient, which is why the
+     photograph is still visible through it. */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -22% -18% -16% -18%;
+    z-index: -1;
+    background: radial-gradient(
+      58% 54% at 50% 42%,
+      rgba(15, 29, 46, 0.88) 0%,
+      rgba(15, 29, 46, 0.82) 38%,
+      rgba(15, 29, 46, 0.56) 64%,
+      rgba(15, 29, 46, 0.24) 84%,
+      rgba(15, 29, 46, 0) 97%
+    );
+    pointer-events: none;
+  }
+
+  @media (max-width: $mantine-breakpoint-md) {
+    order: -1;
+    max-width: 420px;
+  }
 }
 
+/* The portrait is shown in its own colour, like the plate. The only treatment
+   is the mask, which dissolves its crop so the figure has no frame; it changes
+   nothing about the pixels' colour. */
 .heroImage {
+  display: block;
+  width: 100%;
+  height: auto;
   object-fit: cover;
+
+  -webkit-mask-image: radial-gradient(
+    74% 70% at 48% 38%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.9) 66%,
+    rgba(0, 0, 0, 0.4) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: radial-gradient(
+    74% 70% at 48% 38%,
+    #000 0%,
+    #000 50%,
+    rgba(0, 0, 0, 0.9) 66%,
+    rgba(0, 0, 0, 0.4) 86%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
-/* ======= Infrastructure Showcase (centered below hero, two logos side by side) ======= */
+/* ======= Infrastructure showcase: paper beat under the dark hero ======= */
+.infraBand {
+  background-color: var(--mantine-color-body);
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+}
+
+.infraBandInner {
+  padding-top: var(--mantine-spacing-lg);
+  padding-bottom: var(--mantine-spacing-lg);
+}
+
 .infraShowcase {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--mantine-spacing-lg);
-  padding-top: var(--mantine-spacing-lg);
-  margin-top: var(--mantine-spacing-xl);
-  border-top: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
-
-  @media (max-width: $mantine-breakpoint-md) {
-    margin-top: var(--mantine-spacing-md);
-    padding-top: var(--mantine-spacing-md);
-  }
+  gap: var(--mantine-spacing-md);
 }
 
 .infraShowcaseTitle {
   font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: light-dark(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.4));
+  letter-spacing: 0.16em;
+  /* gray-6 was 3.32:1 on paper at 10px; this ground is `--mantine-color-body`,
+     so the ink has to follow the scheme or dark drops to 1.9:1. */
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
 }
 
 .infraShowcaseRow {
@@ -137,15 +361,23 @@
 
 .infraLogo {
   object-fit: contain;
-  width: 120px;
+  width: 96px;
   height: auto;
+  opacity: 0.85;
 }
 
 .infraLabel {
-  /* Label styling inherited from Mantine Text */
+  letter-spacing: 0.02em;
 }
 
 .infraDesc {
-  line-height: 1.4;
-  opacity: 0.75;
+  line-height: 1.45;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .columns::before {
+    animation: none;
+    transform: scaleX(1);
+  }
 }

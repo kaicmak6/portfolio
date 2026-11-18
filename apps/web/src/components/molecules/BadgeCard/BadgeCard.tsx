@@ -25,13 +25,13 @@ export function BadgeCard({ id, images, title, description, country, badges }: B
   const t = useTranslations('BadgeCard');
 
   const features = badges.map(badge => (
-    <Badge variant="light" key={badge.label} leftSection={badge.emoji}>
+    <Badge variant="light" key={badge.label} leftSection="▪">
       {badge.label}
     </Badge>
   ));
 
   return (
-    <Card withBorder radius="md" className={classes.card}>
+    <Card withBorder className={classes.card}>
       <Card.Section>
         <Carousel
           withIndicators={false}
@@ -76,7 +76,7 @@ export function BadgeCard({ id, images, title, description, country, badges }: B
       </Card.Section>
 
       <Group mt="auto" pt="md">
-        <Button radius="md" className={classes.viewButton} component={Link} href={`/projects#${id}`}>
+        <Button className={classes.viewButton} component={Link} href={`/projects#${id}`}>
           {t('view_project')}
         </Button>
       </Group>

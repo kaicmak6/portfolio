@@ -1,5 +1,6 @@
 'use client';
 import { Anchor, Container, SimpleGrid, Text, Title } from '@mantine/core';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import classes from './CertificationsSection.module.scss';
@@ -14,7 +15,7 @@ export function CertificationsSection() {
 
   return (
     <Container size="lg" py="xl">
-      <Title ta="center" className={classes.title}>
+      <Title className={classes.title}>
         {t('title')}
       </Title>
 
@@ -33,8 +34,7 @@ export function CertificationsSection() {
             underline="never"
             className={classes.card}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={cert.image}
               alt={cert.title}
               width={110}

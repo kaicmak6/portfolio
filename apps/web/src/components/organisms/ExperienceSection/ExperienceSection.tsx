@@ -17,24 +17,24 @@ export function ExperienceSection() {
 
   return (
     <Container size="lg" py="xl">
-      <Title ta="center" className={classes.title}>
+      <Title className={classes.title}>
         {t('title')}
       </Title>
-      <Text c="dimmed" ta="center" mt="md" mb="xl" size="lg">
+      <Text c="dimmed" mt="xs" mb="xl" size="lg">
         {t('subtitle')}
       </Text>
 
       <Timeline
         active={Infinity}
-        lineWidth={isMobile ? 2 : 4}
-        bulletSize={isMobile ? 40 : 48}
+        lineWidth={1}
+        bulletSize={isMobile ? 34 : 40}
       >
         {jobs.map((job, index) => {
           return (
             <Timeline.Item
               key={index}
               bullet={(
-                <ThemeIcon size={isMobile ? 40 : 48} variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} radius="xl">
+                <ThemeIcon size={isMobile ? 34 : 40} variant="gradient" gradient={{ from: 'brand.8', to: 'brand.9', deg: 160 }} radius={0}>
                   <IconBriefcase size={isMobile ? 20 : 24} />
                 </ThemeIcon>
               )}

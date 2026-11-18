@@ -5,7 +5,9 @@ export type Message = {
 
 export type ChatRequestDto = {
   messages: Message[];
-  turnstileToken: string;
+  // Absent when the browser could not obtain one: the challenge does not complete
+  // on every client, and the server's per-IP rate limit is the real spend control.
+  turnstileToken?: string;
 };
 
 export type ChatResponseStream = {

@@ -1,12 +1,24 @@
 .title {
-  font-size: 2rem;
-  font-weight: 700;
+  position: relative;
+  padding-top: calc(var(--mantine-spacing-md) + 4px);
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 1px;
+    background-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
 }
 
 .grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--mantine-spacing-lg);
 }
 
@@ -15,23 +27,15 @@
   align-items: center;
   gap: var(--mantine-spacing-md);
   padding: var(--mantine-spacing-md) var(--mantine-spacing-lg);
-  border-radius: var(--mantine-radius-md);
-  border: 1px solid light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.08));
-  background: light-dark(rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 0.03));
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  border: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  transition: border-color 0.2s ease;
   text-decoration: none;
   color: inherit;
   flex: 1;
   min-width: 280px;
-  max-width: 420px;
 
   &:hover {
-    border-color: var(--mantine-color-orange-5);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+    border-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
   }
 }
 

@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl';
 
 import { ColorSchemeToggle } from './ColorSchemeToggle';
 import classes from './HeaderTabs.module.scss';
+import { LocaleToggle } from './LocaleToggle';
 
 export function HeaderTabs() {
   const t = useTranslations('HeaderTabs');
@@ -77,8 +78,8 @@ export function HeaderTabs() {
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="md">
-        <Group>
+      <Container className={classes.mainSection} size="lg">
+        <Group gap={0} wrap="nowrap" justify="space-between">
           <Link
             href={t('profile_link')}
             className={classes.profileLink}
@@ -86,18 +87,18 @@ export function HeaderTabs() {
             <Group gap="xs">
               <Image
                 src={t('avatar')}
-                alt="Profile"
+                alt={t('avatar_alt')}
                 width={40}
                 height={40}
                 className={classes.avatarImage}
               />
-              <Text fw={700} size="lg">{t('name')}</Text>
+              <Text className={classes.name}>{t('name')}</Text>
             </Group>
           </Link>
 
           <Tabs
             value={getActiveTab()}
-            variant="outline"
+            variant="default"
             visibleFrom="lg"
             classNames={{
               root: classes.tabs,
@@ -114,6 +115,7 @@ export function HeaderTabs() {
           </Tabs>
 
           <Group visibleFrom="lg">
+            <LocaleToggle />
             <ColorSchemeToggle />
           </Group>
 
@@ -123,12 +125,12 @@ export function HeaderTabs() {
             onClick={toggle}
             hiddenFrom="lg"
             size="sm"
-            aria-label="Toggle navigation"
+            aria-label={t('menu_label')}
           />
         </Group>
       </Container>
       <Collapse in={opened}>
-        <Container size="md" py="md">
+        <Container size="lg" py="md">
           <Stack gap="sm">
             {tabs.map(tab => (
               <Link
@@ -146,7 +148,10 @@ export function HeaderTabs() {
                 <Text fw={500}>{tab.label}</Text>
               </Link>
             ))}
-            <ColorSchemeToggle />
+            <Group gap="sm">
+              <LocaleToggle />
+              <ColorSchemeToggle />
+            </Group>
           </Stack>
         </Container>
       </Collapse>

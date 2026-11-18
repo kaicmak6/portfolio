@@ -1,15 +1,36 @@
+/* Section header, left-aligned on the page's own rule: the hero sets a
+   left-hand margin and a hairline, and every section that follows keeps it. */
+
 .title {
-  font-size: 2rem;
-  font-weight: 700;
+  position: relative;
+  padding-top: calc(var(--mantine-spacing-md) + 4px);
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 1px;
+    background-color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
 }
 
+/* Hover moves the hairline, not the card: a lifted card is the tell of a
+   consumer template, and a transform here would fight the scroll position. */
 .card {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 180ms ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: light-dark(var(--mantine-color-brand-5), var(--mantine-color-brand-4));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
   }
 }

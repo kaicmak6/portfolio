@@ -1,7 +1,8 @@
 'use client';
-import { Badge, Container, Group, Text, Title } from '@mantine/core';
+import { Container, Text, Title } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
+import { Reveal } from '@/components/atoms/Reveal/Reveal';
 import type { BadgeCardData } from '@/components/molecules/BadgeCardGrid/BadgeCardGrid';
 import { BadgeCardGrid } from '@/components/molecules/BadgeCardGrid/BadgeCardGrid';
 
@@ -30,26 +31,28 @@ export function PortfolioHeroSection({
     title: card.title,
     country: card.category,
     description: card.description,
-    badges: card.badges.map((badge: string, badgeIndex: number) => ({
-      emoji: badgeIndex === 0 ? card.emoji : ['▲', '📘', '🎯', '💅', '📱', '♿', '📊', '🔐', '💾'][badgeIndex - 1] || '•',
+    badges: card.badges.map((badge: string) => ({
+      emoji: '▪',
       label: badge,
     })),
   }));
 
   return (
-    <Container size="lg" py="xl">
-      <Group justify="center" mb="lg">
-        <Badge size="lg" variant="light" radius="xl">
-          {t('badge')}
-        </Badge>
-      </Group>
-      <Title ta="center" className={classes.title} mb="md">
-        {title || t('title')}
-      </Title>
-      <Text c="dimmed" ta="center" mt="md" mb="xl" size="sm" maw={600} mx="auto" lh={1.6}>
-        {subtitle || t('subtitle')}
-      </Text>
-      <BadgeCardGrid cards={cards || defaultCards} cols={cols} spacing="md" />
-    </Container>
+    <section className={classes.band}>
+      <Container size="lg" className={classes.section}>
+        <Reveal className={classes.intro}>
+          <div className={classes.eyebrow}>{t('badge')}</div>
+          <Title order={2} className={classes.title}>
+            {title || t('title')}
+          </Title>
+          <Text className={classes.subtitle}>
+            {subtitle || t('subtitle')}
+          </Text>
+        </Reveal>
+        <div className={classes.grid}>
+          <BadgeCardGrid cards={cards || defaultCards} cols={cols} spacing="lg" verticalSpacing="lg" />
+        </div>
+      </Container>
+    </section>
   );
 }

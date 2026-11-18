@@ -23,8 +23,8 @@ export function GlobalClickTracker() {
       if (button) {
         const elementText
           = button.getAttribute('aria-label')
-          || button.textContent?.trim()
-          || 'Unknown';
+            || button.textContent?.trim()
+            || 'Unknown';
 
         // Send custom event to GA4
         if (typeof window.gtag === 'function') {

@@ -1,37 +1,58 @@
 'use client';
-import { Container, Skeleton, Stack, Timeline } from '@mantine/core';
+import '../loading.module.scss';
+
+import { Box, Container, Group, Skeleton, Stack, Timeline } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
+/**
+ * The experience route: a centred title, the two timelines — work, then
+ * education — and the download at the foot. The timelines are drawn rather than
+ * faked as a column of bars, because they are most of the page's shape.
+ */
 export default function Loading() {
-  const expT = useTranslations('Experience');
+  const expT = useTranslations('ExperiencePage');
   const jobs = expT.raw('jobs') as Array<unknown>;
 
   return (
     <Container size="lg" py="xl">
+      <Skeleton height="calc(clamp(2.75rem, 5.4vw, 4.5rem) * 1.02)" width="26%" mx="auto" mb="lg" />
+
       <Stack gap="xl">
-        <Skeleton height={50} width={200} radius="md" mx="auto" />
-        <style>
-          {`
-            @keyframes shimmer {
-              0% { background-position: -200% 0; }
-              100% { background-position: 200% 0; }
-            }
-            .skeleton-shimmer {
-              background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-              background-size: 200% 100%;
-              animation: shimmer 1.5s infinite;
-            }
-          `}
-        </style>
-        <Timeline active={0} bulletSize={40} lineWidth={2}>
-          {jobs.map((_, i) => (
-            <Timeline.Item key={i} bullet={<Skeleton height={40} circle className="skeleton-shimmer" />}>
-              <Skeleton height={24} width="60%" className="skeleton-shimmer" />
-              <Skeleton height={16} width="40%" mt="sm" className="skeleton-shimmer" />
-              <Skeleton height={16} width="80%" mt="sm" className="skeleton-shimmer" />
+        <div>
+          <Skeleton height="calc(clamp(2rem, 3.4vw, 2.75rem) * 1.1)" width="34%" mb="md" />
+          <Timeline active={Infinity} lineWidth={4} bulletSize={48}>
+            {jobs.map((_, index) => (
+              <Timeline.Item key={index} bullet={<Skeleton height={40} width={40} />}>
+                <Skeleton height={20} width="42%" />
+                <Skeleton height={14} width="30%" mt={10} />
+                <Skeleton height={22} width={96} mt={10} />
+                <Box mt="xs">
+                  <Skeleton height={14} mt={12} />
+                  <Skeleton height={14} width="92%" mt={6} />
+                  <Skeleton height={14} width="68%" mt={6} />
+                </Box>
+              </Timeline.Item>
+            ))}
+          </Timeline>
+        </div>
+
+        <div>
+          <Skeleton height="calc(clamp(2rem, 3.4vw, 2.75rem) * 1.1)" width="22%" mb="md" />
+          <Timeline active={Infinity} lineWidth={4} bulletSize={48}>
+            <Timeline.Item bullet={<Skeleton height={40} width={40} />}>
+              <Skeleton height={20} width="38%" />
+              <Skeleton height={14} width="26%" mt={10} />
+              <Box mt="xs">
+                <Skeleton height={14} mt={12} />
+                <Skeleton height={14} width="74%" mt={6} />
+              </Box>
             </Timeline.Item>
-          ))}
-        </Timeline>
+          </Timeline>
+        </div>
+
+        <Group justify="center" mt="xl">
+          <Skeleton height={48} width={188} />
+        </Group>
       </Stack>
     </Container>
   );

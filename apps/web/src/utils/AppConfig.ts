@@ -7,6 +7,10 @@ export const AppConfig = {
       id: 'en',
       name: 'English',
     },
+    {
+      id: 'zh-HK',
+      name: '繁體中文',
+    },
   ],
   defaultLocale: 'en',
   localePrefix,

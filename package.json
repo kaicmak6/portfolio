@@ -27,7 +27,9 @@
     "prepare": "husky",
     "db:generate": "pnpm run db:generate -w packages/database",
     "db:migrate": "pnpm run db:migrate -w packages/database",
-    "db:studio": "pnpm run db:studio -w packages/database"
+    "db:studio": "pnpm run db:studio -w packages/database",
+    "icons": "node scripts/make-icons.mjs",
+    "manifest:check": "node scripts/check-manifest.mjs"
   },
   "config": {
     "commitizen": {

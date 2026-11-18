@@ -2,10 +2,12 @@
 
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconMoon, IconSun } from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 
 import classes from './HeaderTabs.module.scss';
 
 export function ColorSchemeToggle() {
+  const t = useTranslations('HeaderTabs');
   const { colorScheme, setColorScheme } = useMantineColorScheme();
 
   return (
@@ -13,7 +15,7 @@ export function ColorSchemeToggle() {
       variant="default"
       onClick={() => setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')}
       size="lg"
-      aria-label="Toggle color scheme"
+      aria-label={t('color_scheme_label')}
       className={classes.themeToggle}
     >
       {colorScheme === 'dark'

@@ -1,31 +1,195 @@
-.card {
-  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  transition: all 0.2s ease;
+.pageHeader {
+  padding-bottom: var(--mantine-spacing-md);
+  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+  border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--mantine-shadow-md);
+.pageTitle {
+  font-size: clamp(2.5rem, 4.6vw, 3.75rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+}
+
+.cases {
+  display: flex;
+  flex-direction: column;
+}
+
+/* One row per case, stacked rather than split: a case is a figure with its
+   evidence, and a half-width thumbnail of a full desktop app reads as texture
+   at any size the two-column split allows. */
+.case {
+  display: grid;
+  gap: var(--mantine-spacing-lg);
+  padding: calc(var(--mantine-spacing-xl) * 1.5) 0;
+  border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.caseHead {
+  display: flex;
+  flex-direction: column;
+  max-width: 46ch;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7));
 }
 
 .carousel {
-  overflow: hidden;
-}
-
-.section {
-  border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
-  padding: var(--mantine-spacing-md);
+  height: 100%;
 }
 
 .carouselImage {
-  object-fit: cover;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* Colour kept: the covers are the projects' own interfaces, and desaturating
+     them turned a screenshot into a diagram. Only the contrast is nudged so
+     three different palettes sit at one weight. */
+  filter: contrast(1.02) saturate(0.96);
+  transition: filter 200ms ease;
+
+  &:hover {
+    filter: contrast(1.08) saturate(1) brightness(1.03);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
-.cardFooter {
-  margin-top: auto;
-  padding-top: var(--mantine-spacing-md);
+/* Description left, evidence right: the two columns hold comparable weight, so
+   neither leaves a hollow half. */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--mantine-spacing-xl) * 1.75);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mantine-spacing-lg);
+  }
+}
+
+.side {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+  margin-bottom: var(--mantine-spacing-sm);
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* dark-2 measured 4.04:1 on the dark ground at 10px; dark-1 clears it. */
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+}
+
+.eyebrowItem + .eyebrowItem {
+  padding-left: var(--mantine-spacing-sm);
+  border-left: 1px solid light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
+}
+
+.caseTitle {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+}
+
+.desc {
+  min-width: 0;
+  font-size: var(--mantine-font-size-md);
+  line-height: 1.65;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+
+  :global(ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(li) {
+    padding: var(--mantine-spacing-sm) 0;
+    border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+  }
+
+  :global(li:first-child) {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  :global(b) {
+    font-weight: 700;
+    color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));
+  }
+
+  /* Leading label of each list item — not the inline emphases inside it. */
+  :global(li > b:first-child) {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+  }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mantine-spacing-md) 0;
+  margin: 0;
+  padding-top: var(--mantine-spacing-xs);
+  border-top: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.stat {
+  flex: 1 1 30%;
+  min-width: 150px;
+  padding-right: var(--mantine-spacing-md);
+}
+
+.statIndex {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-3));
+}
+
+.statValue {
+  margin: 2px 0 0;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));
+}
+
+.tech {
+  margin-top: var(--mantine-spacing-lg);
+}
+
+.action {
+  margin-top: var(--mantine-spacing-lg);
+}
+
+.cta {
+  letter-spacing: 0.01em;
 }

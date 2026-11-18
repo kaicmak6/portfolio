@@ -1,7 +1,7 @@
 'use client';
 import { Carousel } from '@mantine/carousel';
-import { Badge, Button, Card, Container, Group, SimpleGrid, Text, Title } from '@mantine/core';
-import Autoplay from 'embla-carousel-autoplay';
+import { Badge, Button, Container, Flex, Group, Text, Title } from '@mantine/core';
+import { IconArrowUpRight } from '@tabler/icons-react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -29,61 +29,90 @@ export function ProjectsPage() {
 
   return (
     <Container size="lg" py="xl">
-      <Title ta="center" mb="xl">{t('title')}</Title>
-      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
-        {projects.map((p: Project, i: number) => (
-          <Card key={i} id={p.id} shadow="sm" radius="md" withBorder className={classes.card}>
-            <Card.Section>
-              <Group p="xs" justify="space-between" style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
-                {p.year && <Badge variant="filled" color="blue">{p.year}</Badge>}
-                {p.status && <Badge variant="filled" color={p.status === 'Live' ? 'green' : 'gray'}>{p.status}</Badge>}
-              </Group>
+      <header className={classes.pageHeader}>
+        <Title className={classes.pageTitle}>{t('title')}</Title>
+      </header>
+
+      <div className={classes.cases}>
+        {projects.map((p: Project, index: number) => (
+          <article key={p.id} id={p.id} className={classes.case}>
+            <header className={classes.caseHead}>
+              {/* The index is derived, so a case keeps a numbered marker even
+                  when Directus supplies no year and status to sit beside it. */}
+              <div className={classes.eyebrow}>
+                <span className={classes.eyebrowItem}>{String(index + 1).padStart(2, '0')}</span>
+                {p.year && <span className={classes.eyebrowItem}>{p.year}</span>}
+                {p.status && <span className={classes.eyebrowItem}>{p.status}</span>}
+              </div>
+
+              <Title order={2} className={classes.caseTitle}>
+                <HtmlContent content={p.title} />
+              </Title>
+            </header>
+
+            <div className={classes.media}>
               <Carousel
-                withIndicators
+                withIndicators={p.images.length > 1}
                 withControls={false}
-                height={225}
+                height="100%"
                 slideSize="100%"
-                slideGap="md"
                 emblaOptions={{ loop: true }}
-                plugins={[Autoplay({ delay: 4000 })]}
                 className={classes.carousel}
-                styles={{
-                  indicator: {
-                    'width': 12,
-                    'transition': 'width 250ms ease',
-                    '&[data-active]': { width: 40 },
-                  },
-                }}
               >
                 {p.images.map((img: string, idx: number) => (
                   <Carousel.Slide key={idx}>
                     <Image
                       src={img}
-                      height={225}
+                      width={1600}
+                      height={1000}
                       alt={`${p.title} - Image ${idx + 1}`}
-                      width={400}
                       className={classes.carouselImage}
                     />
                   </Carousel.Slide>
                 ))}
               </Carousel>
-            </Card.Section>
-            <Title order={3} mt="md"><HtmlContent content={p.title} /></Title>
-            <Text component="div" fz="sm" mt="sm"><HtmlContent content={p.desc} /></Text>
-            <Group mt="md" mb="md">
-              {p.tech.map((tech: { emoji: string; label: string }) => <Badge key={tech.label} variant="light" leftSection={tech.emoji}>{tech.label}</Badge>)}
-            </Group>
-            <div className={classes.cardFooter}>
-              <Group justify="space-between" align="center">
-                <Text fz="xs" c="dimmed"><HtmlContent content={p.metrics.join(' • ')} /></Text>
-                <Button component="a" href={p.demo} target="_blank" rel="noopener noreferrer" size="sm">
-                  {t('view_production')}
-                </Button>
-              </Group>
             </div>
-          </Card>
+
+            <div className={classes.body}>
+              <Text component="div" className={classes.desc}>
+                <HtmlContent content={p.desc} />
+              </Text>
+
+              <div className={classes.side}>
+                {p.metrics.length > 0 && (
+                  <dl className={classes.stats}>
+                    {p.metrics.map((metric: string, idx: number) => (
+                      <div key={idx} className={classes.stat}>
+                        <dt className={classes.statIndex}>{String(idx + 1).padStart(2, '0')}</dt>
+                        <dd className={classes.statValue}><HtmlContent content={metric} /></dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                <Group gap={6} className={classes.tech}>
+                  {p.tech.map((tech: { emoji: string; label: string }) => (
+                    <Badge key={tech.label} variant="default" leftSection="▪">{tech.label}</Badge>
+                  ))}
+                </Group>
+
+                <Flex className={classes.action}>
+                  <Button
+                    component="a"
+                    href={p.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    rightSection={<IconArrowUpRight size={16} />}
+                    className={classes.cta}
+                  >
+                    {t('view_production')}
+                  </Button>
+                </Flex>
+              </div>
+            </div>
+          </article>
         ))}
-      </SimpleGrid>
+      </div>
     </Container>
   );
 }
