@@ -14,7 +14,12 @@
   --px: 0;
   --py: 0;
 
+  /* A min-height beside an aspect-ratio makes the *ratio* win: 260 × 16/9 is
+     462px, so under this breakpoint the band was 462 wide inside a 390 viewport
+     and the document scrolled 72px sideways (142 at 320). The floor is the height
+     we want here, not a ratio, so the ratio goes. */
   @media (max-width: $mantine-breakpoint-sm) {
+    aspect-ratio: auto;
     min-height: 260px;
   }
 }

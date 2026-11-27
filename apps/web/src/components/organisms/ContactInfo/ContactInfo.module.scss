@@ -81,6 +81,10 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    /* The row carries 16px of its own padding above and below, so a link sized to
+       its text was a 21px-tall target inside a 53px row: the whole line looks
+       clickable and only the words are. Below WCAG 2.2 2.5.8's 24px floor. */
+    min-height: 24px;
     color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));
     text-decoration: none;
     transition: color 160ms ease;

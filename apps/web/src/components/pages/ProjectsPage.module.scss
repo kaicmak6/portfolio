@@ -47,6 +47,44 @@
 
 .carousel {
   height: 100%;
+
+  /* Mantine's indicator is a 10x5 bar with an 8px gap, so a mouse has a 10px-wide
+     target and the 24px circles of two neighbours overlap. The box becomes 24x24
+     and the gap goes, which puts the pitch at exactly 24: every dot is a legal
+     target and no two targets' circles intersect (WCAG 2.2 2.5.8, spacing
+     exception no longer needed). The bar is drawn at its old size from the box's
+     centre, so nothing moves on screen. */
+  :global(.mantine-Carousel-indicators) {
+    gap: 0;
+  }
+
+  :global(.mantine-Carousel-indicator) {
+    position: relative;
+    width: 24px !important;
+    height: 24px;
+    background-color: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 5px;
+      translate: -50% -50%;
+      background-color: var(--mantine-color-white);
+      transition:
+        width 200ms ease,
+        background-color 200ms ease;
+    }
+
+    &[data-active]::before {
+      /* 18, not the 40 Mantine used: at a 24px pitch a 40px bar reaches 8px into
+         each neighbour's box and collides with their dots. 18 is still clearly
+         the longest of the row and stays inside its own column. */
+      width: 18px;
+    }
+  }
 }
 
 .carouselImage {
