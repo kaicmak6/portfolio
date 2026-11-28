@@ -50,10 +50,20 @@ html:root[data-mantine-color-scheme='dark'] {
    specificity 0,1,1, which outranks Mantine's class-level colours (0,1,0) and
    drops every link to 2.34:1 on paper — measured on the nav, the cert titles and
    the footer. That sheet's comment assumes an app using a class always wins;
-   with Mantine it does not. These two rules re-state Mantine's own components at
-   a specificity that does, so the app's design wins back its own anchors. */
+   with Mantine it does not. These rules re-state Mantine's own components at a
+   specificity that does, so the app's design wins back its own anchors. */
 a.mantine-Anchor-root[href] {
   color: var(--mantine-color-anchor);
+}
+
+/* A Button rendered as a link is the same collision, one level up: Mantine sets
+   the label colour on the root, so `a[href]` recoloured the whole button and its
+   label inherited it — the text on "View Project" measured brand-3 on brand-3
+   (invisible) in dark, and brand-3 on navy in light. Only reachable through
+   Caddy, because that is what injects the theme sheet; on the bare container the
+   button looked correct. */
+a.mantine-Button-root[href] {
+  color: var(--button-color);
 }
 
 a.mantine-Tabs-tab[href] {
