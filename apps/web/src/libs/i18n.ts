@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 
-import { AllLocales, AppConfig } from '@/utils/AppConfig';
+import { AppConfig, isLocale } from '@/utils/AppConfig';
 
 // A translated section replaces the English one wholesale, so a partial
 // translation would silently blank the rest of that section. Merge one level
@@ -37,7 +37,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = await requestLocale;
 
   // Validate that the incoming `locale` parameter is valid
-  if (!locale || !AllLocales.includes(locale)) {
+  if (!locale || !isLocale(locale)) {
     notFound();
   }
 
@@ -60,20 +60,25 @@ export default getRequestConfig(async ({ requestLocale }) => {
       translations?: Record<string, unknown>;
     };
     const localizedMessages = (translations?.[locale] ?? {}) as Record<string, unknown>;
-    const directusMessages = locale === AppConfig.defaultLocale
-      ? englishMessages
-      : mergeMessages(englishMessages, localizedMessages);
 
     // Load fallback messages from locale file for missing keys
-    let fallbackMessages = {};
+    let fallbackMessages: Record<string, unknown> = {};
     try {
       fallbackMessages = (await import(`../locales/${locale}.json`)).default;
     } catch {
       // Fallback file not available
     }
 
-    // Merge Directus messages with fallback, Directus takes precedence
-    const messages = mergeMessages(fallbackMessages, directusMessages);
+    // English is complete, so merging it *under* the locale file is what decides
+    // the register: without this order a locale the CMS has no block for would
+    // inherit every English key and its own file would never render. Precedence
+    // is CMS, then the locale file, then English.
+    const messages = locale === AppConfig.defaultLocale
+      ? mergeMessages(fallbackMessages, englishMessages)
+      : mergeMessages(
+          mergeMessages(englishMessages, fallbackMessages),
+          localizedMessages,
+        );
 
     return { locale, messages };
   }

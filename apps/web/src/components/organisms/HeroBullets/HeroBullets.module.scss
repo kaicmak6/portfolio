@@ -112,7 +112,12 @@
 .lede {
   max-width: 60ch;
   margin-top: var(--mantine-spacing-lg);
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  /* 18px, which is what the template's own home lede is (`text-lg`). The clamp
+     this replaces ran 16 → 18, so on a wide window it already resolved to 18 and
+     only narrow screens got 16 — the same sentence at two sizes for no reason.
+     Not `--fs-body` (13): that rank is for dense UI, and a marketing lede is
+     read in prose. */
+  font-size: 1.125rem;
   line-height: 1.65;
   color: var(--hero-muted);
 
@@ -191,7 +196,7 @@
 
 .featureTitle {
   display: block;
-  font-size: 11px;
+  font-size: var(--fs-micro);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -202,7 +207,7 @@
 
 .featureBody {
   margin-top: 4px;
-  font-size: var(--mantine-font-size-md);
+  font-size: var(--fs-body);
   line-height: 1.6;
   color: var(--hero-muted);
 }
@@ -333,7 +338,7 @@
 }
 
 .infraShowcaseTitle {
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;

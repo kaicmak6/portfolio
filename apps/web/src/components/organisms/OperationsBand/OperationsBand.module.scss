@@ -65,7 +65,7 @@
   align-items: center;
   gap: var(--mantine-spacing-sm);
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -82,7 +82,7 @@
 
 .loop {
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   letter-spacing: 0.04em;
   white-space: nowrap;
   color: var(--ops-ink-2);
@@ -105,7 +105,7 @@
   max-width: 52ch;
   margin: 0;
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   line-height: 1.6;
   color: var(--ops-ink-2);
 }

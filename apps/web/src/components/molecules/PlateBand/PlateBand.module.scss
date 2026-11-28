@@ -107,7 +107,7 @@
 .label {
   display: block;
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
 
 .caption {
   margin: 6px 0 0;
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--fs-body);
   line-height: 1.5;
   color: var(--mantine-color-brand-1);
 }

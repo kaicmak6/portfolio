@@ -1,11 +1,4 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
 import { AppConfig } from './AppConfig';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export const MILLISECONDS_IN_ONE_DAY = 86_400_000;
 

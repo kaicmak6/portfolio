@@ -56,6 +56,25 @@ export const theme = createTheme({
   // `next/font`, so every machine fell back to its own console face.
   fontFamilyMonospace: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
 
+  // Mantine's own ladder (12/14/16/18/20) is a fifth name for the same four
+  // ranks the token layer already defines, so every step is pointed at one of
+  // `--fs-*` rather than left to drift. `md` and `sm` share the body rank: at
+  // 1x the old 2px between them was not a rank.
+  fontSizes: {
+    xs: rem(11),
+    sm: rem(13),
+    md: rem(13),
+    lg: rem(21),
+    xl: rem(24),
+  },
+  lineHeights: {
+    xs: rem(16),
+    sm: rem(20),
+    md: rem(20),
+    lg: rem(24),
+    xl: rem(32),
+  },
+
   headings: {
     // Outfit is already loaded for the timeline titles; making it the display
     // face is what separates headings from body text at a glance. The weight is
@@ -97,12 +116,16 @@ export const theme = createTheme({
     },
 
     Badge: {
+      // Mantine's `--badge-fz` ladder (9/10/11/13/16px by `size`) is a third name
+      // for the ranks, so the label takes micro and the badge keeps its height.
       defaultProps: { variant: 'light', radius: 0 },
       styles: {
         root: {
           textTransform: 'none',
           fontWeight: 600,
-          // padding: `${rem(4)} ${rem(8)}`,
+        },
+        label: {
+          fontSize: 'var(--fs-micro)',
         },
       },
     },

@@ -26,7 +26,7 @@
   align-items: center;
   gap: var(--mantine-spacing-sm);
   margin-bottom: var(--mantine-spacing-md);
-  font-size: 11px;
+  font-size: var(--fs-micro);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -47,12 +47,18 @@
   line-height: 1.1;
   letter-spacing: -0.025em;
   font-weight: 500;
+  /* The third line of its own rule: the band is brand-0 in both schemes, so the
+     ink is pinned. `.eyebrow` and `.subtitle` below already were; the title was
+     not, and inherited `--mantine-color-text` — which in dark is #c9c9c9 on
+     #f0f5fa, measured at 1.51:1, i.e. the heading of the page's own hero
+     effectively vanished when the reader chose dark. */
+  color: var(--mantine-color-brand-8);
 }
 
 .subtitle {
   margin-top: var(--mantine-spacing-md);
   max-width: 62ch;
-  font-size: var(--mantine-font-size-md);
+  font-size: var(--fs-body);
   line-height: 1.65;
   /* Same reason: a fixed light ground cannot take the dark half of a pair. */
   color: var(--mantine-color-gray-7);

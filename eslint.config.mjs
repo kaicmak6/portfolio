@@ -7,7 +7,6 @@ import jestDom from 'eslint-plugin-jest-dom';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import playwright from 'eslint-plugin-playwright';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import tailwind from 'eslint-plugin-tailwindcss';
 import testingLibrary from 'eslint-plugin-testing-library';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -38,17 +37,7 @@ export default antfu({
     '**/*.yaml',
     '**/*.yml',
   ],
-}, ...tailwind.configs['flat/recommended'].map(config => ({
-  ...config,
-  files: ['apps/web/**/*.{js,jsx,ts,tsx}'],
-  settings: {
-    ...config.settings,
-    tailwindcss: {
-      ...config.settings?.tailwindcss,
-      config: path.join(__dirname, 'apps/web/tailwind.config.ts'),
-    },
-  },
-})), jsxA11y.flatConfigs.recommended, {
+}, jsxA11y.flatConfigs.recommended, {
   plugins: {
     '@next/next': nextPlugin,
   },

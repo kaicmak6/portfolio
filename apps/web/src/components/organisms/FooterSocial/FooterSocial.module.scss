@@ -28,7 +28,10 @@
 .credits {
   padding-top: 0;
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   letter-spacing: 0.04em;
-  color: var(--mantine-color-gray-7);
+  /* Pinned to gray-7 while the footer it sits on is dark in dark mode too: 11px
+     gray-7 on navy measured 2.36:1. Mantine's own `dimmed` ink is the pair that
+     already flips, so use it rather than invent a third value. */
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
 }

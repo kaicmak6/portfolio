@@ -30,7 +30,7 @@
   align-items: center;
   gap: var(--mantine-spacing-sm);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -60,7 +60,7 @@
   gap: 8px;
   padding-bottom: 4px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--fs-micro);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -123,7 +123,7 @@
 .turnIndex {
   padding-top: 2px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -131,7 +131,7 @@
 
 .turnBody {
   min-width: 0;
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--fs-body);
   line-height: 1.68;
   color: light-dark(var(--mantine-color-gray-8), var(--mantine-color-dark-1));
   white-space: pre-wrap;
@@ -219,7 +219,7 @@
 .promptsTitle {
   padding: var(--mantine-spacing-md) 0 var(--mantine-spacing-xs);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -284,7 +284,7 @@
 
 .promptIndex {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--ink);
@@ -292,7 +292,7 @@
 }
 
 .promptText {
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--fs-body);
   line-height: 1.5;
 }
 
@@ -323,7 +323,7 @@
 
 .simulator {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -338,7 +338,7 @@
 
 .inputGlyph {
   font-family: var(--mono);
-  font-size: var(--mantine-font-size-md);
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--ink);
 }
@@ -350,7 +350,7 @@
   :global(.mantine-TextInput-input) {
     padding: 0;
     height: 32px;
-    font-size: var(--mantine-font-size-md);
+    font-size: var(--fs-body);
   }
 }
 
@@ -382,7 +382,7 @@
 .footnote {
   max-width: 62ch;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);

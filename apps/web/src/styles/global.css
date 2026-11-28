@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tokens.css';
+
+/* The app is Mantine. Tailwind's preflight was the only thing in `@tailwind
+   base`, and it is what reset borders and heading margins under Mantine's own
+   reset; the utility layer generated nothing, because no component uses a
+   utility class. Both are gone, and `postcss.config.cjs` no longer runs the
+   plugin, so no layer can come back in on a future import. */
 
 @layer base {
   :root {
@@ -22,81 +26,24 @@
       background: var(--mantine-color-indigo-light);
       color: var(--mantine-color-indigo-filled);
     }
-
-    --mantine-color-body: #ffffff;
-
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-
-  [data-mantine-color-scheme='dark'] {
-    --mantine-color-body: #0b0e14;
-    --mantine-color-dark-filled: #161b22;
-    --mantine-color-dark-outline: #30363d;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+/* Unlayered and one notch more specific than Mantine's own rule, on purpose.
+   Mantine sets these on `:root[data-mantine-color-scheme='dark']`, i.e. at
+   specificity (0,2,0), and ships its sheet unlayered — so both an `@layer base`
+   declaration and a bare `[data-mantine-color-scheme='dark']` one lost, whatever
+   their order. The dark body stayed Mantine's stock `--mantine-color-dark-7`
+   (#242424, the grey behind every section that is not a card) and the two dark
+   variant colours never applied. Measured on the built page: body 36,36,36. */
+:root {
+  --mantine-color-body: #ffffff;
+}
+
+html:root[data-mantine-color-scheme='dark'] {
+  --mantine-color-body: #0b0e14;
+  --mantine-color-dark-filled: #161b22;
+  --mantine-color-dark-outline: #30363d;
 }
 
 /* The site-wide `/__theme/theme.css` sets `a[href] { color: var(--brand-3) }` at
@@ -115,4 +62,26 @@ a.mantine-Tabs-tab[href] {
 
 a.mantine-Tabs-tab[data-active][href] {
   color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
+}
+
+/* A filled button's label colour is `--button-color`, and Mantine writes it into
+   the element's `style` attribute — `--button-color: var(--mantine-color-white)`,
+   measured on the element. An inline custom property beats every stylesheet
+   declaration, so `!important` is the only way to win, and none of the three
+   switches that look like they should do this does: `--mantine-primary-color-
+   contrast`, `--mantine-color-brand-contrast`, and the theme's `autoContrast`.
+   All three were set in turn and none moved the rendered colour.
+
+   The selector is `:not([data-variant])`, not `[data-variant='filled']`: a Button
+   given no `variant` carries no `data-variant` attribute at all (measured — the
+   class list is `mantine-Button-root` and nothing else), and paints from the base
+   rule, which fills with the primary colour and inks white. Getting that wrong is
+   how the first two attempts at this changed nothing.
+
+   In light the fill is brand-8 navy and white on it is right, so it is untouched.
+   In dark `primaryShade` is brand-3, a light sky blue, where white measured
+   2.34:1 on every "View Project" and "Technical Brief"; ink from the other end of
+   the same ladder is 7.6:1, and the accent stays loud. */
+:root[data-mantine-color-scheme='dark'] .mantine-Button-root:not([data-variant]) {
+  --button-color: var(--mantine-color-brand-9) !important;
 }

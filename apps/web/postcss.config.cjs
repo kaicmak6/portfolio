@@ -15,7 +15,6 @@ module.exports = {
         'mantine-breakpoint-xl': '88em',
       },
     },
-    'tailwindcss': {},
     'autoprefixer': {},
     ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {}),
   },

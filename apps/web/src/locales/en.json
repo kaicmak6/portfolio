@@ -611,5 +611,10 @@
     "approach_label": "Approach Sequence",
     "approach_loop": "6 s run · 3 s hold",
     "approach_caption": "Sequenced touchdown-zone lights running to the threshold, then holding."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "That link points at a page that has moved, or was never here.",
+    "back_home": "Back to the home page"
   }
 }

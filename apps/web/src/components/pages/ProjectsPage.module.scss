@@ -132,7 +132,7 @@
   gap: var(--mantine-spacing-sm);
   margin-bottom: var(--mantine-spacing-sm);
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -153,7 +153,7 @@
 
 .desc {
   min-width: 0;
-  font-size: var(--mantine-font-size-md);
+  font-size: var(--fs-body);
   line-height: 1.65;
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
 
@@ -182,7 +182,7 @@
   :global(li > b:first-child) {
     display: block;
     margin-bottom: 2px;
-    font-size: 11px;
+    font-size: var(--fs-micro);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: light-dark(var(--mantine-color-brand-8), var(--mantine-color-brand-3));
@@ -206,15 +206,18 @@
 
 .statIndex {
   font-family: var(--mantine-font-family-monospace);
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 700;
   letter-spacing: 0.14em;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-3));
+  /* 11px on the paper column: gray-7 is 7.45:1 there and 3.52:1 on the dark
+     ground, so the pair has to flip with the scheme like every other muted ink
+     on this page. */
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
 }
 
 .statValue {
   margin: 2px 0 0;
-  font-size: var(--mantine-font-size-sm);
+  font-size: var(--fs-body);
   font-weight: 600;
   line-height: 1.35;
   color: light-dark(var(--mantine-color-gray-9), var(--mantine-color-dark-0));

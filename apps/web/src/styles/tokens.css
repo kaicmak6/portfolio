@@ -1,0 +1,222 @@
+/* The shared design layer. Only declarations whose value is byte-identical in
+   all three consuming apps live here; anything an app has drifted on stays in
+   that app, so this file never silently decides a design question. */
+
+:root {
+  /* Four families, no fifth: structure, text, one signal, and status. A named
+       hue outside these four means a decision was made twice. */
+  --ground: #f4f7fb;
+  --surface: #ffffff;
+  --sunken: #e8eff7;
+  --ink-1: #0f1d2e;
+  --ink-2: #2f4a70;
+  /* The tertiary step is a text colour, not a lighter grey: it measures 4.85:1
+       on the sunken field, which is where a field's hint sits. */
+  --ink-3: #55688a;
+  /* One signal, spent on the one actionable or failing thing. The deep blue of
+       mak-cloud.com's own ladder (`brand-8`), not a mid rung: a
+       surface-coloured label on it measures 13.03:1, and the fill separates
+       from the page at 12.13:1, so the one actionable thing is unmistakable. */
+  --signal: #002e6d;
+  /* A pressed or hovered fill darkens, and the label's ratio rises with it —
+       15.52:1 against the base fill's 13.03. A translucent hover
+       (`--primary/80`) blends toward the surface instead, so the label's ratio
+       drops in the one state a pointer is guaranteed to leave the page in. */
+  --signal-press: #00234f;
+  --ok: #1c6b45;
+  --warn: #8a5200;
+  --bad: #a32318;
+  /* The one large tone jump, a different material rather than a deeper surface:
+       on paper it is a dark block that ends the page's own chrome, and it is the
+       ladder's own ink (`brand-9`), so the band and body type are one hue at two
+       lightnesses. Never a nested card's ground. */
+  --band: #0f1d2e;
+  /* The band is dark in both registers, so its type is a fixed light ink rather
+       than a token that flips with the theme: `brand-0` and `brand-2`. */
+  --band-ink: #eef4fa;
+  --band-muted: #a7c8e0;
+  --band-label: #91a9c4;
+  --band-line: rgb(255 255 255 / 0.16);
+  /* A beat inside a frame that already has a boundary, never a boundary of its
+       own: 1.20:1 on the surface. */
+  --line: rgb(15 29 46 / 0.12);
+  /* A control's own edge is the only thing identifying it, so it carries the 3:1
+       bar of 1.4.11 where a control actually sits: 3.74:1 on the surface,
+       3.48:1 on the page and 3.23:1 in a sunken well. Controls only — never a
+       divider, never a card. */
+  --edge: #748699;
+  /* The signal as a fill, at alpha so it composites over a panel and over the
+       band alike. */
+  --signal-tint: rgb(0 46 109 / 0.08);
+
+  /* Radius is a function of the object's size: a chip, a control you press, a
+       panel you look into, one hero object. The scale ends at 22px, and a pill
+       is a shape that means "filter", not a bigger round. */
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 14px;
+  --r-4: 22px;
+  --r-p: 999px;
+
+  /* Depth is a light model: the contact shadow says "touching", the long soft
+       one says "above". Two tiers would make a popover and a card one object.
+       One `--e-3` per page; never a tier on a table row. */
+  --e-1: 0 1px 1px rgb(15 29 46 / 0.05), 0 2px 6px -2px rgb(15 29 46 / 0.08);
+  --e-2: 0 2px 4px -2px rgb(15 29 46 / 0.1), 0 12px 24px -12px rgb(15 29 46 / 0.18);
+  --e-3: 0 8px 16px -8px rgb(15 29 46 / 0.16), 0 40px 72px -28px rgb(15 29 46 / 0.26);
+  /* A raised plate catches the light on its top edge; the inside of a hole does
+       not. Paired with `--e-1` and `--sunken`, never alone. */
+  --inset-up: inset 0 1px 0 rgb(255 255 255 / 0.8);
+  --inset-down: inset 0 2px 5px rgb(15 29 46 / 0.13);
+
+  /* The density layer: four text steps and the heights they sit in, so a shell
+       adopts a measured rhythm instead of picking its own. 10, 11, 12 and 13 all
+       shipped as label sizes, and at 1x a 1px difference is not a rank — it is
+       four names for one tone. They collapse to two: 11 is the floor the Density
+       chapter already sets, and 13 is the row. Rank comes from size and weight,
+       never from a hue, which is why the auxiliary step carries both an uppercase
+       name and a quiet note: those are two kinds, not two ranks, and they never
+       share a column of comparison.
+       Register-free by construction — a size does not flip with the theme, only
+       the inks under it do — so this block has no `.dark` twin. */
+  --fs-title: 24px;
+  --fs-value: 21px;
+  --fs-body: 13px;
+  --fs-micro: 11px;
+  /* One leading per step, all on the 4px rhythm, so a 24px row holds 20px of
+       body text with 2px either side and a 32px row holds it with 6px. */
+  --lh-title: 32px;
+  --lh-value: 24px;
+  --lh-body: 20px;
+  --lh-micro: 16px;
+  /* The heights. A panel's box is arithmetic on the row it holds — never a
+       number typed beside it, which is how one table came to be 466 tall at one
+       width, 401 at another and 500 at a third for the same job. */
+  --rh-bar: 44px;
+  --rh-cap: 28px;
+  --rh-head: 32px;
+  --rh-row: 32px;
+  --rh-row-tight: 24px;
+  --rh-nav: 28px;
+  --rh-control: 32px;
+  --rh-control-sm: 24px;
+  --rh-foot: 24px;
+  /* The floor a chart's plot box may take: below this a line chart is a
+       sparkline and a histogram is a barcode. It is a floor, not a height — a
+       panel that has room gives the plot the rest. */
+  --rh-plot: 96px;
+  /* The two widths a dense shell names in its own grid template. */
+  --w-rail: 280px;
+  --w-reading: 296px;
+
+  --background: var(--ground);
+  --foreground: var(--ink-1);
+  --card: var(--surface);
+  --card-foreground: var(--ink-1);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink-1);
+  --primary: var(--signal);
+  --primary-foreground: var(--surface);
+  /* Sunken, not a rung off it: a secondary fill has to sit under the page, which
+       is the one direction a tone step can take without inventing a surface. */
+  --secondary: var(--sunken);
+  --secondary-foreground: var(--ink-1);
+  --muted: var(--sunken);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--sunken);
+  --accent-foreground: var(--ink-1);
+  --destructive: var(--bad);
+  --border: var(--line);
+  --ring: var(--signal);
+  /* A column of numbers is compared down its own length, so the series are the
+       four families rather than four new hues. */
+  --chart-1: var(--signal);
+  --chart-2: var(--ink-2);
+  --chart-3: var(--ok);
+  --chart-4: var(--warn);
+  --chart-5: var(--ink-3);
+  --radius: var(--r-2);
+  --sidebar: var(--sunken);
+  --sidebar-foreground: var(--ink-1);
+  --sidebar-primary: var(--signal);
+  --sidebar-primary-foreground: var(--surface);
+  --sidebar-accent: var(--sunken);
+  --sidebar-accent-foreground: var(--ink-1);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--signal);
+}
+
+/* Dark is a different material, not a dimmed one: a cold ground, a well *below*
+   it, and light from above instead of a shadow. The hues move as well as the
+   lightness — a deep blue at 4.5:1 on a near-black ground does not exist, so
+   the ladder climbs from `brand-8` to `brand-3` — and every tint is alpha, so it
+   composites over a panel and over the band alike. Shadows measure under 1.1:1
+   here, so each elevation tier adds a lit top hairline and a black ambient. */
+/* Vendored from @mak/ui 0.2.3 `tokens.css`, unchanged except this selector: the
+   shared file keys its dark register on `.dark`, and Mantine expresses the same
+   thing as `[data-mantine-color-scheme='dark']`. Both are listed so one copy of
+   the values serves either owner. */
+.dark,
+[data-mantine-color-scheme='dark'] {
+  --ground: #0b1119;
+  --surface: #131b26;
+  --sunken: #1b2531;
+  --ink-1: #eef4fa;
+  --ink-2: #a7c8e0;
+  --ink-3: #8fa9c6;
+  --signal: #4fb4e2;
+  /* In dark the fill lightens instead of darkening, because the label is the
+       ground colour and the value is ascending in both cases: 7.31:1 here,
+       7.70:1 on the press. */
+  --signal-press: #74c6ed;
+  --ok: #5fc994;
+  --warn: #eeb44e;
+  --bad: #ff8a80;
+  /* A well below the page: the band recedes rather than lifting, so the ground
+       reads as the higher plane. */
+  --band: #070b11;
+  --band-ink: #eef4fa;
+  --band-muted: #a7c8e0;
+  --band-label: #8fa9c6;
+  --band-line: rgb(255 255 255 / 0.14);
+  --line: rgb(255 255 255 / 0.1);
+  --edge: #7f8fa6;
+  --signal-tint: rgb(79 180 226 / 0.12);
+
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 14px;
+  --r-4: 22px;
+  --r-p: 999px;
+
+  --e-1: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 1px 1px rgb(0 0 0 / 0.5), 0 2px 6px -2px rgb(0 0 0 / 0.6);
+  --e-2: inset 0 1px 0 rgb(255 255 255 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.5), 0 12px 24px -12px rgb(0 0 0 / 0.65);
+  --e-3: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 8px 16px -8px rgb(0 0 0 / 0.6), 0 40px 72px -28px rgb(0 0 0 / 0.7);
+  --inset-up: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  --inset-down: inset 0 2px 5px rgb(0 0 0 / 0.5);
+
+  --background: var(--ground);
+  --foreground: var(--ink-1);
+  --card-foreground: var(--ink-1);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink-1);
+  --primary: var(--signal);
+  /* The ground, not the surface: 7.31:1 on a label over the signal fill. */
+  --primary-foreground: var(--ground);
+  --secondary-foreground: var(--ink-1);
+  --muted: var(--sunken);
+  --accent: var(--sunken);
+  --accent-foreground: var(--ink-1);
+  --destructive: var(--bad);
+  --chart-1: var(--signal);
+  --chart-2: var(--ink-2);
+  --chart-3: var(--ok);
+  --chart-4: var(--warn);
+  --chart-5: var(--ink-3);
+  --sidebar: var(--sunken);
+  --sidebar-foreground: var(--ink-1);
+  --sidebar-primary: var(--signal);
+  --sidebar-primary-foreground: var(--ground);
+  --sidebar-accent: var(--sunken);
+  --sidebar-accent-foreground: var(--ink-1);
+}

@@ -16,7 +16,7 @@ import { useTranslations } from 'next-intl';
 
 import { ColorSchemeToggle } from './ColorSchemeToggle';
 import classes from './HeaderTabs.module.scss';
-import { LocaleToggle } from './LocaleToggle';
+import { LangToggle } from './LangToggle';
 
 export function HeaderTabs() {
   const t = useTranslations('HeaderTabs');
@@ -115,7 +115,7 @@ export function HeaderTabs() {
           </Tabs>
 
           <Group visibleFrom="lg">
-            <LocaleToggle />
+            <LangToggle />
             <ColorSchemeToggle />
           </Group>
 
@@ -149,7 +149,7 @@ export function HeaderTabs() {
               </Link>
             ))}
             <Group gap="sm">
-              <LocaleToggle />
+              <LangToggle />
               <ColorSchemeToggle />
             </Group>
           </Stack>
