@@ -46,12 +46,20 @@ html:root[data-mantine-color-scheme='dark'] {
   --mantine-color-dark-outline: #30363d;
 }
 
-/* The site-wide `/__theme/theme.css` sets `a[href] { color: var(--brand-3) }` at
-   specificity 0,1,1, which outranks Mantine's class-level colours (0,1,0) and
-   drops every link to 2.34:1 on paper — measured on the nav, the cert titles and
-   the footer. That sheet's comment assumes an app using a class always wins;
-   with Mantine it does not. These rules re-state Mantine's own components at a
-   specificity that does, so the app's design wins back its own anchors. */
+/* The site-wide `/__theme/theme.css` colours links, and this app must not depend
+   on it doing so: on the bare container every anchor without a Mantine class was
+   `#0000EE`, the browser default, and through Caddy the same anchors take the
+   sheet's `#4fb4e2`, which is 2.34:1 on this app's paper. Measured through Caddy
+   before this rule: 24 anchors, all 24 below 4.5:1.
+   `--mantine-color-anchor` is the token this app already uses for links and it
+   flips with the scheme (#002e6d light / brand-3 dark), so naming it here is the
+   app deciding, not a second palette. */
+a[href] {
+  color: var(--mantine-color-anchor);
+}
+
+/* Mantine's own anchor component at the same value, kept explicit because the
+   rule above must stay a single-element selector to be overridable per component. */
 a.mantine-Anchor-root[href] {
   color: var(--mantine-color-anchor);
 }
